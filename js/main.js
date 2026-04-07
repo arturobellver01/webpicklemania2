@@ -21,10 +21,9 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', setProgress, { passive: true });
     setProgress();
 
-    const revealTargets = document.querySelectorAll('.reveal');
     const revealNow = () => {
         const trigger = window.innerHeight * 0.92;
-        revealTargets.forEach((el) => {
+        document.querySelectorAll('.reveal').forEach((el) => {
             if (el.getBoundingClientRect().top < trigger) el.classList.add('active');
         });
     };
@@ -53,16 +52,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const articlesGrid = document.getElementById('articles-grid');
     const filters = document.getElementById('article-filters');
+    const categoryMap = {
+        fundamentos: 'Fundamentos',
+        reglas: 'Reglas',
+        principiantes: 'Principiantes',
+        tecnica: 'Técnica',
+        equipamiento: 'Equipamiento',
+        comunidad: 'Comunidad',
+        tactica: 'Táctica',
+        comparativas: 'Comparativas'
+    };
+
     const renderArticles = (filter = 'all') => {
         if (!articlesGrid || !window.PICKLEMANIA_ARTICLES) return;
         const items = window.PICKLEMANIA_ARTICLES.filter((a) => filter === 'all' || a.category === filter);
+        if (!items.length) {
+            articlesGrid.innerHTML = '<p class="text-brand-gray">No hay artículos disponibles para esta categoría.</p>';
+            return;
+        }
         articlesGrid.innerHTML = items.map((article) => `
-            <article class="card-soft p-8 reveal">
-                <p class="eyebrow mb-3">${article.categoryLabel}</p>
+            <article class="card-soft p-8 reveal flex flex-col">
+                <p class="eyebrow mb-3">${categoryMap[article.category] || article.category}</p>
                 <h3 class="text-2xl font-display font-bold leading-tight mb-3">${article.title}</h3>
-                <p class="text-sm text-brand-gray mb-5">${article.excerpt}</p>
-                <p class="text-xs text-brand-gray mb-5">${article.minutes} min · ${article.date}</p>
-                <a href="article.html?id=${article.id}" class="font-semibold text-sm">Leer guía →</a>
+                <p class="text-sm text-brand-gray mb-5">${article.description}</p>
+                <p class="text-xs text-brand-gray mb-6">Tiempo de lectura: ${article.readingTime}</p>
+                <a href="aprende/${article.slug}.html" class="brand-btn brand-btn-primary mt-auto">Leer artículo</a>
             </article>
         `).join('');
         revealNow();

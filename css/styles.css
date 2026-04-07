@@ -144,3 +144,21 @@ body {
 ::-webkit-scrollbar { width: 8px; }
 ::-webkit-scrollbar-thumb { background: #c7cbc7; border-radius: 999px; }
 ::-webkit-scrollbar-thumb:hover { background: #a4aba5; }
+
+.btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    padding: .95rem 1.6rem;
+    font-weight: 600;
+    font-size: .95rem;
+    background: var(--brand-black);
+    color: #fff;
+    box-shadow: 0 10px 30px rgba(15, 17, 18, .14);
+    transition: transform .35s ease;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+}
