@@ -1,0 +1,10 @@
+{
+  "name": "picklemania-static",
+  "version": "1.0.0",
+  "description": "Picklemania static website",
+  "scripts": {
+    "dev": "npx servor . 3000 --reload"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
