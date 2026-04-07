@@ -1,4 +1,58 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const isArticlePage = window.location.pathname.includes('/aprende/') && window.location.pathname.endsWith('.html');
+    const basePath = isArticlePage ? '../' : '';
+
+    const header = document.querySelector('header');
+    if (header) {
+        header.className = 'sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-black/5';
+        header.innerHTML = `
+    <div class="container mx-auto px-4 h-20 flex items-center justify-between">
+      <a href="${basePath}index.html" class="flex items-center">
+        <img src="${basePath}img/LogoPicklemania3.png" alt="Picklemania" class="logo">
+      </a>
+      <nav class="hidden md:flex items-center gap-8">
+        <a href="${basePath}marca.html" class="text-sm font-medium text-brand-gray hover:text-brand-black transition-colors">Nuestra Marca</a>
+        <a href="${basePath}coleccion.html" class="text-sm font-medium text-brand-gray hover:text-brand-black transition-colors">Colección</a>
+        <a href="${basePath}team.html" class="text-sm font-medium text-brand-gray hover:text-brand-black transition-colors">Team</a>
+        <a href="${basePath}aprende.html" class="text-sm font-medium text-brand-gray hover:text-brand-black transition-colors">Aprende</a>
+        <a href="${basePath}colabora.html" class="text-sm font-medium text-brand-gray hover:text-brand-black transition-colors">Colabora</a>
+        <a href="${basePath}colabora.html#contacto" class="bg-brand-black text-white px-5 py-2.5 rounded-full text-sm font-bold">Contacto</a>
+      </nav>
+      <button id="mobile-menu-toggle" class="md:hidden p-2" aria-label="Abrir menú">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-black/5 p-4 space-y-3">
+      <a href="${basePath}marca.html" class="block text-lg font-semibold">Nuestra Marca</a>
+      <a href="${basePath}coleccion.html" class="block text-lg font-semibold">Colección</a>
+      <a href="${basePath}team.html" class="block text-lg font-semibold">Team</a>
+      <a href="${basePath}aprende.html" class="block text-lg font-semibold">Aprende</a>
+      <a href="${basePath}future.html" class="block text-lg font-semibold">Más que equipamiento</a>
+      <a href="${basePath}colabora.html" class="block text-lg font-semibold">Colabora</a>
+    </div>`;
+    }
+
+    const footer = document.querySelector('footer');
+    if (footer) {
+        footer.className = 'bg-white border-t border-black/5 pt-20 pb-10';
+        footer.innerHTML = `
+    <div class="container mx-auto px-4">
+      <div class="grid md:grid-cols-4 gap-10 mb-12">
+        <div class="space-y-4">
+          <a href="${basePath}index.html" class="flex items-center"><img src="${basePath}img/LogoPicklemania2.png" alt="Picklemania" class="h-8 w-auto"></a>
+          <p class="text-sm text-brand-gray">Marca europea en evolución. Diseñada en España y producida en Europa para construir el juego con proximidad.</p>
+        </div>
+        <div><h4 class="font-semibold mb-4">Explorar</h4><ul class="space-y-2 text-sm text-brand-gray"><li><a href="${basePath}marca.html">Nuestra Marca</a></li><li><a href="${basePath}coleccion.html">Colección Black & White</a></li><li><a href="${basePath}team.html">Team Picklemania</a></li><li><a href="${basePath}aprende.html">Aprende Pickleball</a></li></ul></div>
+        <div><h4 class="font-semibold mb-4">Origen europeo</h4><ul class="space-y-2 text-sm text-brand-gray"><li>Diseñado en España</li><li>Fabricado en Europa / Portugal</li><li>Control de calidad cercano</li><li>Comunidad temprana</li></ul></div>
+        <div id="newsletter"><h4 class="font-semibold mb-4">Newsletter</h4><p class="text-sm text-brand-gray mb-3">Sigue la evolución del juego.</p><form class="flex gap-2"><input type="email" aria-label="Email" placeholder="Tu email" class="flex-1 bg-brand-light rounded-xl px-3 py-2 text-sm"><button class="bg-brand-black text-white rounded-xl px-3 py-2 text-sm font-semibold">Unirme</button></form></div>
+      </div>
+      <div class="border-t border-black/5 pt-6 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-brand-gray">
+        <p>© <span data-current-year></span> Picklemania. Todos los derechos reservados.</p>
+        <div class="flex gap-4"><a href="#">Privacidad</a><a href="#">Aviso legal</a><a href="${basePath}colabora.html#contacto">Contacto profesional</a></div>
+      </div>
+    </div>`;
+    }
+
     const yearNodes = document.querySelectorAll('[data-current-year]');
     yearNodes.forEach((n) => (n.textContent = new Date().getFullYear()));
 
@@ -52,31 +106,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const articlesGrid = document.getElementById('articles-grid');
     const filters = document.getElementById('article-filters');
-    const categoryMap = {
-        fundamentos: 'Fundamentos',
-        reglas: 'Reglas',
-        principiantes: 'Principiantes',
-        tecnica: 'Técnica',
-        equipamiento: 'Equipamiento',
-        comunidad: 'Comunidad',
-        tactica: 'Táctica',
-        comparativas: 'Comparativas'
-    };
+
+    const normalize = (value) => (value || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 
     const renderArticles = (filter = 'all') => {
         if (!articlesGrid || !window.PICKLEMANIA_ARTICLES) return;
-        const items = window.PICKLEMANIA_ARTICLES.filter((a) => filter === 'all' || a.category === filter);
+        const items = window.PICKLEMANIA_ARTICLES.filter((a) => filter === 'all' || normalize(a.category) === filter);
         if (!items.length) {
             articlesGrid.innerHTML = '<p class="text-brand-gray">No hay artículos disponibles para esta categoría.</p>';
             return;
         }
         articlesGrid.innerHTML = items.map((article) => `
-            <article class="card-soft p-8 reveal flex flex-col">
-                <p class="eyebrow mb-3">${categoryMap[article.category] || article.category}</p>
+            <article class="card-soft p-8 reveal flex flex-col h-full">
+                <p class="eyebrow mb-3">${article.category}</p>
                 <h3 class="text-2xl font-display font-bold leading-tight mb-3">${article.title}</h3>
                 <p class="text-sm text-brand-gray mb-5">${article.description}</p>
                 <p class="text-xs text-brand-gray mb-6">Tiempo de lectura: ${article.readingTime}</p>
-                <a href="aprende/${article.slug}.html" class="brand-btn brand-btn-primary mt-auto">Leer artículo</a>
+                <a href="${article.url}" class="brand-btn brand-btn-primary mt-auto">Leer artículo</a>
             </article>
         `).join('');
         revealNow();
