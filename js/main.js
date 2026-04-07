@@ -21,10 +21,9 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', setProgress, { passive: true });
     setProgress();
 
-    const revealTargets = document.querySelectorAll('.reveal');
     const revealNow = () => {
         const trigger = window.innerHeight * 0.92;
-        revealTargets.forEach((el) => {
+        document.querySelectorAll('.reveal').forEach((el) => {
             if (el.getBoundingClientRect().top < trigger) el.classList.add('active');
         });
     };
@@ -67,6 +66,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const renderArticles = (filter = 'all') => {
         if (!articlesGrid || !window.PICKLEMANIA_ARTICLES) return;
         const items = window.PICKLEMANIA_ARTICLES.filter((a) => filter === 'all' || a.category === filter);
+        if (!items.length) {
+            articlesGrid.innerHTML = '<p class="text-brand-gray">No hay artículos disponibles para esta categoría.</p>';
+            return;
+        }
         articlesGrid.innerHTML = items.map((article) => `
             <article class="card-soft p-8 reveal flex flex-col">
                 <p class="eyebrow mb-3">${categoryMap[article.category] || article.category}</p>
