@@ -24,6 +24,19 @@ body {
     color: var(--brand-gray-500);
 }
 
+.logo {
+  height: 102px !important;
+  width: auto !important;
+  max-height: none !important;
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .logo {
+    height: 140px !important;
+  }
+}
+
 .brand-btn {
     display: inline-flex;
     align-items: center;
