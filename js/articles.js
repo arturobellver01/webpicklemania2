@@ -27,27 +27,33 @@ window.PICKLEMANIA_ARTICLES = [
 
 window.PICKLEMANIA_TEAM = [
   {
-    name: 'Lucía Navarro',
+    name: 'Javier Pedregosa',
     city: 'Madrid',
-    style: 'Control y lectura táctica',
-    phrase: 'Representar Picklemania es construir comunidad con cada partido.',
-    discountCode: 'LUCIA10',
-    placeholder: true
+    style: 'Nivel 4.5 · Revés · Mano derecha · 1.75m',
+    phrase: 'Competir y mejorar cada día dentro de la comunidad.',
+    discountCode: 'JAVIER10',
+    image: './img/JugadorJavier.png',
+    instagram: 'https://www.instagram.com/pedregosa.pb/',
+    placeholder: false
   },
   {
-    name: 'Adrián Costa',
-    city: 'Valencia',
-    style: 'Ritmo de red y transición',
-    phrase: 'El juego evoluciona cuando compartimos pista y aprendizaje.',
-    discountCode: 'ADRIAN10',
-    placeholder: true
+    name: 'Mamen Morales',
+    city: 'Andalucía',
+    style: 'Nivel 4.5 · Derecha · Mano derecha · 1.64m',
+    phrase: 'Constancia, juego en equipo y pasión por mejorar.',
+    discountCode: 'MAMEN10',
+    image: 'img/JugadorMamen.png',
+    instagram: 'https://www.instagram.com/mamen28f/',
+    placeholder: false
   },
   {
-    name: 'Sofía Durán',
-    city: 'Barcelona',
-    style: 'Equilibrio y consistencia',
-    phrase: 'Diseño europeo y proximidad: se nota en cómo se vive la marca.',
-    discountCode: 'SOFIA10',
-    placeholder: true
+    name: 'Mariana Romero',
+    city: 'Argentina',
+    style: 'Nivel 4.5 · Revés · Mano derecha · 1.70m',
+    phrase: 'El crecimiento viene de competir y compartir pista.',
+    discountCode: 'MARIANA10',
+    image: 'img/JugadorMariana.jpg',
+    instagram: 'https://www.instagram.com/mariana.r.kretschmer/',
+    placeholder: false
   }
 ];
