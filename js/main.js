@@ -94,21 +94,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const teamGrid = document.getElementById('team-grid');
     if (teamGrid && window.PICKLEMANIA_TEAM) {
-        teamGrid.innerHTML = window.PICKLEMANIA_TEAM.map((player) => `
+    teamGrid.innerHTML = window.PICKLEMANIA_TEAM.map((player) => `
         <article class="card-soft overflow-hidden reveal">
-            <div class="aspect-[4/5] image-placeholder flex items-end p-6">
-                <div class="bg-black/55 backdrop-blur-sm text-white p-4 rounded-2xl w-full">
-                    <p class="text-[11px] uppercase tracking-[0.18em] text-white/70">${player.city}</p>
-                    <h3 class="text-2xl font-display font-black">${player.name}</h3>
-                    <p class="text-sm text-white/80">${player.style}</p>
+            <div class="relative aspect-[4/5]">
+                <img
+                    src="${player.image}"
+                    alt="${player.name}"
+                    class="w-full h-full object-cover"
+                />
+                <div class="absolute inset-x-0 bottom-0 p-6">
+                    <div class="bg-black/55 backdrop-blur-sm text-white p-4 rounded-2xl w-full">
+                        <p class="text-[11px] uppercase tracking-[0.18em] text-white/70">${player.city}</p>
+                        <h3 class="text-2xl font-display font-black">${player.name}</h3>
+                        <p class="text-sm text-white/80">${player.style}</p>
+                    </div>
                 </div>
             </div>
             <div class="p-8 space-y-4">
                 <p class="text-brand-gray italic">“${player.phrase}”</p>
-                <p class="text-xs uppercase tracking-[0.14em] text-brand-gray">Código comunidad: <span class="text-brand-black font-semibold">${player.discountCode}</span></p>
+
+                ${player.instagram ? `<a href="${player.instagram}" target="_blank" rel="noopener noreferrer" class="inline-block text-sm font-medium underline">Instagram</a>` : ''}
                 ${player.placeholder ? '<p class="text-xs text-brand-gray">Contenido editable pendiente de confirmación.</p>' : ''}
             </div>
-        </article>`).join('');
+        </article>
+    `).join('');
         revealNow();
     }
 
