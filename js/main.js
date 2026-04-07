@@ -130,8 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <p class="eyebrow mb-3">${article.category}</p>
                 <h3 class="text-2xl font-display font-bold leading-tight mb-3">${article.title}</h3>
                 <p class="text-sm text-brand-gray mb-5">${article.description}</p>
-                <p class="text-xs text-brand-gray mb-6">Tiempo de lectura: ${article.readingTime}</p>
-                <a href="${article.url}" class="brand-btn brand-btn-primary mt-auto">Leer artículo</a>
+                                <a href="${article.url}" class="brand-btn brand-btn-primary mt-auto">Leer artículo</a>
             </article>
         `).join('');
         revealNow();
