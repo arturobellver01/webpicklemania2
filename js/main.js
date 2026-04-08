@@ -118,9 +118,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const normalize = (value) => (value || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 
+    const getArticlesData = () => {
+        if (Array.isArray(window.PICKLEMANIA_ARTICLES) && window.PICKLEMANIA_ARTICLES.length) {
+            return window.PICKLEMANIA_ARTICLES;
+        }
+
+        if (typeof articles !== 'undefined' && Array.isArray(articles) && articles.length) {
+            return articles.map((article) => ({
+                title: article.title,
+                category: article.category,
+                description: article.metaDescription,
+                readingTime: article.readingTime,
+                url: `aprende/${article.slug}.html`
+            }));
+        }
+
+        return [];
+    };
+
     const renderArticles = (filter = 'all') => {
-        if (!articlesGrid || !window.PICKLEMANIA_ARTICLES) return;
-        const items = window.PICKLEMANIA_ARTICLES.filter((a) => filter === 'all' || normalize(a.category) === filter);
+        if (!articlesGrid) return;
+        const source = getArticlesData();
+        const items = source.filter((a) => filter === 'all' || normalize(a.category) === filter);
         if (!items.length) {
             articlesGrid.innerHTML = '<p class="text-brand-gray">Próximamente nuevos artículos.</p>';
             return;
@@ -129,7 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <article class="card-soft p-8 reveal flex flex-col h-full">
                 <p class="eyebrow mb-3">${article.category}</p>
                 <h3 class="text-2xl font-display font-bold leading-tight mb-3">${article.title}</h3>
-                <p class="text-sm text-brand-gray mb-5">${article.description}</p>
+                <p class="text-sm text-brand-gray mb-5">${article.description || ''}</p>
                                 <a href="${article.url}" class="brand-btn brand-btn-primary mt-auto">Leer artículo</a>
             </article>
         `).join('');
