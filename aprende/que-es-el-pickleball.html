@@ -3,64 +3,145 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Qué es el pickleball y por qué está creciendo en Europa | Picklemania</title>
-  <meta name="description" content="Guía completa sobre qué es el pickleball y por qué está creciendo en europa. Aprende reglas, táctica, errores frecuentes y recomendaciones prácticas para mejorar tu juego de pickleball en pista.">
-  <meta name="keywords" content="pickleball, que, es, el, pickleball, reglas pickleball, técnica pickleball, Picklemania">
-  <link rel="canonical" href="https://picklemania.es/aprende/que-es-el-pickleball.html">
+  <title>Qué es el pickleball: reglas, pista y cómo se juega | Picklemania</title>
+  <meta name="description" content="Descubre qué es el pickleball, cómo se juega, cuánto mide la pista y por qué está creciendo tanto en Europa.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>tailwind.config={theme:{extend:{fontFamily:{sans:['Inter','sans-serif'],display:['Montserrat','sans-serif']},colors:{brand:{black:'#0f1112',gray:'#6a716d',light:'#f3f4f2'}}}}}</script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Montserrat', 'sans-serif']
+          },
+          colors: {
+            brand: {
+              black: '#0f1112',
+              gray: '#6a716d',
+              light: '#f3f4f2',
+              accent: '#8fae8b'
+            }
+          }
+        }
+      }
+    }
+  </script>
   <link rel="stylesheet" href="../css/styles.css">
 </head>
-<body class="antialiased text-brand-black">
+<body class="text-brand-black antialiased">
+  <div id="scroll-progress" class="fixed top-0 left-0 h-1 bg-brand-black z-[100]" style="width:0%"></div>
   <header></header>
-  <main class="py-16 px-4">
-    <article class="max-w-3xl mx-auto space-y-9">
-      <nav class="text-sm text-brand-gray"><a href="../aprende.html" class="hover:text-brand-black">Aprende</a> <span class="mx-2">→</span> <span class="text-brand-black">Qué es el pickleball y por qué está creciendo en Europa</span></nav>
-      <p class="eyebrow">Fundamentos</p>
-      <h1 class="text-4xl md:text-5xl font-display font-black leading-tight">Qué es el pickleball y por qué está creciendo en Europa</h1>
-      <p class="text-lg text-brand-gray leading-8">Si quieres mejorar en pista, entender qué es el pickleball y por qué está creciendo en europa es una ventaja real. En esta guía de Picklemania reunimos reglas oficiales, decisiones tácticas y ejemplos prácticos para que transformes teoría en rendimiento.</p>
 
-      <section class="space-y-3">
-        <h2 class="text-2xl font-display font-bold">Claves reglamentarias que debes dominar</h2>
-        <p class="text-brand-gray leading-7">En pickleball, los detalles reglamentarios marcan la diferencia entre competir con control o regalar puntos. Saber cuándo una pelota es buena, cómo se valida un saque o qué ocurre en la zona de no volea te permite jugar con seguridad y evitar discusiones innecesarias.</p>
-        <p class="text-brand-gray leading-7">La base más importante sigue siendo la misma: solo puntúa quien saca, el partido estándar suele jugarse a 11 con diferencia de dos, y el doble bote inicial condiciona la primera fase táctica de cada rally.</p>
+  <main class="py-16">
+    <article class="container mx-auto px-4 max-w-4xl space-y-10">
+      <div class="reveal">
+        <p class="eyebrow mb-3">Fundamentos · 6 min</p>
+        <h1 class="text-4xl md:text-6xl font-display font-black leading-tight">Qué es el pickleball: cómo se juega y por qué cada vez más gente lo practica</h1>
+      </div>
+
+      <section class="space-y-5 reveal delay-1">
+        <p class="text-lg text-brand-gray">El pickleball es uno de esos deportes que parecen fáciles de entender en pocos minutos, pero que realmente enganchan cuando entras en pista. Combina elementos de deportes de pala conocidos, tiene un ritmo dinámico y, al mismo tiempo, mantiene un componente social muy fuerte.</p>
+        <p class="text-lg text-brand-gray">En los últimos años, su crecimiento en Europa ha sido evidente. Cada vez más clubes, jugadores y comunidades lo incorporan a su día a día. Parte de ese crecimiento se explica por lo accesible que es: puedes empezar rápido, disfrutar desde el primer partido y seguir mejorando con el tiempo.</p>
       </section>
 
-      <section class="space-y-3">
-        <h2 class="text-2xl font-display font-bold">Aplicación táctica en partido real</h2>
-        <p class="text-brand-gray leading-7">Entender qué es el pickleball y por qué está creciendo en europa no es memorizar teoría: es tomar mejores decisiones en segundos. Cuando lees bien la situación, eliges mejor la altura del golpe, la velocidad y la dirección. Eso reduce faltas no forzadas y mejora tu porcentaje de puntos largos.</p>
-        <ul class="list-disc pl-6 text-brand-gray leading-7 space-y-1">
-          <li>Prioriza profundidad tras el saque para ganar tiempo y subir ordenado a la red.</li>
-          <li>Mantén una posición estable en la transición para evitar errores por prisa.</li>
-          <li>Comunícate en dobles para definir quién toma cada bola comprometida.</li>
+      <section class="space-y-4 reveal">
+        <h2 class="text-3xl font-display font-black">Cómo se juega al pickleball</h2>
+        <p class="text-brand-gray">El funcionamiento del juego es sencillo. Un jugador o pareja saca en diagonal hacia el campo contrario. A partir de ahí, la pelota se intercambia por encima de la red hasta que uno de los dos lados comete un error o no puede devolverla correctamente.</p>
+        <p class="text-brand-gray">Se puede jugar en:</p>
+        <ul class="list-disc pl-6 text-brand-gray space-y-2">
+          <li>individuales (1 vs 1)</li>
+          <li>dobles (2 vs 2, el formato más común)</li>
         </ul>
+        <p class="text-brand-gray">El objetivo es mantener el intercambio y ganar el punto respetando las reglas de saque, bote y colocación.</p>
       </section>
 
-      <section class="space-y-3">
-        <h2 class="text-2xl font-display font-bold">Errores frecuentes y cómo corregirlos</h2>
-        <p class="text-brand-gray leading-7">El error más habitual es jugar por impulso sin respetar secuencias básicas. También es común confundir líneas, acelerar demasiado pronto o perder la estructura en puntos ajustados. La solución pasa por entrenamientos cortos, repetitivos y medibles.</p>
-        <p class="text-brand-gray leading-7">Dedica una parte de cada sesión a patrones concretos: saque + devolución, tercer golpe de control, transición a la red y cierre del punto. La consistencia técnica llega cuando repites con intención, no solo cuando juegas partidos.</p>
+      <section class="space-y-4 reveal">
+        <h2 class="text-3xl font-display font-black">Medidas de la pista</h2>
+        <p class="text-brand-gray">Una pista de pickleball mide 6,10 metros de ancho por 13,41 metros de largo. Estas dimensiones son iguales tanto para individuales como para dobles.</p>
+        <p class="text-brand-gray">Uno de los elementos clave es la zona de no volea, situada a 2,13 metros de la red en cada lado. Esta zona condiciona mucho la forma de jugar y evita que todo el juego se convierta en un intercambio agresivo cerca de la red.</p>
       </section>
 
-      <section class="space-y-3">
-        <h2 class="text-2xl font-display font-bold">FAQ rápida sobre qué es el pickleball y por qué está creciendo en europa</h2>
-        <h3 class="font-semibold text-lg">¿Qué debo priorizar si estoy empezando?</h3>
-        <p class="text-brand-gray leading-7">Primero, dominar reglas esenciales y control de bola. Después, estructura táctica y lectura de juego.</p>
-        <h3 class="font-semibold text-lg">¿Sirve este enfoque para dobles e individuales?</h3>
-        <p class="text-brand-gray leading-7">Sí, aunque en dobles la coordinación y la ocupación de espacios tienen un peso mayor.</p>
+      <section class="space-y-4 reveal">
+        <h2 class="text-3xl font-display font-black">Cómo se puntúa</h2>
+        <p class="text-brand-gray">En el sistema tradicional, solo suma puntos el jugador o la pareja que está al servicio. Si el equipo que recibe gana el punto, simplemente recupera el saque.</p>
+        <p class="text-brand-gray">Lo más habitual es jugar a 11 puntos con una diferencia mínima de 2. Esto hace que cada punto tenga importancia, especialmente cuando estás al saque.</p>
       </section>
 
-      <section class="mt-16 p-8 bg-brand-light rounded-2xl">
-        <h3 class="text-2xl font-display font-bold mb-4">Descarga la guía completa de iniciación</h3>
-        <p class="text-brand-gray mb-6">Da el siguiente paso con contenido práctico, recursos de marca y herramientas para seguir creciendo dentro y fuera de la pista.</p>
-        <a href="../aprende.html" class="brand-btn brand-btn-primary">Descarga la guía completa de iniciación</a>
+      <section class="space-y-4 reveal">
+        <h2 class="text-3xl font-display font-black">Por qué el pickleball está creciendo tanto</h2>
+        <p class="text-brand-gray">El crecimiento del pickleball no es casual. Se basa en varios factores que lo hacen muy atractivo:</p>
+        <ul class="list-disc pl-6 text-brand-gray space-y-2">
+          <li>es fácil de aprender</li>
+          <li>permite jugar desde el primer día</li>
+          <li>tiene un fuerte componente social</li>
+          <li>combina ritmo con control</li>
+          <li>se adapta a diferentes niveles</li>
+        </ul>
+        <p class="text-brand-gray">Además, no necesitas una técnica compleja para empezar, pero sí puedes desarrollar un juego muy completo con el tiempo. Esa combinación entre accesibilidad y profundidad es una de sus claves.</p>
+      </section>
+
+      <section class="space-y-4 reveal">
+        <h2 class="text-3xl font-display font-black">Qué necesitas para empezar</h2>
+        <p class="text-brand-gray">Para empezar a jugar necesitas tres cosas:</p>
+        <ul class="list-disc pl-6 text-brand-gray space-y-2">
+          <li>una pala de pickleball</li>
+          <li>una pelota específica (interior o exterior)</li>
+          <li>una pista adecuada</li>
+        </ul>
+        <p class="text-brand-gray">Aunque puedes empezar con material básico, utilizar una pala equilibrada desde el principio ayuda a tener mejores sensaciones y progresar más rápido.</p>
+      </section>
+
+      <section class="space-y-4 reveal">
+        <h2 class="text-3xl font-display font-black">FAQ</h2>
+        <div class="space-y-4">
+          <div>
+            <h3 class="font-semibold text-lg">¿Es difícil aprender pickleball?</h3>
+            <p class="text-brand-gray">No. Es uno de los deportes más fáciles de empezar, especialmente si vienes de otros deportes de pala.</p>
+          </div>
+          <div>
+            <h3 class="font-semibold text-lg">¿Se puede jugar sin experiencia previa?</h3>
+            <p class="text-brand-gray">Sí. Puedes jugar desde el primer día y mejorar progresivamente.</p>
+          </div>
+          <div>
+            <h3 class="font-semibold text-lg">¿Qué diferencia hay con el pádel o el tenis?</h3>
+            <p class="text-brand-gray">El pickleball es más accesible, tiene una pista más pequeña y una dinámica de juego distinta, especialmente por la zona de no volea.</p>
+          </div>
+          <div>
+            <h3 class="font-semibold text-lg">¿Es un deporte solo para gente mayor?</h3>
+            <p class="text-brand-gray">No. Aunque es muy inclusivo, cada vez lo practican más jugadores jóvenes y competitivos.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="space-y-4 reveal">
+        <h2 class="text-3xl font-display font-black">Conclusión</h2>
+        <p class="text-brand-gray">El pickleball es un deporte moderno, accesible y con mucho margen de evolución. Entender sus bases —cómo se juega, cómo se puntúa y cómo funciona la pista— es el primer paso para empezar a disfrutarlo de verdad.</p>
+        <p class="text-brand-gray">Cuanto antes entiendas su lógica, antes empezarás a jugar con intención y no solo por intuición.</p>
+      </section>
+
+      <section class="card-soft p-8 md:p-10 space-y-5 reveal">
+        <p class="eyebrow">Empieza con buen material desde el primer partido</p>
+        <p class="text-brand-gray">Si estás descubriendo el pickleball y quieres progresar con sensaciones reales de control y equilibrio, echa un vistazo a nuestra colección.</p>
+        <a class="brand-btn brand-btn-primary" href="../coleccion.html">👉 Descubre la colección</a>
+      </section>
+
+      <section class="space-y-4 reveal">
+        <h2 class="text-2xl font-display font-bold">Artículos relacionados</h2>
+        <ul class="space-y-2 text-brand-gray">
+          <li>Reglas básicas del pickleball explicadas fácil</li>
+          <li>Zona de no volea: qué es y cómo evitar faltas</li>
+          <li>Cómo elegir tu primera pala de pickleball</li>
+        </ul>
       </section>
     </article>
   </main>
+
   <footer></footer>
+
+  <script src="../js/articles.js"></script>
   <script src="../js/main.js"></script>
 </body>
 </html>

@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!articlesGrid || !window.PICKLEMANIA_ARTICLES) return;
         const items = window.PICKLEMANIA_ARTICLES.filter((a) => filter === 'all' || normalize(a.category) === filter);
         if (!items.length) {
-            articlesGrid.innerHTML = '<p class="text-brand-gray">No hay artículos disponibles para esta categoría.</p>';
+            articlesGrid.innerHTML = '<p class="text-brand-gray">Próximamente nuevos artículos.</p>';
             return;
         }
         articlesGrid.innerHTML = items.map((article) => `
