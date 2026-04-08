@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
         header.innerHTML = `
     <div class="container mx-auto px-4 h-20 flex items-center justify-between">
       <a href="${basePath}index.html" class="flex items-center">
-        <img src="${basePath}img/LogoPicklemania3.png" alt="Picklemania" class="logo">
+        <img src="${basePath}img/LogoPicklemania3.svg" alt="Picklemania" class="logo">
       </a>
       <nav class="hidden md:flex items-center gap-8">
         <a href="${basePath}marca.html" class="text-sm font-medium text-brand-gray hover:text-brand-black transition-colors">Nuestra Marca</a>
@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
     <div class="container mx-auto px-4">
       <div class="grid md:grid-cols-4 gap-10 mb-12">
         <div class="space-y-4">
-          <a href="${basePath}index.html" class="flex items-center"><img src="${basePath}img/LogoPicklemania2.png" alt="Picklemania" class="h-8 w-auto"></a>
+          <a href="${basePath}index.html" class="flex items-center"><img src="${basePath}img/LogoPicklemania.svg" alt="Picklemania" class="h-8 w-auto"></a>
           <p class="text-sm text-brand-gray">Marca europea en evolución. Diseñada en España y producida en Europa para construir el juego con proximidad.</p>
         </div>
         <div><h4 class="font-semibold mb-4">Explorar</h4><ul class="space-y-2 text-sm text-brand-gray"><li><a href="${basePath}marca.html">Nuestra Marca</a></li><li><a href="${basePath}coleccion.html">Colección Black & White</a></li><li><a href="${basePath}team.html">Team Picklemania</a></li><li><a href="${basePath}aprende.html">Aprende Pickleball</a></li></ul></div>
