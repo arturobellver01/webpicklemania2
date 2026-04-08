@@ -38,13 +38,21 @@ document.addEventListener('DOMContentLoaded', () => {
         footer.innerHTML = `
     <div class="container mx-auto px-4">
       <div class="grid md:grid-cols-4 gap-10 mb-12">
-        <div class="space-y-4">
-          <a href="${basePath}index.html" class="flex items-center"><img src="${basePath}img/LogoPicklemania2.png" alt="Picklemania" class="h-8 w-auto"></a>
-          <p class="text-sm text-brand-gray">Marca europea en evolución. Diseñada en España y producida en Europa para construir el juego con proximidad.</p>
+        <div class="space-y-5 md:col-span-2">
+          <a href="${basePath}index.html" class="flex items-center"><img src="${basePath}img/LogoPicklemania2.png" alt="Picklemania" class="h-10 w-auto"></a>
+          <p class="text-sm text-brand-gray max-w-md">Marca europea en evolución. Diseñada en España y producida en Europa para construir el juego con proximidad, criterio y consistencia.</p>
+          <p class="text-xs tracking-[0.14em] uppercase text-brand-gray">Designed in Spain · Made in Europe</p>
         </div>
         <div><h4 class="font-semibold mb-4">Explorar</h4><ul class="space-y-2 text-sm text-brand-gray"><li><a href="${basePath}marca.html">Nuestra Marca</a></li><li><a href="${basePath}coleccion.html">Colección Black & White</a></li><li><a href="${basePath}team.html">Team Picklemania</a></li><li><a href="${basePath}aprende.html">Aprende Pickleball</a></li></ul></div>
         <div><h4 class="font-semibold mb-4">Origen europeo</h4><ul class="space-y-2 text-sm text-brand-gray"><li>Diseñado en España</li><li>Fabricado en Europa / Portugal</li><li>Control de calidad cercano</li><li>Comunidad temprana</li></ul></div>
-        <div id="newsletter"><h4 class="font-semibold mb-4">Newsletter</h4><p class="text-sm text-brand-gray mb-3">Sigue la evolución del juego.</p><form class="flex gap-2"><input type="email" aria-label="Email" placeholder="Tu email" class="flex-1 bg-brand-light rounded-xl px-3 py-2 text-sm"><button class="bg-brand-black text-white rounded-xl px-3 py-2 text-sm font-semibold">Unirme</button></form></div>
+        <div id="newsletter" class="md:col-span-2 lg:col-span-4 rounded-2xl bg-brand-light/70 p-6 border border-black/5">
+          <h4 class="font-semibold mb-2">Newsletter</h4>
+          <p class="text-sm text-brand-gray mb-4">Sigue la evolución del juego.</p>
+          <form class="flex flex-col sm:flex-row gap-2">
+            <input type="email" aria-label="Email" placeholder="Tu email" class="flex-1 bg-white rounded-xl px-4 py-3 text-sm border border-black/10 focus:outline-none focus:ring-2 focus:ring-brand-black/20">
+            <button class="bg-brand-black text-white rounded-xl px-5 py-3 text-sm font-semibold">Unirme</button>
+          </form>
+        </div>
       </div>
       <div class="border-t border-black/5 pt-6 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-brand-gray">
         <p>© <span data-current-year></span> Picklemania. Todos los derechos reservados.</p>
