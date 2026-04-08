@@ -282,16 +282,7 @@ window.PICKLEMANIA_ARTICLES = [
 ];
 
 window.PICKLEMANIA_TEAM = [
-  {
-    name: 'Javier Pedregosa',
-    city: 'Madrid',
-    style: 'Nivel 4.5 · Revés · Mano derecha · 1.75m',
-    phrase: 'Competir y mejorar cada día dentro de la comunidad.',
-    discountCode: 'JAVIER10',
-    image: './img/JugadorJavier.png',
-    instagram: 'https://www.instagram.com/pedregosa.pb/',
-    placeholder: false
-  },
+
   {
     name: 'Mamen Morales',
     city: 'Andalucía',
@@ -310,6 +301,16 @@ window.PICKLEMANIA_TEAM = [
     discountCode: 'MARIANA10',
     image: 'img/JugadorMariana.jpg',
     instagram: 'https://www.instagram.com/mariana.r.kretschmer/',
+    placeholder: false
+  },
+  {
+    name: 'Próximamente',
+    city: '???',
+    style: '',
+    phrase: '¿Quieres ser el próximo jugador destacado? Contáctanos para formar parte del equipo.',
+    discountCode: '',
+    image: './img/logoPicklemania.png',
+    instagram: '',
     placeholder: false
   }
 ];
