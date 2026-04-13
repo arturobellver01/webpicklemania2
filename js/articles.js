@@ -9,11 +9,10 @@ window.PICKLEMANIA_ARTICLES = [
 ];
 
 window.PICKLEMANIA_TEAM = [
-
   {
     name: 'Mamen Morales',
-    city: 'Andalucía',
-    style: 'Nivel 4.5 · Derecha · Mano derecha · 1.64m',
+    city: 'Sevilla',
+    style: 'Control',
     phrase: 'Constancia, juego en equipo y pasión por mejorar.',
     discountCode: 'MAMEN10',
     image: 'img/JugadorMamen.png',
@@ -22,8 +21,8 @@ window.PICKLEMANIA_TEAM = [
   },
   {
     name: 'Mariana Romero',
-    city: 'Argentina',
-    style: 'Nivel 4.5 · Revés · Mano derecha · 1.70m',
+    city: 'Madrid',
+    style: 'Táctico',
     phrase: 'El crecimiento viene de competir y compartir pista.',
     discountCode: 'MARIANA10',
     image: 'img/JugadorMariana.jpg',
@@ -31,13 +30,13 @@ window.PICKLEMANIA_TEAM = [
     placeholder: false
   },
   {
-    name: 'Próximamente',
-    city: '???',
-    style: '',
-    phrase: '¿Quieres ser el próximo jugador destacado? Contáctanos para formar parte del equipo.',
-    discountCode: '',
-    image: './img/logoPicklemania.png',
+    name: 'Próximo jugador',
+    city: 'Pendiente',
+    style: 'Agresivo',
+    phrase: '¿Quieres ser el próximo jugador destacado? Contáctanos para formar parte del Team Picklemania.',
+    discountCode: 'PENDIENTE',
+    image: 'img/JugadorJavier.png',
     instagram: '',
-    placeholder: false
+    placeholder: true
   }
 ];
