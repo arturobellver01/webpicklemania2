@@ -1,3 +1,36 @@
+const TEAM_FALLBACK = [
+    {
+        name: 'Mamen Morales',
+        city: 'Sevilla',
+        style: 'Control',
+        phrase: 'Constancia, juego en equipo y pasión por mejorar.',
+        discountCode: 'MAMEN10',
+        image: 'img/JugadorMamen.png',
+        instagram: 'https://www.instagram.com/mamen28f/',
+        placeholder: false
+    },
+    {
+        name: 'Mariana Romero',
+        city: 'Madrid',
+        style: 'Táctico',
+        phrase: 'El crecimiento viene de competir y compartir pista.',
+        discountCode: 'MARIANA10',
+        image: 'img/JugadorMariana.jpg',
+        instagram: 'https://www.instagram.com/mariana.r.kretschmer/',
+        placeholder: false
+    },
+    {
+        name: 'Próximo jugador',
+        city: 'Barcelona',
+        style: 'Agresivo',
+        phrase: '¿Quieres ser el próximo jugador destacado? Contáctanos para formar parte del Team Picklemania.',
+        discountCode: 'TEAMNEXT',
+        image: 'img/JugadorJavier.png',
+        instagram: '',
+        placeholder: true
+    }
+];
+
 document.addEventListener('DOMContentLoaded', () => {
     const isArticlePage = window.location.pathname.includes('/aprende/') && window.location.pathname.endsWith('.html');
     const basePath = isArticlePage ? '../' : '';
@@ -11,8 +44,8 @@ document.addEventListener('DOMContentLoaded', () => {
         <img src="${basePath}img/LogoPicklemania3.svg" alt="Picklemania" class="logo">
       </a>
       <nav class="hidden md:flex items-center gap-8">
-        <a href="${basePath}marca.html" class="text-sm font-medium text-brand-gray hover:text-brand-black transition-colors">Nuestra Marca</a>
-        <a href="${basePath}coleccion.html" class="text-sm font-medium text-brand-gray hover:text-brand-black transition-colors">Colección</a>
+        <a href="${basePath}marca.html" class="text-sm font-medium text-brand-gray hover:text-brand-black transition-colors">La Marca</a>
+        <a href="${basePath}coleccion.html" class="text-sm font-medium text-brand-gray hover:text-brand-black transition-colors">Colecciones</a>
         <a href="${basePath}team.html" class="text-sm font-medium text-brand-gray hover:text-brand-black transition-colors">Team</a>
         <a href="${basePath}aprende.html" class="text-sm font-medium text-brand-gray hover:text-brand-black transition-colors">Aprende</a>
         <a href="${basePath}colabora.html" class="text-sm font-medium text-brand-gray hover:text-brand-black transition-colors">Colabora</a>
@@ -23,11 +56,10 @@ document.addEventListener('DOMContentLoaded', () => {
       </button>
     </div>
     <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-black/5 p-4 space-y-3">
-      <a href="${basePath}marca.html" class="block text-lg font-semibold">Nuestra Marca</a>
-      <a href="${basePath}coleccion.html" class="block text-lg font-semibold">Colección</a>
+      <a href="${basePath}marca.html" class="block text-lg font-semibold">La Marca</a>
+      <a href="${basePath}coleccion.html" class="block text-lg font-semibold">Colecciones</a>
       <a href="${basePath}team.html" class="block text-lg font-semibold">Team</a>
       <a href="${basePath}aprende.html" class="block text-lg font-semibold">Aprende</a>
-      <a href="${basePath}future.html" class="block text-lg font-semibold">Más que equipamiento</a>
       <a href="${basePath}colabora.html" class="block text-lg font-semibold">Colabora</a>
     </div>`;
     }
@@ -40,9 +72,9 @@ document.addEventListener('DOMContentLoaded', () => {
       <div class="grid md:grid-cols-4 gap-10 mb-12">
         <div class="space-y-4">
           <a href="${basePath}index.html" class="flex items-center"><img src="${basePath}img/LogoPicklemania.svg" alt="Picklemania" class="h-8 w-auto"></a>
-          <p class="text-sm text-brand-gray">Marca europea en evolución. Diseñada en España y producida en Europa para construir el juego con proximidad.</p>
+          <p class="text-sm text-brand-gray">Diseñado en España · Fabricado en Europa. Una marca que construye el juego con identidad y proximidad.</p>
         </div>
-        <div><h4 class="font-semibold mb-4">Explorar</h4><ul class="space-y-2 text-sm text-brand-gray"><li><a href="${basePath}marca.html">Nuestra Marca</a></li><li><a href="${basePath}coleccion.html">Colección Black & White</a></li><li><a href="${basePath}team.html">Team Picklemania</a></li><li><a href="${basePath}aprende.html">Aprende Pickleball</a></li></ul></div>
+        <div><h4 class="font-semibold mb-4">Explorar</h4><ul class="space-y-2 text-sm text-brand-gray"><li><a href="${basePath}marca.html">La Marca</a></li><li><a href="${basePath}coleccion.html">Colecciones Black & White</a></li><li><a href="${basePath}team.html">Team Picklemania</a></li><li><a href="${basePath}aprende.html">Aprende Pickleball</a></li></ul></div>
         <div><h4 class="font-semibold mb-4">Origen europeo</h4><ul class="space-y-2 text-sm text-brand-gray"><li>Diseñado en España</li><li>Fabricado en Europa / Portugal</li><li>Control de calidad cercano</li><li>Comunidad temprana</li></ul></div>
         <div id="newsletter"><h4 class="font-semibold mb-4">Newsletter</h4><p class="text-sm text-brand-gray mb-3">Sigue la evolución del juego.</p><form class="flex gap-2"><input type="email" aria-label="Email" placeholder="Tu email" class="flex-1 bg-brand-light rounded-xl px-3 py-2 text-sm"><button class="bg-brand-black text-white rounded-xl px-3 py-2 text-sm font-semibold">Unirme</button></form></div>
       </div>
@@ -85,8 +117,12 @@ document.addEventListener('DOMContentLoaded', () => {
     revealNow();
 
     const teamGrid = document.getElementById('team-grid');
-    if (teamGrid && window.PICKLEMANIA_TEAM) {
-    teamGrid.innerHTML = window.PICKLEMANIA_TEAM.map((player) => `
+    const teamData = Array.isArray(window.PICKLEMANIA_TEAM) && window.PICKLEMANIA_TEAM.length
+        ? window.PICKLEMANIA_TEAM
+        : TEAM_FALLBACK;
+
+    if (teamGrid) {
+    teamGrid.innerHTML = teamData.map((player) => `
         <article class="card-soft overflow-hidden reveal">
             <div class="relative aspect-[4/5]">
                 <img
@@ -102,11 +138,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                 </div>
             </div>
-            <div class="p-8 space-y-4">
+            <div class="p-8 space-y-3">
                 <p class="text-brand-gray italic">“${player.phrase}”</p>
-
+                <p class="text-sm text-brand-gray"><strong>Estilo:</strong> ${player.style}</p>
+                <p class="text-sm text-brand-gray"><strong>Código personal:</strong> ${player.discountCode || 'Pendiente'}</p>
                 ${player.instagram ? `<a href="${player.instagram}" target="_blank" rel="noopener noreferrer" class="inline-block text-sm font-medium underline">Instagram</a>` : ''}
-                ${player.placeholder ? '<p class="text-xs text-brand-gray">Contenido editable pendiente de confirmación.</p>' : ''}
+                ${player.placeholder ? '<p class="text-xs text-brand-gray">Foto y perfil pendientes de actualización con material real de pista.</p>' : ''}
             </div>
         </article>
     `).join('');

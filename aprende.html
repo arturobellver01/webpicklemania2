@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aprende Pickleball | Guías reales para jugar mejor | Picklemania</title>
-  <meta name="description" content="Biblioteca editorial de Picklemania con artículos completos sobre reglas, técnica, medidas y fundamentos del pickleball actual.">
+  <title>Aprende Pickleball | Picklemania</title>
+  <meta name="description" content="Aprende pickleball desde cero con fundamentos claros, consejos prácticos y una guía de inicio rápida.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
@@ -34,20 +34,54 @@
   <header></header>
 
   <main class="py-16">
-    <section class="container mx-auto px-4 space-y-10">
+    <section class="container mx-auto px-4 space-y-10 max-w-6xl">
       <div class="reveal max-w-4xl">
         <p class="eyebrow mb-3">Aprende Pickleball</p>
-        <h1 class="text-4xl md:text-6xl font-display font-black mb-5">Contenido editorial útil para jugar con más criterio</h1>
-        <p class="text-brand-gray text-lg">Aquí no encontrarás artículos de relleno: publicamos guías completas para entender reglas, mejorar decisiones en pista y progresar con base real en normativa RFET.</p>
+        <h1 class="text-4xl md:text-6xl font-display font-black mb-5">El juego está creciendo. Empieza aquí.</h1>
+        <p class="text-brand-gray text-lg">El pickleball es uno de los deportes con mayor crecimiento en el mundo. Fácil de aprender, rápido de disfrutar y profundamente social.</p>
       </div>
 
-      <div id="article-filters" class="flex flex-wrap gap-2">
+      <div class="grid md:grid-cols-2 gap-6">
+        <article class="card-soft p-8 reveal">
+          <h2 class="text-2xl font-display font-bold mb-3">¿Qué es el pickleball?</h2>
+          <p class="text-brand-gray">Un deporte que combina elementos del tenis, pádel y bádminton. Se juega en una pista reducida, con una pala sólida y una pelota perforada.</p>
+        </article>
+        <article class="card-soft p-8 reveal delay-1">
+          <h2 class="text-2xl font-display font-bold mb-3">¿Por qué está creciendo?</h2>
+          <ul class="text-brand-gray space-y-2 list-disc pl-5">
+            <li>Accesible para todos los niveles.</li>
+            <li>Dinámico y rápido.</li>
+            <li>Altamente social.</li>
+          </ul>
+        </article>
+        <article class="card-soft p-8 reveal">
+          <h2 class="text-2xl font-display font-bold mb-3">Cómo empezar</h2>
+          <p class="text-brand-gray">No necesitas experiencia previa. Puedes jugar desde el primer día y el progreso es rápido.</p>
+        </article>
+        <article class="card-soft p-8 reveal delay-1">
+          <h2 class="text-2xl font-display font-bold mb-3">Primeros consejos</h2>
+          <ul class="text-brand-gray space-y-2 list-disc pl-5">
+            <li>Controla antes de golpear fuerte.</li>
+            <li>Juega con ritmo, no con fuerza.</li>
+            <li>Entiende la posición antes que el punto.</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="card-soft p-6 reveal">
+        <p class="text-sm text-brand-gray">Imágenes necesarias para esta sección: gente aprendiendo, primeros golpes, ambiente social y mezcla de edades.</p>
+      </div>
+
+      <div class="text-center reveal">
+        <a href="colabora.html#contacto" class="brand-btn brand-btn-primary">Empieza a jugar. Únete a Picklemania.</a>
+      </div>
+
+      <div id="article-filters" class="flex flex-wrap gap-2 pt-6 border-t border-black/10">
         <button class="px-4 py-2 rounded-full border border-black/10 bg-brand-black text-white" data-filter="all">Todo</button>
         <button class="px-4 py-2 rounded-full border border-black/10" data-filter="fundamentos">Fundamentos</button>
         <button class="px-4 py-2 rounded-full border border-black/10" data-filter="reglas">Reglas</button>
         <button class="px-4 py-2 rounded-full border border-black/10" data-filter="tecnica">Técnica</button>
       </div>
-
       <div id="articles-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
     </section>
   </main>
