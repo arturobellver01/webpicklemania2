@@ -1,3 +1,36 @@
+const TEAM_FALLBACK = [
+    {
+        name: 'Mamen Morales',
+        city: 'Sevilla',
+        style: 'Control',
+        phrase: 'Constancia, juego en equipo y pasión por mejorar.',
+        discountCode: 'MAMEN10',
+        image: 'img/JugadorMamen.png',
+        instagram: 'https://www.instagram.com/mamen28f/',
+        placeholder: false
+    },
+    {
+        name: 'Mariana Romero',
+        city: 'Madrid',
+        style: 'Táctico',
+        phrase: 'El crecimiento viene de competir y compartir pista.',
+        discountCode: 'MARIANA10',
+        image: 'img/JugadorMariana.jpg',
+        instagram: 'https://www.instagram.com/mariana.r.kretschmer/',
+        placeholder: false
+    },
+    {
+        name: 'Próximo jugador',
+        city: 'Barcelona',
+        style: 'Agresivo',
+        phrase: '¿Quieres ser el próximo jugador destacado? Contáctanos para formar parte del Team Picklemania.',
+        discountCode: 'TEAMNEXT',
+        image: 'img/JugadorJavier.png',
+        instagram: '',
+        placeholder: true
+    }
+];
+
 document.addEventListener('DOMContentLoaded', () => {
     const isArticlePage = window.location.pathname.includes('/aprende/') && window.location.pathname.endsWith('.html');
     const basePath = isArticlePage ? '../' : '';
@@ -84,8 +117,12 @@ document.addEventListener('DOMContentLoaded', () => {
     revealNow();
 
     const teamGrid = document.getElementById('team-grid');
-    if (teamGrid && window.PICKLEMANIA_TEAM) {
-    teamGrid.innerHTML = window.PICKLEMANIA_TEAM.map((player) => `
+    const teamData = Array.isArray(window.PICKLEMANIA_TEAM) && window.PICKLEMANIA_TEAM.length
+        ? window.PICKLEMANIA_TEAM
+        : TEAM_FALLBACK;
+
+    if (teamGrid) {
+    teamGrid.innerHTML = teamData.map((player) => `
         <article class="card-soft overflow-hidden reveal">
             <div class="relative aspect-[4/5]">
                 <img
