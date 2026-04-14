@@ -11,8 +11,90 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script>tailwind.config={theme:{extend:{fontFamily:{sans:['Inter','sans-serif'],display:['Montserrat','sans-serif']},colors:{brand:{black:'#0f1112',gray:'#6a716d',light:'#f3f4f2',accent:'#8fae8b'}}}}}</script>
   <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .lock-screen {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      background: linear-gradient(135deg, #f3f4f2 0%, #ffffff 100%);
+    }
+
+    .lock-card {
+      width: 100%;
+      max-width: 24rem;
+      background: #fff;
+      border: 1px solid rgba(15, 17, 18, 0.08);
+      border-radius: 1rem;
+      box-shadow: 0 20px 60px rgba(15, 17, 18, 0.12);
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .lock-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.75rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      color: #0f1112;
+    }
+
+    .lock-subtitle {
+      color: #6a716d;
+      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
+    }
+
+    .lock-input {
+      width: 100%;
+      border: 1px solid rgba(15, 17, 18, 0.18);
+      border-radius: 0.75rem;
+      padding: 0.8rem 0.9rem;
+      font-size: 1rem;
+      margin-bottom: 0.85rem;
+    }
+
+    .lock-button {
+      width: 100%;
+      border: 0;
+      border-radius: 0.75rem;
+      padding: 0.85rem 1rem;
+      font-weight: 700;
+      color: #fff;
+      background: #0f1112;
+      cursor: pointer;
+      transition: opacity 0.2s ease;
+    }
+
+    .lock-button:hover {
+      opacity: 0.9;
+    }
+
+    .lock-error {
+      min-height: 1.2rem;
+      margin-top: 0.75rem;
+      color: #b91c1c;
+      font-size: 0.9rem;
+    }
+  </style>
 </head>
 <body class="text-brand-black antialiased">
+  <div id="lock-screen" class="lock-screen" role="dialog" aria-modal="true" aria-labelledby="lock-title">
+    <div class="lock-card">
+      <h1 id="lock-title" class="lock-title">Private Site</h1>
+      <p class="lock-subtitle">Enter the password to continue.</p>
+      <form id="lock-form" novalidate>
+        <input id="password-input" class="lock-input" type="password" placeholder="Password" autocomplete="current-password" required>
+        <button class="lock-button" type="submit">Enter</button>
+        <p id="lock-error" class="lock-error" role="alert" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
+
+  <div id="site-content" hidden>
   <div id="scroll-progress" class="fixed top-0 left-0 h-1 bg-brand-black z-[100]" style="width:0%"></div>
 
   <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-black/5">
@@ -219,6 +301,38 @@ Si quieres formar parte del movimiento, este es el momento de entrar en pista.</
       </div>
     </div>
   </footer>
+  </div>
+
+  <script>
+    (() => {
+      const CORRECT_PASSWORD = 'Picklemania123';
+      const lockScreen = document.getElementById('lock-screen');
+      const siteContent = document.getElementById('site-content');
+      const lockForm = document.getElementById('lock-form');
+      const passwordInput = document.getElementById('password-input');
+      const errorMessage = document.getElementById('lock-error');
+
+      const unlockSite = () => {
+        lockScreen.style.display = 'none';
+        siteContent.hidden = false;
+      };
+
+      lockForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        if (passwordInput.value === CORRECT_PASSWORD) {
+          errorMessage.textContent = '';
+          unlockSite();
+          return;
+        }
+
+        errorMessage.textContent = 'Incorrect password';
+        passwordInput.value = '';
+        passwordInput.focus();
+      });
+
+      passwordInput.focus();
+    })();
+  </script>
 
   <script src="js/articles.js"></script>
   <script src="js/main.js"></script>
