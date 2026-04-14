@@ -305,7 +305,6 @@ Si quieres formar parte del movimiento, este es el momento de entrar en pista.</
 
   <script>
     (() => {
-      const ACCESS_KEY = 'privateSiteAccess';
       const CORRECT_PASSWORD = 'Picklemania123';
       const lockScreen = document.getElementById('lock-screen');
       const siteContent = document.getElementById('site-content');
@@ -314,15 +313,9 @@ Si quieres formar parte del movimiento, este es el momento de entrar en pista.</
       const errorMessage = document.getElementById('lock-error');
 
       const unlockSite = () => {
-        localStorage.setItem(ACCESS_KEY, 'granted');
         lockScreen.style.display = 'none';
         siteContent.hidden = false;
       };
-
-      if (localStorage.getItem(ACCESS_KEY) === 'granted') {
-        unlockSite();
-        return;
-      }
 
       lockForm.addEventListener('submit', (event) => {
         event.preventDefault();
@@ -336,6 +329,8 @@ Si quieres formar parte del movimiento, este es el momento de entrar en pista.</
         passwordInput.value = '';
         passwordInput.focus();
       });
+
+      passwordInput.focus();
     })();
   </script>
 
