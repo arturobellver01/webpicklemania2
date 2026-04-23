@@ -82,6 +82,7 @@
   </style>
 </head>
 <body class="text-brand-black antialiased">
+  <!--
   <div id="lock-screen" class="lock-screen" role="dialog" aria-modal="true" aria-labelledby="lock-title">
     <div class="lock-card">
       <h1 id="lock-title" class="lock-title">Private Site</h1>
@@ -91,12 +92,12 @@
         <button class="lock-button" type="submit">Enter</button>
         <p id="lock-error" class="lock-error" role="alert" aria-live="polite"></p>
       </form>
-    </div>
+    </div> 
   </div>
 
   <div id="site-content" hidden>
   <div id="scroll-progress" class="fixed top-0 left-0 h-1 bg-brand-black z-[100]" style="width:0%"></div>
-
+    -->
   <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-black/5">
     <div class="container mx-auto px-4 h-20 flex items-center justify-between">
 <a href="index.html" class="flex items-center">
@@ -141,9 +142,9 @@
         </div>
 <div class="reveal delay-2 flex justify-center lg:justify-end lg:pr-20">
   <img 
-    src="img/JugadorMariana.jpg" 
+    src="img/jugador-pista-pickleball-lowres.jpg" 
     alt="Jugador real en pista, en tensión antes de golpear" 
-class="rounded-[2.5rem] w-full max-w-sm lg:max-w-md object-cover aspect-[5/6] shadow-xl -mt-6 lg:-mt-10"  >
+class="rounded-[2.5rem] w-full max-w-none object-cover aspect-[3/2] shadow-xl -mt-6 lg:-mt-10"  >
 </div>
       </div>
     </section>
@@ -208,6 +209,9 @@ class="rounded-[2.5rem] w-full max-w-sm lg:max-w-md object-cover aspect-[5/6] sh
     </div>  -->
 
     <!-- VISIÓN + MANIFIESTO -->
+
+
+
     <div class="grid md:grid-cols-2 gap-8">
       <article class="card-soft p-8 reveal">
         <h3 class="text-2xl font-display font-bold mb-3">Visión</h3>
@@ -223,6 +227,14 @@ class="rounded-[2.5rem] w-full max-w-sm lg:max-w-md object-cover aspect-[5/6] sh
         </p>
       </article>
     </div>
+
+    <div class="w-full overflow-hidden">
+  <img 
+    src="img/jugador-pista3.png"
+    alt=""
+    class="w-full h-60 object-cover object-[60%_35%]"
+  >
+</div>
 
     <!-- TIMELINE -->
     <div class="reveal">
@@ -302,10 +314,9 @@ Si quieres formar parte del movimiento, este es el momento de entrar en pista.</
     </div>
   </footer>
   </div>
-
+<!--
   <script>
     (() => {
-      const ACCESS_KEY = 'privateSiteAccess';
       const CORRECT_PASSWORD = 'Picklemania123';
       const lockScreen = document.getElementById('lock-screen');
       const siteContent = document.getElementById('site-content');
@@ -314,15 +325,9 @@ Si quieres formar parte del movimiento, este es el momento de entrar en pista.</
       const errorMessage = document.getElementById('lock-error');
 
       const unlockSite = () => {
-        localStorage.setItem(ACCESS_KEY, 'granted');
         lockScreen.style.display = 'none';
         siteContent.hidden = false;
       };
-
-      if (localStorage.getItem(ACCESS_KEY) === 'granted') {
-        unlockSite();
-        return;
-      }
 
       lockForm.addEventListener('submit', (event) => {
         event.preventDefault();
@@ -336,8 +341,10 @@ Si quieres formar parte del movimiento, este es el momento de entrar en pista.</
         passwordInput.value = '';
         passwordInput.focus();
       });
+
+      passwordInput.focus();
     })();
-  </script>
+  </script> -->
 
   <script src="js/articles.js"></script>
   <script src="js/main.js"></script>
