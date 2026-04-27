@@ -16,6 +16,19 @@ body {
     background: var(--brand-white);
 }
 
+@media (max-width: 767px) {
+    html {
+        font-size: 14px;
+    }
+}
+
+.community-hero {
+    position: relative;
+    background-image: linear-gradient(rgba(15, 17, 18, 0.62), rgba(15, 17, 18, 0.62)), url('../img/hero-background.png');
+    background-size: cover;
+    background-position: center;
+}
+
 .eyebrow {
     letter-spacing: .18em;
     text-transform: uppercase;
