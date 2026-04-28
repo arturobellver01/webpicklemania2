@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carrito | Picklemania</title>
+  <meta name="description" content="Carrito de compra Picklemania.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Montserrat', 'sans-serif']
+          },
+          colors: {
+            brand: {
+              black: '#0f1112',
+              gray: '#6a716d',
+              light: '#f3f4f2'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="antialiased text-brand-black">
+  <header></header>
+
+  <main class="py-14 md:py-20">
+    <section class="container mx-auto px-4 max-w-5xl">
+      <p class="eyebrow mb-2">Tienda Picklemania</p>
+      <h1 class="text-4xl md:text-5xl font-display font-black mb-8">Tu carrito</h1>
+
+      <div id="empty-cart" class="card-soft p-8 hidden">
+        <p class="text-brand-gray mb-6">Tu carrito está vacío.</p>
+        <a href="coleccion.html" class="btn-primary inline-flex">Volver a la tienda</a>
+      </div>
+
+      <div id="cart-content" class="space-y-6">
+        <div id="cart-items" class="space-y-4"></div>
+
+        <div class="card-soft p-6 md:p-8">
+          <div class="flex items-center justify-between mb-6">
+            <p class="text-brand-gray">Total del pedido</p>
+            <p id="cart-total" class="text-2xl font-display font-black">0€</p>
+          </div>
+          <button id="checkout-btn" class="btn-primary w-full md:w-auto">Finalizar compra</button>
+          <p id="checkout-status" class="text-sm text-brand-gray mt-3"></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer></footer>
+  <script src="js/cart.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/carrito-page.js"></script>
+</body>
+</html>

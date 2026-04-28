@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Compra completada | Picklemania</title>
+  <meta name="description" content="Compra completada en Picklemania.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Montserrat', 'sans-serif']
+          },
+          colors: {
+            brand: {
+              black: '#0f1112',
+              gray: '#6a716d',
+              light: '#f3f4f2'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="antialiased text-brand-black">
+  <header></header>
+  <main class="py-20 md:py-28">
+    <section class="container mx-auto px-4 max-w-3xl text-center">
+      <article class="card-soft p-8 md:p-12">
+        <p class="eyebrow mb-2">Pago confirmado</p>
+        <h1 class="text-4xl md:text-5xl font-display font-black mb-5">Gracias por tu compra</h1>
+        <p class="text-brand-gray mb-8">Hemos recibido tu pedido. Te contactaremos con la confirmación y envío.</p>
+        <a href="coleccion.html" class="btn-primary inline-flex">Volver a la tienda</a>
+      </article>
+    </section>
+  </main>
+  <footer></footer>
+
+  <script src="js/cart.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      window.PicklemaniaCart?.clearCart();
+      window.PicklemaniaCart?.updateCartBadge();
+    });
+  </script>
+</body>
+</html>

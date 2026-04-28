@@ -49,6 +49,10 @@ document.addEventListener('DOMContentLoaded', () => {
         <a href="${basePath}team.html" class="text-sm font-medium text-brand-gray hover:text-brand-black transition-colors">Team</a>
         <a href="${basePath}aprende.html" class="text-sm font-medium text-brand-gray hover:text-brand-black transition-colors">Aprende</a>
         <a href="${basePath}colabora.html" class="text-sm font-medium text-brand-gray hover:text-brand-black transition-colors">Colabora</a>
+        <a href="${basePath}carrito.html" class="text-sm font-medium text-brand-gray hover:text-brand-black transition-colors inline-flex items-center gap-2">
+          Carrito
+          <span id="cart-count" class="hidden min-w-[1.35rem] h-[1.35rem] rounded-full bg-brand-black text-white text-[11px] font-bold leading-none inline-flex items-center justify-center px-1">0</span>
+        </a>
         <a href="${basePath}colabora.html#contacto" class="bg-brand-black text-white px-5 py-2.5 rounded-full text-sm font-bold">Contacto</a>
       </nav>
       <button id="mobile-menu-toggle" class="md:hidden p-2" aria-label="Abrir menú">
@@ -61,6 +65,10 @@ document.addEventListener('DOMContentLoaded', () => {
       <a href="${basePath}team.html" class="block text-lg font-semibold">Team</a>
       <a href="${basePath}aprende.html" class="block text-lg font-semibold">Aprende</a>
       <a href="${basePath}colabora.html" class="block text-lg font-semibold">Colabora</a>
+      <a href="${basePath}carrito.html" class="block text-lg font-semibold inline-flex items-center gap-2">
+        Carrito
+        <span id="cart-count-mobile" class="hidden min-w-[1.35rem] h-[1.35rem] rounded-full bg-brand-black text-white text-[11px] font-bold leading-none inline-flex items-center justify-center px-1">0</span>
+      </a>
     </div>`;
     }
 
@@ -96,6 +104,32 @@ document.addEventListener('DOMContentLoaded', () => {
             link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
         });
     }
+
+    const updateNavbarCartBadges = () => {
+        const count = window.PicklemaniaCart?.getCartCount
+            ? window.PicklemaniaCart.getCartCount()
+            : (() => {
+                try {
+                    const parsed = JSON.parse(localStorage.getItem('picklemania_cart') || '[]');
+                    return Array.isArray(parsed)
+                        ? parsed.reduce((acc, item) => acc + (Number(item.quantity) || 0), 0)
+                        : 0;
+                } catch {
+                    return 0;
+                }
+            })();
+        const labels = [
+            document.getElementById('cart-count'),
+            document.getElementById('cart-count-mobile')
+        ];
+        labels.forEach((badge) => {
+            if (!badge) return;
+            badge.textContent = count > 99 ? '99+' : String(count);
+            badge.classList.toggle('hidden', count === 0);
+        });
+    };
+    updateNavbarCartBadges();
+    window.addEventListener('storage', updateNavbarCartBadges);
 
     const progress = document.getElementById('scroll-progress');
     const setProgress = () => {
