@@ -26,7 +26,7 @@ app.post('/crear-checkout', async (req, res) => {
     const lineItems = cart
       .filter((item) => item?.stripePriceId && Number(item?.quantity) > 0)
       .map((item) => ({
-        price: item.stripePriceId, // Reemplaza estos price_id placeholder por los reales de Stripe.
+        price: item.stripePriceId, // Reemplazar price_WHITE_PADDLE por el price_id real de Stripe antes de publicar.
         quantity: Math.floor(Number(item.quantity))
       }));
 

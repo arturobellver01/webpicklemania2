@@ -3,11 +3,25 @@
 
   const formatCount = (count) => (count > 99 ? '99+' : String(count));
 
+  function normalizeCart(cart) {
+    const normalized = Array.isArray(cart) ? cart : [];
+    return normalized.map((item) => {
+      if (item?.id === 'pala-black-white') {
+        return {
+          ...item,
+          id: 'picklemania-black-paddle',
+          name: item.name === 'Black & White Paddle' ? 'Picklemania Black Paddle' : (item.name || 'Picklemania Black Paddle')
+        };
+      }
+      return item;
+    });
+  }
+
   function getCart() {
     try {
       const raw = localStorage.getItem(STORAGE_KEY);
       const parsed = raw ? JSON.parse(raw) : [];
-      return Array.isArray(parsed) ? parsed : [];
+      return normalizeCart(parsed);
     } catch (error) {
       console.warn('No se pudo leer el carrito:', error);
       return [];
@@ -24,13 +38,15 @@
 
     const cart = getCart();
     const existing = cart.find((item) => item.id === product.id);
+    const quantityToAdd = Number(product.quantity) > 0 ? Math.floor(Number(product.quantity)) : 1;
 
     if (existing) {
-      existing.quantity += 1;
+      existing.quantity += quantityToAdd;
+      existing.stripePriceId = product.stripePriceId || existing.stripePriceId;
     } else {
       cart.push({
         ...product,
-        quantity: Number(product.quantity) > 0 ? Number(product.quantity) : 1
+        quantity: quantityToAdd
       });
     }
 

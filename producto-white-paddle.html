@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Picklemania White Paddle | Pala de pickleball</title>
+  <meta name="description" content="Pala de pickleball Picklemania White Paddle con núcleo honeycomb, fibra de vidrio, grosor 16 mm y balance medio.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config={theme:{extend:{fontFamily:{sans:['Inter','sans-serif'],display:['Montserrat','sans-serif']},colors:{brand:{black:'#0f1112',gray:'#6a716d',light:'#f3f4f2'}}}}}
+  </script>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="antialiased text-brand-black">
+<header></header>
+<main class="py-14 md:py-20">
+  <section class="container mx-auto px-4 max-w-6xl">
+    <nav class="text-sm text-brand-gray mb-8"><a href="index.html" class="underline">Inicio</a> / <a href="coleccion.html" class="underline">Tienda</a> / Picklemania White Paddle</nav>
+    <div class="grid lg:grid-cols-2 gap-10 items-start reveal">
+      <div class="card-soft p-8 bg-brand-light">
+        <!-- Placeholder temporal: sustituir por img/pala-white.png cuando esté disponible en el repositorio. -->
+        <img src="img/pala-1.png" alt="Picklemania White Paddle sobre fondo claro" class="w-full h-[460px] object-contain">
+      </div>
+      <div class="space-y-6">
+        <div class="flex gap-2 text-xs"><span class="px-3 py-1 rounded-full bg-brand-light">Nuevo</span><span class="px-3 py-1 rounded-full bg-brand-light">En stock</span><span class="px-3 py-1 rounded-full bg-brand-light">Envío 24/48h</span></div>
+        <h1 class="text-4xl md:text-5xl font-display font-black">Picklemania White Paddle</h1>
+        <p class="text-3xl font-display font-black">99€</p>
+        <p class="text-brand-gray">Pala equilibrada diseñada para control, estabilidad y precisión, con estética blanca minimalista y rendimiento consistente en cada punto.</p>
+        <ul class="text-brand-gray list-disc list-inside space-y-1"><li>Fibra de vidrio</li><li>Núcleo honeycomb</li><li>Grosor 16 mm</li><li>Peso 310–330 g</li><li>Balance medio</li><li>Acabado mate rugoso</li></ul>
+
+        <div class="flex items-center gap-3">
+          <button id="qty-decrease" class="btn-secondary !px-4" type="button">-</button>
+          <input id="product-quantity" type="number" min="1" value="1" class="w-20 text-center rounded-xl border border-black/15 px-2 py-2">
+          <button id="qty-increase" class="btn-secondary !px-4" type="button">+</button>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-3">
+          <button class="btn-primary add-to-cart-btn" data-product="picklemania-white-paddle">Añadir al carrito</button>
+          <button class="btn-primary buy-now-btn" data-product="picklemania-white-paddle">Comprar ahora</button>
+        </div>
+        <!-- TODO: sustituir price_WHITE_PADDLE por el price_id real de Stripe -->
+        <p class="text-sm text-green-700 min-h-5 opacity-0 transition-opacity" data-feedback="picklemania-white-paddle">Producto añadido al carrito</p>
+
+        <div class="card-soft p-5">
+          <p class="font-semibold mb-2">Compra con confianza</p>
+          <ul class="text-sm text-brand-gray space-y-1"><li>Pago seguro con Stripe</li><li>Diseñada en España</li><li>Fabricada en Europa</li><li>Envío protegido</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container mx-auto px-4 max-w-6xl mt-16 grid md:grid-cols-2 gap-6">
+    <article class="card-soft p-6"><p class="eyebrow mb-2">Características técnicas</p><p class="text-brand-gray">Estructura optimizada para control y precisión con sensación homogénea en defensas, bloqueos y aceleraciones.</p></article>
+    <article class="card-soft p-6"><p class="eyebrow mb-2">Materiales</p><p class="text-brand-gray">Superficie de fibra de vidrio y núcleo honeycomb con acabado mate rugoso para tacto premium.</p></article>
+    <article class="card-soft p-6"><p class="eyebrow mb-2">Envío y devoluciones</p><p class="text-brand-gray">Envío 24/48h en península. Devoluciones disponibles según condiciones de tienda.</p></article>
+    <article class="card-soft p-6"><p class="eyebrow mb-2">Origen</p><p class="text-brand-gray">Diseñado en España · Made in Europe.</p></article>
+  </section>
+
+  <section class="container mx-auto px-4 max-w-6xl mt-16">
+    <article class="card-soft p-6 reveal"><p class="eyebrow mb-2">También te puede interesar</p><a href="producto-black-paddle.html" class="text-2xl font-display font-bold underline">Picklemania Black Paddle</a></article>
+  </section>
+</main>
+<footer></footer>
+<script src="js/cart.js"></script>
+<script src="js/products.js"></script>
+<script src="js/main.js"></script>
+<script src="js/store.js"></script>
+<script src="js/product-detail.js"></script>
+</body>
+</html>
