@@ -63,35 +63,58 @@
           <p class="text-brand-gray max-w-md">Añade los productos al carrito y finaliza tu compra con Stripe Checkout de forma segura.</p>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7" id="product-grid">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-7" id="product-grid">
           <article class="card-soft overflow-hidden reveal">
-            <div class="bg-brand-light p-6">
-              <img src="img/pala-1.png" alt="Pala Picklemania Black & White" class="w-full h-72 object-contain">
-            </div>
+            <a href="producto-black-paddle.html" class="bg-brand-light p-6 block">
+              <img src="img/pala-1.png" alt="Picklemania Black Paddle" class="w-full h-72 object-contain">
+            </a>
             <div class="p-6 space-y-4">
               <div class="flex items-start justify-between gap-4">
                 <div>
                   <p class="eyebrow mb-1">Pala</p>
-                  <h3 class="text-xl font-display font-bold">Black & White Paddle</h3>
+                  <a href="producto-black-paddle.html"><h3 class="text-xl font-display font-bold">Picklemania Black Paddle</h3></a>
                 </div>
                 <span class="text-lg font-bold">99€</span>
               </div>
               <p class="text-brand-gray">Pala equilibrada para control, estabilidad y respuesta consistente en pista.</p>
-              <p class="text-sm text-brand-gray">Cantidad inicial: 1</p>
-              <button
-                class="btn-primary w-full add-to-cart-btn"
-                data-product-id="pala-black-white"
-                data-name="Black & White Paddle"
-                data-description="Pala equilibrada para control, estabilidad y respuesta consistente en pista."
-                data-price="99"
-                data-image="img/pala-1.png"
-                data-stripe-price-id="price_1TRCmSQl1Fppe3qe4KmY2R2i"
-              >Añadir al carrito</button>
-              <p class="text-xs text-brand-gray">Stripe price_id placeholder: <code>price_PALA_BLACK_WHITE</code></p>
-              <p class="text-sm text-green-700 min-h-5 opacity-0 transition-opacity" data-feedback="pala-black-white">Añadido al carrito</p>
+              <ul class="text-sm text-brand-gray list-disc list-inside space-y-1">
+                <li>Fibra de vidrio</li><li>Núcleo honeycomb</li><li>Grosor 16 mm</li><li>Peso 310–330 g</li><li>Balance medio</li><li>Acabado mate rugoso</li>
+              </ul>
+              <div class="flex flex-col sm:flex-row gap-3">
+                <a href="producto-black-paddle.html" class="btn-secondary w-full text-center">Ver producto</a>
+                <button class="btn-primary w-full add-to-cart-btn" data-product="picklemania-black-paddle" data-image="img/pala-1.png">Añadir al carrito</button>
+                <button class="btn-primary w-full buy-now-btn" data-product="picklemania-black-paddle" data-image="img/pala-1.png">Comprar ahora</button>
+              </div>
+              <p class="text-sm text-green-700 min-h-5 opacity-0 transition-opacity" data-feedback="picklemania-black-paddle">Añadido al carrito</p>
             </div>
           </article>
-          
+
+          <article class="card-soft overflow-hidden reveal">
+            <a href="producto-white-paddle.html" class="bg-brand-light p-6 block">
+              <!-- Placeholder temporal: sustituir por img/pala-white.png cuando esté disponible en el repositorio. -->
+              <img src="img/pala-1.png" alt="Picklemania White Paddle" class="w-full h-72 object-contain">
+            </a>
+            <div class="p-6 space-y-4">
+              <div class="flex items-start justify-between gap-4">
+                <div>
+                  <p class="eyebrow mb-1">Pala · Nuevo</p>
+                  <a href="producto-white-paddle.html"><h3 class="text-xl font-display font-bold">Picklemania White Paddle</h3></a>
+                </div>
+                <span class="text-lg font-bold">99€</span>
+              </div>
+              <p class="text-brand-gray">Pala equilibrada diseñada para control, estabilidad y precisión, con estética blanca minimalista y rendimiento consistente en cada punto.</p>
+              <ul class="text-sm text-brand-gray list-disc list-inside space-y-1">
+                <li>Fibra de vidrio</li><li>Núcleo honeycomb</li><li>Grosor 16 mm</li><li>Peso 310–330 g</li><li>Balance medio</li><li>Acabado mate rugoso</li>
+              </ul>
+              <div class="flex flex-col sm:flex-row gap-3">
+                <a href="producto-white-paddle.html" class="btn-secondary w-full text-center">Ver producto</a>
+                <button class="btn-primary w-full add-to-cart-btn" data-product="picklemania-white-paddle" data-image="img/pala-1.png">Añadir al carrito</button>
+                <button class="btn-primary w-full buy-now-btn" data-product="picklemania-white-paddle" data-image="img/pala-1.png">Comprar ahora</button>
+              </div>
+              <!-- TODO: sustituir price_WHITE_PADDLE por el price_id real de Stripe -->
+              <p class="text-sm text-green-700 min-h-5 opacity-0 transition-opacity" data-feedback="picklemania-white-paddle">Añadido al carrito</p>
+            </div>
+          </article>
         </div>
       </div>
     </section>
@@ -99,6 +122,7 @@
 
   <footer></footer>
   <script src="js/cart.js"></script>
+  <script src="js/products.js"></script>
   <script src="js/main.js"></script>
   <script src="js/store.js"></script>
 </body>
