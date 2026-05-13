@@ -3,11 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Aprende Pickleball | Picklemania</title>
-  <meta name="description" content="Aprende pickleball desde cero con fundamentos claros, consejos prácticos y una guía de inicio rápida.">
+  <meta name="description" content="Aprende pickleball desde cero con fundamentos claros, reglas básicas y consejos para empezar a jugar.">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -21,123 +24,291 @@
             brand: {
               black: '#0f1112',
               gray: '#6a716d',
-              light: '#f3f4f2'
+              light: '#f3f4f2',
+              accent: '#8fae8b'
             }
           }
         }
       }
     }
   </script>
+
   <link rel="stylesheet" href="css/styles.css">
 </head>
+
 <body class="text-brand-black antialiased">
   <header></header>
 
-  <main class="py-16">
-    <section class="container mx-auto px-4 space-y-10 max-w-6xl">
-      <div class="reveal max-w-4xl">
-        <p class="eyebrow mb-3">Aprende Pickleball</p>
-        <h1 class="text-4xl md:text-6xl font-display font-black mb-5">Aprende Pickleball</h1>
-        <p class="text-brand-gray text-lg">El juego está creciendo. Empieza aquí.</p>
-      </div>
+  <main class="py-20 md:py-28">
+    <section class="container mx-auto px-4 max-w-6xl space-y-24">
 
-      <div class="grid md:grid-cols-2 gap-6">
-        <article class="card-soft p-8 reveal md:col-span-2">
-          <h2 class="text-2xl font-display font-bold mb-3">¿Qué es el pickleball?</h2>
-          <p class="text-brand-gray max-w-5xl">El pickleball es un deporte dinámico que combina elementos del tenis, pádel y bádminton. Se juega en una pista reducida, con una pala sólida y una pelota perforada. Fácil de aprender y rápido de disfrutar, es uno de los deportes con mayor crecimiento en el mundo.</p>
-        </article>
-        <article class="card-soft p-8 reveal delay-1">
-          <h2 class="text-2xl font-display font-bold mb-3">¿Por qué está creciendo?</h2>
-          <ul class="text-brand-gray space-y-2 list-disc pl-5">
-            <li>Accesible para todos los niveles.</li>
-            <li>Rápido de aprender.</li>
-            <li>Altamente social.</li>
-            <li>Competitivo sin ser excluyente.</li>
-          </ul>
-        </article>
-        <article class="card-soft p-8 reveal">
-          <h2 class="text-2xl font-display font-bold mb-3">Fundamentos básicos</h2>
-          <ul class="space-y-3 text-brand-gray">
-            <li><strong class="text-brand-black">Control antes que potencia.</strong> El pickleball no se gana golpeando más fuerte, sino jugando con control.</li>
-            <li><strong class="text-brand-black">Posición en pista.</strong> La clave está en la colocación. Entender dónde estar es más importante que cómo golpear.</li>
-            <li><strong class="text-brand-black">Ritmo de juego.</strong> No se trata de velocidad constante, sino de saber cuándo acelerar y cuándo construir el punto.</li>
-          </ul>
-        </article>
-        <article class="card-soft p-8 reveal">
-          <h2 class="text-2xl font-display font-bold mb-3">Cómo empezar</h2>
-          <p class="text-brand-gray mb-4">No necesitas experiencia previa. Puedes empezar desde el primer día.</p>
-          <p class="text-brand-gray font-medium mb-2">Solo necesitas:</p>
-          <ul class="text-brand-gray list-disc pl-5 space-y-1">
-            <li>Una pala.</li>
-            <li>Una pista.</li>
-            <li>Ganas de jugar.</li>
-          </ul>
-        </article>
-        <article class="card-soft p-8 reveal delay-1">
-          <h2 class="text-2xl font-display font-bold mb-3">Primera experiencia</h2>
-          <p class="text-brand-gray">Los primeros partidos no van de ganar. Van de entender el juego, encontrar sensaciones y disfrutar el proceso.</p>
-        </article>
-      </div>
+      <!-- HERO -->
+      <section class="grid lg:grid-cols-12 gap-10 lg:gap-16 items-center reveal">
+        <div class="lg:col-span-7">
+          <p class="eyebrow mb-4">Aprende Pickleball</p>
 
-      <section class="card-soft p-8 md:p-10 reveal space-y-8">
-        <div>
-          <h2 class="text-3xl font-display font-black mb-2">Entiende el juego en detalle</h2>
-          <p class="text-brand-gray text-lg mb-2">Conceptos básicos para empezar a jugar con criterio.</p>
-          <p class="text-brand-gray">Si quieres ir un paso más allá, estos son los fundamentos esenciales del juego.</p>
+          <h1 class="text-5xl md:text-7xl font-display font-black leading-[0.95] mb-6">
+            El juego está creciendo.<br>
+            Empieza aquí.
+          </h1>
+
+          <p class="text-brand-gray text-lg md:text-xl max-w-3xl leading-relaxed">
+            Una guía sencilla para entender el pickleball, empezar a jugar con criterio
+            y descubrir por qué está cambiando la forma de vivir la pista.
+          </p>
+        </div>
+
+        <div class="lg:col-span-5 bg-brand-black text-white rounded-[2rem] p-8 md:p-10 lg:p-12">
+          <p class="text-xs uppercase tracking-[0.18em] text-white/60 mb-8">
+            PICKLEMANIA TE ENSEÑA
+          </p>
+
+          <h2 class="text-3xl md:text-4xl font-display font-black leading-tight mb-8">
+            Control.<br>
+            Posición.<br>
+            Ritmo.
+          </h2>
+
+          <p class="text-white/75 leading-relaxed">
+            El pickleball no va de golpear más fuerte. Va de entender mejor el punto.
+          </p>
+        </div>
+      </section>
+
+      <!-- INTRO -->
+      <section class="grid md:grid-cols-12 gap-8">
+        <article class="md:col-span-7 card-soft p-8 md:p-10 reveal">
+          <p class="eyebrow mb-4">Qué es</p>
+
+          <h2 class="text-3xl md:text-4xl font-display font-black mb-5">
+            Fácil de aprender. Difícil de dejar.
+          </h2>
+
+          <p class="text-brand-gray text-lg leading-relaxed">
+            El pickleball combina elementos del tenis, pádel y bádminton. Se juega en una pista reducida,
+            con una pala sólida y una pelota perforada.
+          </p>
+
+          <p class="text-brand-gray text-lg leading-relaxed mt-5">
+            Es accesible, social y rápido de disfrutar desde el primer día.
+          </p>
+        </article>
+
+        <article class="md:col-span-5 card-soft p-8 md:p-10 reveal delay-1">
+          <p class="eyebrow mb-4">Por qué crece</p>
+
+          <ul class="space-y-4 text-brand-gray text-lg">
+            <li class="flex gap-3">
+              <span class="text-brand-black font-bold">01</span>
+              Accesible para todos los niveles.
+            </li>
+            <li class="flex gap-3">
+              <span class="text-brand-black font-bold">02</span>
+              Rápido de aprender.
+            </li>
+            <li class="flex gap-3">
+              <span class="text-brand-black font-bold">03</span>
+              Muy social y fácil de compartir.
+            </li>
+            <li class="flex gap-3">
+              <span class="text-brand-black font-bold">04</span>
+              Competitivo sin ser excluyente.
+            </li>
+          </ul>
+        </article>
+      </section>
+
+      <!-- VISUAL STRIP -->
+      <section class="grid md:grid-cols-3 gap-5 reveal">
+        <div class="relative overflow-hidden rounded-[2rem] md:col-span-2">
+          <img
+            src="img/pista2.PNG"
+            alt="Jugadores en pista de pickleball"
+            class="w-full h-[460px] object-cover"
+          >
+          <div class="absolute inset-0 bg-black/20"></div>
+          <p class="absolute bottom-6 left-6 right-6 text-white text-2xl md:text-4xl font-display font-black leading-tight">
+            Aprender también es entrar en una comunidad.
+          </p>
+        </div>
+
+        <div class="bg-brand-light rounded-[2rem] p-8 md:p-10 flex flex-col justify-between">
+          <p class="text-xs uppercase tracking-[0.18em] text-brand-gray">
+            Para empezar
+          </p>
+
+          <div class="space-y-5 mt-10">
+            <p class="text-3xl font-display font-black leading-tight">
+              Una pala.
+            </p>
+            <p class="text-3xl font-display font-black leading-tight">
+              Una pista.
+            </p>
+            <p class="text-3xl font-display font-black leading-tight">
+              Ganas de jugar.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- FUNDAMENTOS -->
+      <section class="reveal space-y-8">
+        <div class="max-w-3xl">
+          <p class="eyebrow mb-3">Fundamentos</p>
+
+          <h2 class="text-4xl md:text-5xl font-display font-black mb-4">
+            Lo básico, bien entendido.
+          </h2>
+
+          <p class="text-brand-gray text-lg leading-relaxed">
+            Antes de pensar en ganar puntos, aprende a leer el juego.
+          </p>
         </div>
 
         <div class="grid md:grid-cols-3 gap-6">
-          <article class="border border-black/10 rounded-2xl p-6">
-            <h3 class="font-display font-bold text-xl mb-3">Dimensiones de la pista</h3>
-            <p class="text-brand-gray">El pickleball se juega en una pista de 13,4 m de largo por 6,1 m de ancho, similar a la de bádminton. Incluye una zona clave cerca de la red conocida como “la cocina”, donde no se puede volear.</p>
+          <article class="card-soft p-8">
+            <p class="text-xs uppercase tracking-[0.18em] text-brand-gray mb-5">01</p>
+            <h3 class="text-2xl font-display font-bold mb-4">Control</h3>
+            <p class="text-brand-gray leading-relaxed">
+              El pickleball no se gana golpeando más fuerte, sino colocando mejor la bola.
+            </p>
           </article>
-          <article class="border border-black/10 rounded-2xl p-6">
-            <h3 class="font-display font-bold text-xl mb-3">Reglas básicas</h3>
-            <p class="text-brand-gray">El punto comienza con un saque cruzado y bajo. Solo el equipo que saca puede puntuar. El juego combina control, colocación y ritmo más que fuerza.</p>
-          </article>
-          <article class="border border-black/10 rounded-2xl p-6">
-            <h3 class="font-display font-bold text-xl mb-3">Ritmo y dinámica</h3>
-            <p class="text-brand-gray">El pickleball no se basa en golpes potentes constantes, sino en saber construir el punto. Controlar el ritmo es tan importante como ejecutar el golpe.</p>
-          </article>
-        </div>
 
-        <div class="flex flex-wrap gap-3">
-          <a href="aprende/que-es-el-pickleball.html" class="brand-btn brand-btn-secondary">Ver reglas completas</a>
-          <a href="colabora.html#contacto" class="brand-btn brand-btn-secondary">Cómo empezar a jugar</a>
+          <article class="card-soft p-8">
+            <p class="text-xs uppercase tracking-[0.18em] text-brand-gray mb-5">02</p>
+            <h3 class="text-2xl font-display font-bold mb-4">Posición</h3>
+            <p class="text-brand-gray leading-relaxed">
+              Entender dónde estar en pista es tan importante como saber golpear.
+            </p>
+          </article>
+
+          <article class="card-soft p-8">
+            <p class="text-xs uppercase tracking-[0.18em] text-brand-gray mb-5">03</p>
+            <h3 class="text-2xl font-display font-bold mb-4">Ritmo</h3>
+            <p class="text-brand-gray leading-relaxed">
+              Aprende cuándo construir, cuándo defender y cuándo acelerar el punto.
+            </p>
+          </article>
         </div>
       </section>
 
-      <div class="grid md:grid-cols-2 gap-6 items-center">
-        <img src="img/JugadorMariana.jpg" alt="Jugadores en un entorno social durante un entrenamiento de pickleball" class="w-full rounded-[2rem] object-cover aspect-[4/3] reveal">
-        <div class="space-y-4 reveal delay-1">
-          <p class="text-brand-gray">El pickleball no es solo un deporte. Es una forma de conectar.</p>
-          <h2 class="text-3xl md:text-4xl font-display font-black">Empieza a jugar. Únete a Picklemania.</h2>
-          <div class="flex flex-wrap gap-3">
-            <a href="coleccion.html" class="brand-btn brand-btn-primary">Descubrir colección</a>
-            <a href="colabora.html#contacto" class="brand-btn brand-btn-secondary">Contacto</a>
+      <!-- DETALLE -->
+      <section class="bg-brand-black text-white rounded-[2rem] p-8 md:p-12 reveal">
+        <div class="grid md:grid-cols-12 gap-10">
+          <div class="md:col-span-5">
+            <p class="text-xs uppercase tracking-[0.18em] text-white/60 mb-5">
+              Entiende el juego
+            </p>
+
+            <h2 class="text-4xl md:text-5xl font-display font-black leading-tight">
+              Juega con criterio desde el primer día.
+            </h2>
+<a 
+  href="aprende/que-es-el-pickleball.html" 
+  class="brand-btn bg-white text-brand-black hover:bg-white/90 mt-6"
+>
+  Ver reglas completas
+</a>
+          </div>
+
+          <div class="md:col-span-7 grid gap-6">
+            <article class="border-t border-white/15 pt-6">
+              <h3 class="text-xl font-display font-bold mb-2">
+                Dimensiones de la pista
+              </h3>
+              <p class="text-white/70 leading-relaxed">
+                Se juega en una pista de 13,4 m de largo por 6,1 m de ancho, con una zona cerca de la red conocida como “la cocina”.
+              </p>
+            </article>
+
+            <article class="border-t border-white/15 pt-6">
+              <h3 class="text-xl font-display font-bold mb-2">
+                Reglas básicas
+              </h3>
+              <p class="text-white/70 leading-relaxed">
+                El punto empieza con un saque cruzado y bajo. El juego combina control, colocación y ritmo.
+              </p>
+            </article>
+
+            <article class="border-t border-white/15 pt-6">
+              <h3 class="text-xl font-display font-bold mb-2">
+                Primera experiencia
+              </h3>
+              <p class="text-white/70 leading-relaxed">
+                Los primeros partidos no van de ganar. Van de entender el juego, encontrar sensaciones y disfrutar el proceso.
+              </p>
+            </article>
           </div>
         </div>
-      </div>
 
-      <section class="reveal space-y-5">
-        <div>
-          <p class="eyebrow mb-2">Fotos</p>
-          <h2 class="text-3xl font-display font-black">Aprende viendo el juego</h2>
+      </section>
+
+      <!-- CTA -->
+      <section class="grid md:grid-cols-2 gap-8 items-center">
+        <div class="relative overflow-hidden rounded-[2rem] reveal">
+          <img
+            src="img/pista2.PNG"
+            alt="Jugadores en un entorno social durante un entrenamiento de pickleball"
+            class="w-full h-[440px] object-cover"
+          >
+          <div class="absolute inset-0 bg-black/10"></div>
         </div>
-        <div class="grid md:grid-cols-3 gap-5">
-          <img src="img/JugadorJavier.png" alt="Jugador practicando control en la red" class="w-full h-64 object-cover rounded-2xl bg-brand-light">
-          <img src="img/JugadorMamen.png" alt="Jugadora trabajando movilidad en pista" class="w-full h-64 object-cover rounded-2xl bg-brand-light">
-          <img src="img/hero-background3.png" alt="Sesión de práctica de pickleball en equipo" class="w-full h-64 object-cover rounded-2xl">
+
+        <div class="space-y-5 reveal delay-1">
+          <p class="eyebrow">Comunidad</p>
+
+          <h2 class="text-4xl md:text-5xl font-display font-black leading-tight">
+            Empieza a jugar.<br>
+            Únete a Picklemania.
+          </h2>
+
+          <p class="text-brand-gray text-lg leading-relaxed">
+            El pickleball no es solo un deporte. Es una forma de conectar, aprender y crecer dentro de la pista.
+          </p>
+
+          <div class="flex flex-wrap gap-3 pt-2">
+            <a href="coleccion.html" class="brand-btn brand-btn-primary">
+              Descubrir colección
+            </a>
+            <a href="colabora.html#contacto" class="brand-btn brand-btn-secondary">
+              Contacto
+            </a>
+          </div>
         </div>
       </section>
 
-      <div id="article-filters" class="flex flex-wrap gap-2 pt-6 border-t border-black/10">
-        <button class="px-4 py-2 rounded-full border border-black/10 bg-brand-black text-white" data-filter="all">Todo</button>
-        <button class="px-4 py-2 rounded-full border border-black/10" data-filter="fundamentos">Fundamentos</button>
-        <button class="px-4 py-2 rounded-full border border-black/10" data-filter="reglas">Reglas</button>
-        <button class="px-4 py-2 rounded-full border border-black/10" data-filter="tecnica">Técnica</button>
-      </div>
-      <div id="articles-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+      <!-- ARTICLES -->
+      <section class="space-y-8 reveal">
+        <div class="max-w-3xl">
+          <p class="eyebrow mb-3">Artículos</p>
+
+          <h2 class="text-4xl md:text-5xl font-display font-black mb-4">
+            Guías para seguir aprendiendo.
+          </h2>
+
+          <p class="text-brand-gray text-lg leading-relaxed">
+            Reglas, técnica y fundamentos para entender mejor el juego.
+          </p>
+        </div>
+
+        <div id="article-filters" class="flex flex-wrap gap-2 pt-2">
+          <button class="px-4 py-2 rounded-full border border-black/10 bg-brand-black text-white" data-filter="all">
+            Todo
+          </button>
+          <button class="px-4 py-2 rounded-full border border-black/10" data-filter="fundamentos">
+            Fundamentos
+          </button>
+          <button class="px-4 py-2 rounded-full border border-black/10" data-filter="reglas">
+            Reglas
+          </button>
+          <button class="px-4 py-2 rounded-full border border-black/10" data-filter="tecnica">
+            Técnica
+          </button>
+        </div>
+
+        <div id="articles-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+      </section>
+
     </section>
   </main>
 

@@ -3,75 +3,318 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Colabora con Picklemania</title>
-  <meta name="description" content="Construyamos juntos el crecimiento del pickleball europeo con clubes, jugadores y partners.">
+
+  <meta name="description" content="Construyamos juntos el crecimiento del pickleball europeo. Clubes, jugadores y partners que creen en una nueva forma de vivir el juego.">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+
   <script src="https://cdn.tailwindcss.com"></script>
+
   <script>
-    tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'], display: ['Montserrat', 'sans-serif'] }, colors: { brand: { black: '#0f1112', gray: '#6a716d', light: '#f3f4f2' } } } } }
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Montserrat', 'sans-serif']
+          },
+          colors: {
+            brand: {
+              black: '#0f1112',
+              gray: '#6a716d',
+              light: '#f3f4f2',
+              accent: '#8fae8b'
+            }
+          }
+        }
+      }
+    }
   </script>
+
   <link rel="stylesheet" href="css/styles.css">
 </head>
-<body>
+
+<body class="text-brand-black antialiased">
+
   <header></header>
 
-  <main class="py-16">
-    <section class="container mx-auto px-4 max-w-6xl space-y-12">
-      <div class="reveal max-w-4xl">
-        <p class="eyebrow mb-3">Colabora con Picklemania</p>
-        <h1 class="text-5xl md:text-6xl font-display font-black leading-tight mb-4">Construyamos juntos el crecimiento del pickleball europeo</h1>
-        <p class="text-brand-gray text-lg">Picklemania nace con una visión clara: impulsar el desarrollo del pickleball desde una propuesta sólida, cercana y en crecimiento.</p>
-      </div>
+  <main class="py-20 md:py-28">
 
-      <div class="space-y-5 reveal">
-        <p class="eyebrow">Áreas de colaboración</p>
-        <div class="grid md:grid-cols-3 gap-6">
-          <article class="card-soft p-8" id="clubes">
-            <h2 class="font-display font-bold text-2xl mb-3">Clubs</h2>
-            <p class="text-sm text-brand-gray">Si tienes un club o espacio deportivo, podemos ayudarte a introducir o desarrollar el pickleball con una inversión accesible y un enfoque claro.</p>
-          </article>
-          <article class="card-soft p-8" id="jugadores">
-            <h2 class="font-display font-bold text-2xl mb-3">Jugadores</h2>
-            <p class="text-sm text-brand-gray">Si quieres formar parte activa del crecimiento del deporte, el Team Picklemania es el punto de partida.</p>
-          </article>
-          <article class="card-soft p-8" id="partners">
-            <h2 class="font-display font-bold text-2xl mb-3">Partners</h2>
-            <p class="text-sm text-brand-gray">Buscamos colaboraciones que aporten valor real al desarrollo del pickleball, tanto a nivel deportivo como cultural.</p>
-          </article>
+    <section class="container mx-auto px-4 max-w-6xl space-y-24">
+
+      <!-- HERO -->
+      <section class="grid lg:grid-cols-12 gap-12 items-center reveal">
+
+        <!-- LEFT -->
+        <div class="lg:col-span-7">
+
+          <p class="eyebrow mb-4">
+            Colabora
+          </p>
+
+          <h1 class="text-5xl md:text-7xl font-display font-black leading-[0.95] mb-6">
+            Construyamos<br>
+            el juego que viene.
+          </h1>
+
+          <p class="text-brand-gray text-lg md:text-xl leading-relaxed max-w-2xl">
+            Picklemania conecta jugadores, clubes y personas que creen
+            en una nueva forma de desarrollar el pickleball en Europa.
+          </p>
+
         </div>
-      </div>
 
-      <section class="card-soft p-8 md:p-10 reveal text-center">
-        <p class="text-2xl font-display font-bold">Hablemos</p>
+        <!-- RIGHT -->
+        <div class="lg:col-span-5">
+
+          <div class="bg-brand-black text-white rounded-[2rem] p-8 md:p-10">
+
+            <p class="text-xs uppercase tracking-[0.18em] text-white/60 mb-6">
+              Picklemania Vision
+            </p>
+
+            <h2 class="text-3xl md:text-4xl font-display font-black leading-tight mb-8">
+              Comunidad.<br>
+              Diseño.<br>
+              Evolución.
+            </h2>
+
+            <p class="text-white/75 leading-relaxed">
+              No buscamos colaboraciones vacías.
+              Buscamos personas que quieran construir algo real.
+            </p>
+
+          </div>
+
+        </div>
+
       </section>
 
-      <section class="reveal space-y-5">
+      <!-- COLABORACIONES -->
+      <section class="space-y-8 reveal">
+
         <div>
-          <p class="eyebrow mb-2">Fotos</p>
-          <h2 class="text-3xl font-display font-black">Comunidad en crecimiento</h2>
+          <p class="eyebrow mb-3">
+            Áreas de colaboración
+          </p>
+
+          <h2 class="text-4xl md:text-5xl font-display font-black">
+            Formas de construir juntos.
+          </h2>
         </div>
-        <div class="grid md:grid-cols-3 gap-5">
-          <img src="img/hero-background.png" alt="Jugadores compartiendo pista en sesión colaborativa" class="w-full h-64 object-cover rounded-2xl">
-          <img src="img/hero-background2.png" alt="Entrenamiento de pickleball en grupo" class="w-full h-64 object-cover rounded-2xl">
-          <img src="img/coleccion2.png" alt="Material Picklemania preparado para clubes y partners" class="w-full h-64 object-cover rounded-2xl">
+
+        <div class="grid md:grid-cols-3 gap-6">
+
+          <!-- CLUBS -->
+          <article class="card-soft p-8 rounded-[2rem]" id="clubes">
+
+            <p class="text-xs uppercase tracking-[0.18em] text-brand-gray mb-5">
+              Clubs
+            </p>
+
+            <h2 class="text-3xl font-display font-black mb-5">
+              Haz crecer el pickleball en tu club.
+            </h2>
+
+            <p class="text-brand-gray leading-relaxed mb-6">
+              Ayudamos a introducir el pickleball desde una visión clara:
+              producto, comunidad y crecimiento sostenible.
+            </p>
+
+            <p class="font-medium">
+              Pistas. Eventos. Comunidad.
+            </p>
+
+          </article>
+
+          <!-- TEAM -->
+          <article class="bg-brand-black text-white p-8 rounded-[2rem]" id="jugadores">
+
+            <p class="text-xs uppercase tracking-[0.18em] text-white/60 mb-5">
+              Team
+            </p>
+
+            <h2 class="text-3xl font-display font-black mb-5">
+              Representa el juego.
+            </h2>
+
+            <p class="text-white/75 leading-relaxed mb-6">
+              El Team Picklemania reúne jugadores que representan
+              una forma moderna de competir y construir comunidad.
+            </p>
+
+            <p class="text-white font-medium">
+              Juega. Representa. Crece.
+            </p>
+
+          </article>
+
+          <!-- PARTNERS -->
+          <article class="card-soft p-8 rounded-[2rem]" id="partners">
+
+            <p class="text-xs uppercase tracking-[0.18em] text-brand-gray mb-5">
+              Partners
+            </p>
+
+            <h2 class="text-3xl font-display font-black mb-5">
+              Construyamos algo con sentido.
+            </h2>
+
+            <p class="text-brand-gray leading-relaxed mb-6">
+              Buscamos colaboraciones alineadas con la evolución
+              del pickleball europeo: marcas, espacios y proyectos
+              con identidad propia.
+            </p>
+
+            <p class="font-medium">
+              Cultura. Diseño. Movimiento.
+            </p>
+
+          </article>
+
         </div>
+
       </section>
 
-      <div id="contacto" class="card-soft p-8 md:p-10 reveal">
-        <h2 class="text-3xl font-display font-bold mb-3">Formulario de contacto</h2>
-        <form class="grid gap-4 max-w-3xl">
-          <input class="bg-brand-light rounded-xl px-5 py-4" placeholder="Nombre" aria-label="Nombre">
-          <input class="bg-brand-light rounded-xl px-5 py-4" placeholder="Email" aria-label="Email">
-          <textarea class="bg-brand-light rounded-xl px-5 py-4" rows="5" placeholder="Mensaje" aria-label="Mensaje"></textarea>
-          <button class="bg-brand-black text-white rounded-xl px-6 py-4 font-semibold">Enviar mensaje</button>
+      <!-- STATEMENT -->
+      <section class="bg-brand-black text-white rounded-[2rem] p-10 md:p-14 reveal">
+
+        <div class="max-w-4xl">
+
+          <p class="text-xs uppercase tracking-[0.18em] text-white/60 mb-5">
+            Picklemania
+          </p>
+
+          <h2 class="text-4xl md:text-5xl font-display font-black leading-tight mb-6">
+            El pickleball europeo
+            todavía se está escribiendo.
+          </h2>
+
+          <p class="text-white/75 text-lg leading-relaxed max-w-2xl">
+            Este es el momento de construir comunidad,
+            cultura y una nueva forma de vivir la pista.
+          </p>
+
+        </div>
+
+      </section>
+
+      <!-- FOTOS -->
+      <section class="reveal space-y-6">
+
+        <div>
+          <p class="eyebrow mb-3">
+            Comunidad
+          </p>
+
+          <h2 class="text-4xl md:text-5xl font-display font-black">
+            Comunidad en crecimiento.
+          </h2>
+        </div>
+
+        <div class="grid md:grid-cols-12 gap-5">
+
+
+          <div class="relative overflow-hidden rounded-[2rem] md:col-span-7">
+            <img
+              src="img/jugadoras-riendo.png"
+              alt="Jugadores Picklemania en pista"
+              class="h-[500px] w-full object-cover"
+            >
+            <div class="absolute inset-0 bg-black/10"></div>
+
+            <p class="absolute bottom-6 left-6 right-6 text-white text-2xl md:text-4xl font-display font-black leading-tight">
+              El juego se construye en pista.
+            </p>
+          </div>
+          
+          <div class="md:col-span-5 grid gap-5">
+
+            <div class="relative overflow-hidden rounded-[2rem]">
+              <img
+                src="img/pista2.PNG"
+                alt="Entrenamiento Picklemania"
+                class="h-[240px] w-full object-cover"
+              >
+              <div class="absolute inset-0 bg-black/10"></div>
+            </div>
+
+            <div class="relative overflow-hidden rounded-[2rem]">
+              <img
+                src="img/coleccion2.png"
+                alt="Colección Picklemania"
+                class="h-[240px] w-full object-cover"
+              >
+              <div class="absolute inset-0 bg-black/10"></div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- CONTACTO -->
+      <section id="contacto" class="card-soft p-8 md:p-12 reveal">
+
+        <div class="max-w-3xl mb-10">
+
+          <p class="eyebrow mb-3">
+            Contacto
+          </p>
+
+          <h2 class="text-4xl md:text-5xl font-display font-black mb-4">
+            Hablemos.
+          </h2>
+
+          <p class="text-brand-gray text-lg leading-relaxed">
+            Si quieres construir esto con nosotros,
+            este es el mejor lugar para empezar.
+          </p>
+
+        </div>
+
+        <form class="grid gap-5 max-w-3xl">
+
+          <input
+            class="bg-brand-light rounded-2xl px-6 py-5 border border-black/5 focus:outline-none focus:border-brand-black transition"
+            placeholder="Nombre"
+            aria-label="Nombre"
+          >
+
+          <input
+            class="bg-brand-light rounded-2xl px-6 py-5 border border-black/5 focus:outline-none focus:border-brand-black transition"
+            placeholder="Email"
+            aria-label="Email"
+          >
+
+          <textarea
+            class="bg-brand-light rounded-2xl px-6 py-5 border border-black/5 focus:outline-none focus:border-brand-black transition"
+            rows="6"
+            placeholder="Mensaje"
+            aria-label="Mensaje"
+          ></textarea>
+
+          <button class="bg-brand-black text-white rounded-2xl px-8 py-5 font-semibold hover:opacity-90 transition w-fit">
+            Enviar mensaje
+          </button>
+
         </form>
-      </div>
+
+      </section>
+
     </section>
+
   </main>
 
   <footer></footer>
+
   <script src="js/main.js"></script>
+
 </body>
 </html>

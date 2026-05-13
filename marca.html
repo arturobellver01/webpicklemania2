@@ -3,97 +3,247 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>La Marca | Picklemania</title>
-  <meta name="description" content="Origen, equilibrio y evolución de Picklemania: una marca nacida en España para impulsar el pickleball europeo.">
+  <meta name="description" content="Picklemania: diseño, equilibrio y cultura pickleball europea. Diseñado en España y fabricado en Europa.">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
-    tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'], display: ['Montserrat', 'sans-serif'] }, colors: { brand: { black: '#0f1112', gray: '#6a716d', light: '#f3f4f2', accent: '#8fae8b' } } } } }
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Montserrat', 'sans-serif']
+          },
+          colors: {
+            brand: {
+              black: '#0f1112',
+              gray: '#6a716d',
+              light: '#f3f4f2',
+              accent: '#8fae8b'
+            }
+          }
+        }
+      }
+    }
   </script>
+
   <link rel="stylesheet" href="css/styles.css">
 </head>
+
 <body class="text-brand-black antialiased">
   <div id="scroll-progress" class="fixed top-0 left-0 h-1 bg-brand-black z-[100]" style="width:0%"></div>
+
   <header></header>
 
-  <main class="py-16">
-    <section class="container mx-auto px-4 max-w-6xl space-y-12">
-      <div class="reveal max-w-5xl">
-        <p class="eyebrow mb-4">La Marca</p>
-        <h1 class="text-5xl md:text-6xl font-display font-black mb-4">Origen, equilibrio y evolución</h1>
-        <p class="text-brand-gray text-lg mb-3">Picklemania nace para construir la nueva identidad del pickleball europeo desde una propuesta clara y cuidada.</p>
-        <p class="text-brand-gray text-lg">Picklemania nace con una idea sencilla: el pickleball merece crecer con identidad propia.</p>
-      </div>
+  <main class="py-20 md:py-28">
+    <section class="container mx-auto px-4 max-w-6xl space-y-24">
 
-      <div class="grid md:grid-cols-2 gap-8">
-        <article class="card-soft p-8 reveal">
-          <h2 class="text-2xl font-display font-bold mb-3">Origen</h2>
-          <p class="text-brand-gray">Nacida en España, Picklemania surge con una visión clara: elevar el pickleball europeo con diseño, criterio y autenticidad.</p>
-        </article>
-        <article class="card-soft p-8 reveal delay-1">
-          <h2 class="text-2xl font-display font-bold mb-3">Filosofía</h2>
-          <p class="text-brand-gray">Equilibrio entre rendimiento, diseño y comunidad. Porque el juego crece cuando la marca aporta, no cuando impone.</p>
-        </article>
-      </div>
+      <!-- HERO -->
+      <section class="grid lg:grid-cols-12 gap-10 lg:gap-16 items-center reveal">
+        <div class="lg:col-span-7">
+          <p class="eyebrow mb-4">La Marca</p>
 
-      <div class="grid md:grid-cols-12 gap-8">
-        <article class="md:col-span-7 card-soft p-9 reveal">
-          <p class="eyebrow mb-3">Visión</p>
-          <h2 class="text-3xl font-display font-black mb-3">Construir referencia europea</h2>
-          <p class="text-brand-gray">Ser referencia en el desarrollo del pickleball europeo, conectando producto, cultura y comunidad.</p>
-        </article>
-        <article class="md:col-span-5 bg-brand-black text-white rounded-[2rem] p-9 reveal delay-1">
-          <p class="text-xs uppercase tracking-[0.18em] text-white/65 mb-4">Manifiesto</p>
-          <p class="text-lg leading-relaxed font-medium">No seguimos tendencias. Construimos el juego que viene.</p>
-          <p class="text-lg leading-relaxed font-medium mt-4">Creemos en el equilibrio: entre diseño y rendimiento, entre identidad y comunidad, entre precisión y libertad.</p>
-          <p class="text-lg leading-relaxed font-medium mt-4">Diseñamos en España. Producimos en Europa. No por moda, sino por convicción.</p>
-          <p class="text-lg leading-relaxed font-medium mt-4">Picklemania no es solo equipamiento. Es una forma de vivir el juego.</p>
-        </article>
-      </div>
+          <h1 class="text-5xl md:text-7xl font-display font-black leading-[0.95] mb-6">
+            No seguimos tendencias.<br>
+            Construimos el juego que viene.
+          </h1>
 
-      <article class="card-soft p-10 md:p-12 reveal">
-        <p class="eyebrow mb-3">Versión larga</p>
-        <p class="text-brand-gray max-w-4xl leading-relaxed">Picklemania nace con una idea sencilla: el pickleball merece crecer con identidad propia. Creemos en el equilibrio entre rendimiento y diseño, entre comunidad y competición, entre cercanía y ambición. Diseñamos en España y producimos en Europa porque la calidad empieza cerca. Porque creemos que el juego crece cuando se construye con criterio, no con atajos. No seguimos tendencias. Construimos el juego que viene. Picklemania no es solo equipamiento. Es una nueva manera de vivir el juego.</p>
-      </article>
-
-      <section class="reveal space-y-5">
-        <div>
-          <p class="eyebrow mb-2">Fotos</p>
-          <h2 class="text-3xl font-display font-black">La marca en acción</h2>
+          <p class="text-brand-gray text-lg md:text-xl max-w-3xl leading-relaxed">
+            Picklemania nace para construir una nueva identidad del pickleball europeo:
+            diseño, equilibrio y comunidad dentro y fuera de la pista.
+          </p>
         </div>
-        <div class="grid md:grid-cols-3 gap-5">
-          <img src="img/hero-background.png" alt="Jugador preparando el saque" class="w-full h-64 object-cover rounded-2xl">
-          <img src="img/hero-background2.png" alt="Momento de juego en pista de pickleball" class="w-full h-64 object-cover rounded-2xl">
-          <img src="img/hero-background3.png" alt="Entrenamiento de equipo Picklemania" class="w-full h-64 object-cover rounded-2xl">
+
+        <div class="lg:col-span-5">
+          <div class="bg-brand-black text-white rounded-[2rem] p-8 md:p-10 lg:p-12">
+            <p class="text-xs uppercase tracking-[0.18em] text-white/60 mb-8">
+              Play Balanced
+            </p>
+
+            <h2 class="text-3xl md:text-4xl font-display font-black leading-tight mb-8">
+              Diseño.<br>
+              Equilibrio.<br>
+              Comunidad.
+            </h2>
+
+            <p class="text-white/75 leading-relaxed">
+              Una nueva forma de vivir la pista.
+            </p>
+          </div>
         </div>
       </section>
 
-      <div class="reveal">
-        <h2 class="text-3xl font-display font-black mb-7">Nuestro camino</h2>
-        <ol class="space-y-6 border-l border-black/10 pl-7">
-          <li class="relative"><span class="absolute -left-[34px] top-1 h-3 w-3 rounded-full bg-brand-black"></span><strong class="text-lg">2022</strong><p class="text-brand-gray">Nace Picklemania. Definición de marca, identidad y primeros pasos estratégicos.</p></li>
-          <li class="relative"><span class="absolute -left-[34px] top-1 h-3 w-3 rounded-full bg-brand-black"></span><strong class="text-lg">2023</strong><p class="text-brand-gray">Desarrollo y validación. Investigación de materiales, procesos de fabricación y estructura del proyecto.</p></li>
-          <li class="relative"><span class="absolute -left-[34px] top-1 h-3 w-3 rounded-full bg-brand-black"></span><strong class="text-lg">2024</strong><p class="text-brand-gray">Diseño y construcción. Desarrollo de producto, colecciones iniciales y red de colaboradores.</p></li>
-          <li class="relative"><span class="absolute -left-[34px] top-1 h-3 w-3 rounded-full bg-brand-black"></span><strong class="text-lg">2025</strong><p class="text-brand-gray">Primera colección Black &amp; White. Lanzamiento de la primera línea y consolidación inicial de la marca.</p></li>
-          <li class="relative"><span class="absolute -left-[34px] top-1 h-3 w-3 rounded-full bg-brand-accent"></span><strong class="text-lg text-brand-accent">Próximo</strong><p class="text-brand-gray">Expansión del ecosistema Picklemania.</p></li>
-        </ol>
-      </div>
+      <!-- ORIGEN / FILOSOFÍA -->
+      <section class="grid md:grid-cols-2 gap-8">
+        <article class="card-soft p-8 md:p-10 reveal">
+          <h2 class="text-2xl font-display font-bold mb-4">Origen</h2>
+          <p class="text-brand-gray leading-relaxed">
+            Nacida en España, Picklemania surge con una idea sencilla:
+            el pickleball merece crecer en Europa con identidad propia.
+          </p>
+        </article>
 
-      <article class="card-soft p-10 md:p-12 reveal text-center space-y-4">
-        <p class="text-xs tracking-[0.2em] uppercase text-brand-gray">European Design Standard</p>
-        <h2 class="text-4xl md:text-5xl font-display font-black">Designed in Spain · Made in Europe</h2>
-        <p class="text-brand-gray text-lg max-w-4xl mx-auto">Producción de proximidad con control, coherencia y calidad.</p>
-        <p class="text-brand-gray max-w-4xl mx-auto leading-relaxed">Picklemania se diseña en España y se fabrica en Europa mediante un modelo de producción cercano y controlado.</p>
-        <p class="text-brand-gray max-w-4xl mx-auto leading-relaxed">Un enfoque que nos permite garantizar calidad, cuidar cada detalle y mantener coherencia con nuestra forma de entender el producto.</p>
-        <p class="text-brand-gray max-w-4xl mx-auto leading-relaxed">No se trata solo de dónde se fabrica, sino de cómo se construye cada pieza.</p>
-        <p class="font-medium">Producción responsable. Identidad real.</p>
-      </article>
+        <article class="card-soft p-8 md:p-10 reveal delay-1">
+          <h2 class="text-2xl font-display font-bold mb-4">Filosofía</h2>
+          <p class="text-brand-gray leading-relaxed">
+            Equilibrio entre rendimiento, diseño y comunidad.
+            Una marca pensada para jugar, conectar y evolucionar.
+          </p>
+        </article>
+      </section>
+
+      <!-- VISUAL STRIP -->
+      <section class="grid md:grid-cols-3 gap-5 reveal">
+        <div class="relative overflow-hidden rounded-[2rem] md:col-span-2">
+          <img
+            src="img/pista2.PNG"
+            alt="Jugador Picklemania en pista"
+            class="w-full h-[460px] object-cover"
+          >
+          <div class="absolute inset-0 bg-black/20"></div>
+          <p class="absolute bottom-6 left-6 right-6 text-white text-2xl md:text-4xl font-display font-black leading-tight">
+            El juego europeo empieza aquí.
+          </p>
+        </div>
+
+        <div class="grid gap-5">
+          <div class="relative overflow-hidden rounded-[2rem]">
+            <img
+              src="img/pista1.PNG"
+              alt="Momento de juego Picklemania"
+              class="w-full h-[220px] object-cover"
+            >
+            <div class="absolute inset-0 bg-black/10"></div>
+          </div>
+
+          <div class="relative overflow-hidden rounded-[2rem]">
+            <img
+              src="img/pista3.PNG"
+              alt="Comunidad Picklemania"
+              class="w-full h-[220px] object-cover"
+            >
+            <div class="absolute inset-0 bg-black/10"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- VISIÓN / MANIFIESTO -->
+      <section class="grid md:grid-cols-12 gap-8 items-stretch">
+        <article class="md:col-span-7 card-soft p-9 md:p-12 reveal">
+          <p class="eyebrow mb-4">Visión</p>
+
+          <h2 class="text-4xl md:text-5xl font-display font-black mb-6">
+            Construir referencia europea.
+          </h2>
+
+          <p class="text-brand-gray text-lg leading-relaxed max-w-2xl">
+            Queremos construir algo más que producto: una cultura alrededor del pickleball,
+            con una estética propia, una comunidad real y una forma distinta de entender la pista.
+          </p>
+        </article>
+
+        <article class="md:col-span-5 bg-brand-black text-white rounded-[2rem] p-9 md:p-12 reveal delay-1">
+          <p class="text-xs uppercase tracking-[0.18em] text-white/60 mb-8">
+            Manifiesto
+          </p>
+
+          <p class="text-xl md:text-2xl leading-tight font-display font-black">
+            No seguimos tendencias.<br>
+            Construimos el juego que viene.
+          </p>
+
+          <p class="text-white/75 leading-relaxed mt-8">
+            Diseñamos en España. Producimos en Europa.
+          </p>
+
+          <p class="text-white/75 leading-relaxed mt-6">
+            Picklemania no es solo equipamiento.
+            Es una forma de vivir el juego.
+          </p>
+        </article>
+      </section>
+
+      <!-- TIMELINE -->
+      <section class="reveal">
+        <p class="eyebrow mb-3">Timeline</p>
+
+        <h2 class="text-4xl md:text-5xl font-display font-black mb-10">
+          Nuestro camino.
+        </h2>
+
+        <ol class="space-y-8 border-l border-black/10 pl-8">
+          <li class="relative">
+            <span class="absolute -left-[38px] top-2 h-3 w-3 rounded-full bg-brand-black"></span>
+            <strong class="text-2xl font-display">2022</strong>
+            <p class="text-brand-gray mt-2">
+              Nace Picklemania. Definición de marca, identidad y primeros pasos estratégicos.
+            </p>
+          </li>
+
+          <li class="relative">
+            <span class="absolute -left-[38px] top-2 h-3 w-3 rounded-full bg-brand-black"></span>
+            <strong class="text-2xl font-display">2023</strong>
+            <p class="text-brand-gray mt-2">
+              Investigación de materiales, procesos de fabricación y validación del producto.
+            </p>
+          </li>
+
+          <li class="relative">
+            <span class="absolute -left-[38px] top-2 h-3 w-3 rounded-full bg-brand-black"></span>
+            <strong class="text-2xl font-display">2024</strong>
+            <p class="text-brand-gray mt-2">
+              Diseño, desarrollo de producto, colecciones iniciales y red de colaboradores.
+            </p>
+          </li>
+
+          <li class="relative">
+            <span class="absolute -left-[38px] top-2 h-3 w-3 rounded-full bg-brand-black"></span>
+            <strong class="text-2xl font-display">2025</strong>
+            <p class="text-brand-gray mt-2">
+              Lanzamiento de la primera colección Black &amp; White.
+            </p>
+          </li>
+
+          <li class="relative">
+            <span class="absolute -left-[38px] top-2 h-3 w-3 rounded-full bg-brand-accent"></span>
+            <strong class="text-2xl font-display text-brand-accent">Próximo</strong>
+            <p class="text-brand-gray mt-2">
+              Expansión del ecosistema Picklemania.
+            </p>
+          </li>
+        </ol>
+      </section>
+
+      <!-- EUROPEAN STANDARD -->
+      <section class="card-soft p-10 md:p-16 reveal text-center space-y-6">
+        <p class="text-xs tracking-[0.22em] uppercase text-brand-gray">
+          European Design Standard
+        </p>
+
+        <h2 class="text-4xl md:text-6xl font-display font-black leading-tight">
+          Designed in Spain<br class="md:hidden">
+          <br>Made in Europe
+        </h2>
+
+        <p class="text-brand-gray text-lg max-w-3xl mx-auto leading-relaxed">
+          Producción de proximidad, control de calidad y coherencia en cada detalle.
+        </p>
+        <p class="font-semibold text-lg">
+          Producción responsable. Identidad real.
+        </p>
+      </section>
+
     </section>
   </main>
 
   <footer></footer>
+
   <script src="js/main.js"></script>
 </body>
 </html>
