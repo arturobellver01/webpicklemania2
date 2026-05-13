@@ -12,7 +12,7 @@
       longDescription: 'Diseñada para jugadores que buscan una sensación sólida desde el primer golpe, con tacto estable, salida controlada y un balance medio ideal para entrenos y competición.',
       image: 'img/pala-1.png',
       gallery: ['img/pala-1.png'],
-      stripePriceId: 'price_1TRCmSQl1Fppe3qe4KmY2R2i',
+      stripePriceId: 'price_1TRDUaQl1Fppe3qeQaZ0lgO4',
       specs: [
         'Fibra de vidrio',
         'Núcleo honeycomb',
@@ -37,7 +37,7 @@
       image: 'img/pala-white.png',
       fallbackImage: 'img/pala-1.png',
       gallery: ['img/pala-white.png'],
-      stripePriceId: 'price_WHITE_PADDLE',
+      stripePriceId: 'price_1TRDUaQl1Fppe3qeQaZ0lgO4',
       specs: [
         'Fibra de vidrio',
         'Núcleo honeycomb',

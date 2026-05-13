@@ -124,7 +124,8 @@
   </header>
 
   <main>
-    <section class="min-h-[88vh] flex items-center py-16">
+    <!-- 
+    <section class="min-h-[88vh] flex items-center py-16" >
       <div class="container mx-auto px-4 grid lg:grid-cols-2 gap-14 items-center">
         <div class="space-y-7 reveal">
           <p class="eyebrow">El juego europeo empieza aquí</p>
@@ -141,12 +142,78 @@
         </div>
 <div class="reveal delay-2 flex justify-center lg:justify-end lg:pr-20">
   <img 
-    src="img/"  
+    src="img/jugador-pista.jpg"  
     alt="Jugador real en pista, en tensión antes de golpear" 
-class="rounded-[2.5rem] w-full max-w-sm lg:max-w-md object-cover aspect-[5/6] shadow-xl -mt-6 lg:-mt-10"  >
+class="rounded-[2.5rem] w-full max-w-lg lg:max-w-xl object-cover aspect-[3/2] shadow-xl -mt-12 lg:-mt-20"  >
 </div>
       </div>
     </section>
+
+-->
+
+
+
+
+
+
+
+
+
+    <section 
+  class="relative min-h-[88vh] flex items-center py-16 bg-cover bg-center lg:bg-[center_30%]"
+  style="background-image: url('img/jugador-pista-fondo.jpg');"
+>
+
+  <!-- Overlay oscuro -->
+  <div class="absolute inset-0 bg-black/40"></div>
+
+  <!-- Contenido -->
+  <div class="relative container mx-auto px-6 lg:px-16">
+    
+    <div class="max-w-2xl space-y-7 text-white">
+      
+      <p class="eyebrow text-white/80">
+        El juego europeo empieza aquí
+      </p>
+      
+      <h1 class="text-5xl md:text-7xl font-display font-black leading-[1.04]">
+        Diseñado en Europa.<br>
+        Hecho para el juego moderno
+      </h1>
+      
+      <p class="text-lg text-white/80">
+        Una nueva forma de vivir el pickleball, dentro y fuera de la pista.
+      </p>
+      
+      <div class="flex flex-wrap gap-3">
+        <a class="brand-btn brand-btn-primary shadow-[0_0_20px_rgba(255,255,255,0.2)]" href="coleccion.html">
+          Descubrir la colección
+        </a>
+        <a class="brand-btn brand-btn-secondary" href="marca.html">
+          Conocer la marca
+        </a>
+      </div>
+
+      <div class="flex items-center gap-4 pt-2">
+        <div class="scroll-cue" aria-hidden="true"></div>
+        <p class="text-xs tracking-[0.14em] uppercase text-white/70">
+          Designed in Spain · Made in Europe
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
 
 <section class="py-20 bg-brand-black text-white">
   <div class="container mx-auto px-4 grid md:grid-cols-3 gap-7">
@@ -184,7 +251,7 @@ class="rounded-[2.5rem] w-full max-w-sm lg:max-w-md object-cover aspect-[5/6] sh
 
     <div class="grid lg:grid-cols-2 gap-8 items-stretch">
       <article class="card-soft p-3 sm:p-5 reveal h-full">
-        <img src="img/hero-background.png" alt="Jugadores de Picklemania" class="rounded-[1.6rem] w-full h-full object-cover min-h-[320px]">
+        <img src="img/jugadoras-riendo.png" alt="Jugadores de Picklemania" class="rounded-[1.6rem] w-full h-full object-cover min-h-[320px]">
       </article>
 
       <div class="space-y-5 reveal delay-1">
@@ -260,11 +327,99 @@ class="rounded-[2.5rem] w-full max-w-sm lg:max-w-md object-cover aspect-[5/6] sh
     </section>
 
     <section class="py-24">
-      <div class="container mx-auto px-4 grid md:grid-cols-3 gap-8">
-        <article class="card-soft p-5 reveal overflow-hidden"><img src="img/hero-background.png" alt="Team Picklemania" class="rounded-[1.4rem] w-full aspect-[16/10] object-cover mb-5"><p class="eyebrow mb-3">Team</p><h3 class="text-3xl font-display font-bold mb-3">Team Picklemania</h3><p class="text-brand-gray text-lg mb-5">Jugadores que representan nuestra forma de entender el juego dentro y fuera de la pista.</p><a href="team.html" class="font-semibold">Conocer el equipo →</a></article>
-        <article class="card-soft p-5 reveal delay-1 overflow-hidden"><img src="img/hero-background.png" alt="Aprende Pickleball" class="rounded-[1.4rem] w-full aspect-[16/10] object-cover mb-5"><p class="eyebrow mb-3">Aprende</p><h3 class="text-3xl font-display font-bold mb-3">Aprende Pickleball</h3><p class="text-brand-gray text-lg mb-5">El juego está creciendo. Empieza aquí.</p><a href="aprende.html" class="font-semibold">Sigue la evolución del juego →</a></article>
-        <article class="card-soft p-5 reveal delay-2 overflow-hidden"><img src="img/hero-background.png" alt="Colabora con Picklemania" class="rounded-[1.4rem] w-full aspect-[16/10] object-cover mb-5"><p class="eyebrow mb-3">Colabora</p><h3 class="text-3xl font-display font-bold mb-3">Colabora con Picklemania</h3><p class="text-brand-gray text-lg mb-5">Construyamos juntos el crecimiento del pickleball europeo.</p><a href="colabora.html" class="font-semibold">Hablemos →</a></article>
-      </div>
+<div class="container mx-auto px-4 grid md:grid-cols-3 gap-8">
+
+  <!-- TEAM -->
+  <article class="card-soft p-5 reveal overflow-hidden">
+
+    <div class="h-[260px] overflow-hidden rounded-[1.4rem] mb-5">
+
+      <img 
+        src="img/jugadoras-team.png" 
+        alt="Team Picklemania" 
+        class="w-full h-full object-cover"
+        style="object-position: 10% 40%;"
+      >
+
+    </div>
+
+    <p class="eyebrow mb-3">Team</p>
+
+    <h3 class="text-3xl font-display font-bold mb-3">
+      Team Picklemania
+    </h3>
+
+    <p class="text-brand-gray text-lg mb-5">
+      Jugadores que representan nuestra forma de entender el juego dentro y fuera de la pista.
+    </p>
+
+    <a href="team.html" class="font-semibold">
+      Conocer el equipo →
+    </a>
+
+  </article>
+
+  <!-- APRENDE -->
+  <article class="card-soft p-5 reveal delay-1 overflow-hidden">
+
+    <div class="h-[260px] overflow-hidden rounded-[1.4rem] mb-5">
+
+      <img 
+        src="img/jugador-aprende.jpg" 
+        alt="Aprende Pickleball" 
+        class="w-full h-full object-cover"
+        style="object-position: center 10% 10%;"
+      >
+
+    </div>
+
+    <p class="eyebrow mb-3">Aprende</p>
+
+    <h3 class="text-3xl font-display font-bold mb-3">
+      Aprende Pickleball
+    </h3>
+
+    <p class="text-brand-gray text-lg mb-5">
+      El juego está creciendo. Empieza aquí.
+    </p>
+
+    <a href="aprende.html" class="font-semibold">
+      Sigue la evolución del juego →
+    </a>
+
+  </article>
+
+  <!-- COLABORA -->
+  <article class="card-soft p-5 reveal delay-2 overflow-hidden">
+
+    <div class="h-[260px] overflow-hidden rounded-[1.4rem] mb-5">
+
+      <img 
+        src="img/hero-background.png" 
+        alt="Colabora con Picklemania" 
+        class="w-full h-full object-cover"
+        style="object-position: 20% 68%;"
+      >
+
+    </div>
+
+    <p class="eyebrow mb-3">Colabora</p>
+
+    <h3 class="text-3xl font-display font-bold mb-3">
+      Colabora con Picklemania
+    </h3>
+
+    <p class="text-brand-gray text-lg mb-5">
+      Construyamos juntos el crecimiento del pickleball europeo.
+    </p>
+
+    <a href="colabora.html" class="font-semibold">
+      Hablemos →
+    </a>
+
+  </article>
+
+</div>
     </section>
 
     <section class="py-24 text-white community-hero">

@@ -24,7 +24,7 @@ body {
 
 .community-hero {
     position: relative;
-    background-image: linear-gradient(rgba(15, 17, 18, 0.62), rgba(15, 17, 18, 0.62)), url('../img/hero-background.png');
+    background-image: linear-gradient(rgba(15, 17, 18, 0.62), rgba(15, 17, 18, 0.62)), url('../img/jugador-final.png');
     background-size: cover;
     background-position: center;
 }

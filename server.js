@@ -1,8 +1,12 @@
 require('dotenv').config();
 const express = require('express');
+const cors = require('cors');
 const Stripe = require('stripe');
 
 const app = express();
+app.use(cors({
+  origin: ['http://127.0.0.1:5500', 'http://localhost:5500']
+}));
 const port = process.env.PORT || 3000;
 
 if (!process.env.STRIPE_SECRET_KEY) {

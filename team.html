@@ -16,30 +16,119 @@
 </head>
 <body class="antialiased">
   <header></header>
-  <main class="py-16">
-    <section class="container mx-auto px-4 space-y-10">
-      <div class="max-w-4xl reveal">
-        <p class="eyebrow mb-3">Team</p>
-        <h1 class="text-5xl md:text-6xl font-display font-black mb-3">Team Picklemania</h1>
-        <p class="text-brand-gray text-lg mb-4">Jugadores que representan nuestra forma de entender el juego dentro y fuera de la pista.</p>
-        <p class="text-brand-gray mb-3">El team Picklemania no es solo un grupo de jugadores. Es una red en crecimiento que impulsa el desarrollo del pickleball desde la pista. Cada jugador representa la identidad de la marca: equilibrio, carácter y una forma de competir sin ruido.</p>
-        <p class="text-brand-gray font-medium">Juega. Representa. Crece. Formar parte del Team Picklemania significa participar activamente en el crecimiento de la comunidad.</p>
+<main class="py-20 md:py-28">
+  <section class="container mx-auto px-4 max-w-6xl space-y-16">
+
+    <!-- HERO TEAM -->
+    <div class="grid lg:grid-cols-12 gap-10 lg:gap-16 items-center reveal">
+
+      <!-- LEFT -->
+      <div class="lg:col-span-7">
+        <p class="eyebrow mb-4">Team</p>
+
+        <h1 class="text-5xl md:text-7xl font-display font-black leading-[0.95] mb-6">
+          Team<br class="hidden md:block">
+          Picklemania
+        </h1>
+
+        <p class="text-xl md:text-2xl text-brand-gray leading-relaxed max-w-2xl">
+          Jugadores que representan una nueva forma de entender el juego.
+        </p>
       </div>
 
-      <div class="card-soft p-6 reveal">
-        <p class="text-sm text-brand-gray">Necesitamos fotos reales para esta sección: jugadores en acción, detalle manos + pala, ambiente de club y menos imagen genérica.</p>
+      <!-- RIGHT -->
+      <div class="lg:col-span-5 space-y-5">
+
+        <div class="bg-brand-black text-white rounded-[2rem] p-8 md:p-10 lg:p-12">
+          <p class="text-xs uppercase tracking-[0.18em] text-white/60 mb-8">
+            Play Balanced
+          </p>
+
+          <h2 class="text-3xl md:text-4xl font-display font-black leading-tight mb-8">
+            Juega.<br>
+            Representa.<br>
+            Crece.
+          </h2>
+
+          <p class="text-white/75 leading-relaxed">
+            Formar parte del Team Picklemania significa impulsar el crecimiento del juego desde la pista, la comunidad y la forma de competir.
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- INTRO -->
+    <div class="grid md:grid-cols-12 gap-10 reveal">
+      <div class="md:col-span-4">
+        <p class="eyebrow">Nuestra forma de competir</p>
       </div>
 
-      <div id="team-grid" class="grid md:grid-cols-3 gap-8"></div>
+      <div class="md:col-span-8 max-w-3xl space-y-5">
+        <p class="text-brand-gray text-lg leading-relaxed">
+          El Team Picklemania no es solo un grupo de jugadores. Es una comunidad en crecimiento que impulsa el pickleball desde la pista.
+        </p>
 
-      <div class="card-soft p-8 reveal">
-        <h2 class="text-2xl font-display font-bold mb-3">¿Quieres formar parte del Team Picklemania?</h2>
-        <p class="text-brand-gray mb-2">Construye el juego con nosotros.</p>
-        <p class="text-brand-gray mb-4">Buscamos perfiles comprometidos con su club, su ciudad y la cultura del juego.</p>
-        <a class="brand-btn brand-btn-secondary" href="colabora.html#contacto">Contáctanos</a>
+        <p class="text-brand-gray text-lg leading-relaxed">
+          Cada jugador representa la identidad de la marca: equilibrio, carácter y una manera de competir sin ruido.
+        </p>
+      </div>
+    </div>
+
+    <!-- VISUAL STRIP -->
+    <section class="grid md:grid-cols-2 gap-5 reveal">
+      <div class="relative overflow-hidden rounded-[2rem]">
+        <img
+          src="img/jugadoras-team.png"
+          alt="Team Picklemania en pista"
+          class="w-full h-[420px] object-cover"
+        >
+        <div class="absolute inset-0 bg-black/10"></div>
+        <p class="absolute bottom-6 left-6 right-6 text-white text-2xl md:text-3xl font-display font-black leading-tight">
+          El juego se construye en pista.
+        </p>
+      </div>
+
+      <div class="relative overflow-hidden rounded-[2rem]">
+        <img
+          src="img/jugadoras-riendo.png"
+          alt="Jugadoras Picklemania compartiendo un momento en pista"
+          class="w-full h-[420px] object-cover"
+        >
+        <div class="absolute inset-0 bg-black/10"></div>
+        <p class="absolute bottom-6 left-6 right-6 text-white text-2xl md:text-3xl font-display font-black leading-tight">
+          Comunidad, carácter y equilibrio.
+        </p>
       </div>
     </section>
-  </main>
+
+
+ <!-- CTA -->
+    <div class="card-soft p-8 md:p-10 reveal">
+      <h2 class="text-2xl font-display font-bold mb-3">
+        ¿Quieres formar parte del Team Picklemania?
+      </h2>
+
+      <p class="text-brand-gray mb-2">
+        Construye el juego con nosotros.
+      </p>
+
+      <p class="text-brand-gray mb-5">
+        Buscamos perfiles comprometidos con su club, su ciudad y la cultura del juego.
+      </p>
+
+      <a class="brand-btn brand-btn-secondary" href="colabora.html#contacto">
+        Contáctanos
+      </a>
+    </div>
+
+    <!-- TEAM GRID 
+    <div id="team-grid" class="grid md:grid-cols-3 gap-8"></div>-->
+
+   
+
+  </section>
+</main>
   <footer></footer>
   <script src="js/articles.js"></script>
   <script src="js/main.js"></script>

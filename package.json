@@ -5,6 +5,10 @@
   "scripts": {
     "dev": "npx servor . 3000 --reload"
   },
-  "dependencies": {},
-  "devDependencies": {}
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "stripe": "^22.1.0"
+  }
 }

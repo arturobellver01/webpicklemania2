@@ -84,13 +84,22 @@ document.addEventListener('DOMContentLoaded', () => {
     checkoutStatus.textContent = 'Redirigiendo a Stripe Checkout...';
 
     try {
-      const response = await fetch('/crear-checkout', {
+      const response = await fetch('http://localhost:3000/crear-checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ cart })
       });
 
-      const data = await response.json();
+      const text = await response.text();
+      console.log('Respuesta backend:', text);
+
+      let data;
+      try {
+        data = JSON.parse(text);
+      } catch {
+        throw new Error('El backend no devolvió JSON. Revisa si node server.js está encendido.');
+      }
+      
       if (!response.ok || !data.url) {
         throw new Error(data.error || 'No se pudo iniciar el checkout');
       }
