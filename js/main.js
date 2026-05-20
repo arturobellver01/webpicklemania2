@@ -37,7 +37,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const header = document.querySelector('header');
     if (header) {
-        header.className = 'sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-black/5';
+        const topBar = document.createElement('div');
+        topBar.className = 'fixed inset-x-0 top-0 z-[60] h-8 md:h-9 bg-brand-black text-white border-b border-white/10 backdrop-blur-sm transition-all duration-500 ease-out';
+        topBar.innerHTML = `
+          <div class="container mx-auto px-4 h-full flex items-center justify-center">
+            <p class="text-[10px] md:text-[11px] font-medium uppercase tracking-[0.18em] text-white/95 text-center whitespace-nowrap overflow-hidden text-ellipsis">Designed in Spain · Envíos gratis en España y Baleares +60€</p>
+          </div>
+        `;
+        header.parentNode?.insertBefore(topBar, header);
+
+        header.className = 'sticky top-8 md:top-9 z-50 bg-white/90 backdrop-blur-md border-b border-black/5 transition-all duration-500 ease-out';
         header.innerHTML = `
     <div class="container mx-auto px-4 h-20 flex items-center justify-between">
       <a href="${basePath}index.html" class="flex items-center">
