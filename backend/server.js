@@ -6,7 +6,6 @@ const Stripe = require('stripe');
 const app = express();
 const port = process.env.PORT || 3000;
 const DOMAIN = process.env.DOMAIN || 'http://localhost:5500';
-const FRONTEND_URL = process.env.FRONTEND_URL || '*';
 
 const stripe = Stripe(process.env.STRIPE_SECRET_KEY || '');
 
@@ -31,7 +30,21 @@ const ALLOWED_COUNTRIES = ['ES', 'PT', 'FR', 'IT', 'DE', 'BE', 'NL', 'AT', 'PL',
 const EU_GROUP_1 = ['FR', 'IT', 'DE', 'PT', 'BE', 'NL', 'AT'];
 const EU_GROUP_2 = ['PL', 'CZ', 'BG', 'GR', 'RO', 'SE', 'DK', 'FI'];
 
-app.use(cors({ origin: FRONTEND_URL === '*' ? true : FRONTEND_URL }));
+const allowedOrigins = [
+  'http://127.0.0.1:5500',
+  'http://localhost:5500',
+  'https://picklemaniaweb.es',
+  'https://www.picklemaniaweb.es'
+];
+
+app.use(cors({
+  origin(origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+    return callback(new Error('Origen no permitido por CORS'));
+  }
+}));
 app.use(express.json());
 
 function detectShippingZone(country, postalCode = '') {
