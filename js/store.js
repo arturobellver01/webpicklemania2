@@ -59,19 +59,22 @@ document.addEventListener('DOMContentLoaded', () => {
   buyNowButtons.forEach((button) => {
     button.addEventListener('click', () => {
       const quantity = getQuantityFromButton(button);
-      button.disabled = true;
-      button.dataset.originalText = button.dataset.originalText || button.textContent;
-      button.textContent = 'Procesando...';
+      const productId = button.dataset.product;
+      const product = window.PicklemaniaProducts?.getById?.(productId) || window.PicklemaniaProducts?.[productId] || normalizeProduct(button, quantity);
 
-      const product = normalizeProduct(button, quantity);
-      showFeedback(product.id, 'Abriendo pago seguro...');
+      if (!product) {
+        alert('Producto no encontrado.');
+        return;
+      }
 
-      if (!window.PicklemaniaCheckout) return;
-      window.PicklemaniaCheckout.createCheckout([{ productId: product.id, quantity }]).catch((error) => {
-        showFeedback(product.id, error.message || 'No se pudo iniciar el pago.');
-        button.disabled = false;
-        button.textContent = button.dataset.originalText || 'Comprar ahora';
+      if (!window.PicklemaniaCart) return;
+      window.PicklemaniaCart.addToCart({
+        ...normalizeProduct(button, quantity),
+        quantity
       });
+      window.PicklemaniaCart.updateCartBadge();
+
+      window.location.href = 'carrito.html';
     });
   });
 });
