@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const totalNode = document.getElementById('cart-total');
   const checkoutBtn = document.getElementById('checkout-btn');
   const checkoutStatus = document.getElementById('checkout-status');
+  const shippingZoneSelect = document.getElementById('shipping-zone');
 
   const formatPrice = (value) => `${value.toFixed(2).replace('.', ',')}€`;
 
@@ -73,6 +74,11 @@ document.addEventListener('DOMContentLoaded', () => {
     render();
   });
 
+  if (shippingZoneSelect && window.PicklemaniaCheckout) {
+    shippingZoneSelect.value = window.PicklemaniaCheckout.getShippingZone();
+    shippingZoneSelect.addEventListener('change', () => window.PicklemaniaCheckout.setShippingZone(shippingZoneSelect.value));
+  }
+
   checkoutBtn?.addEventListener('click', async () => {
     const cart = window.PicklemaniaCart?.getCart() || [];
 
@@ -85,7 +91,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     try {
       if (!window.PicklemaniaCheckout) throw new Error('Checkout no disponible.');
-      await window.PicklemaniaCheckout.createCheckout(cart.map((item) => ({ productId: item.id, quantity: item.quantity })));
+      const shippingZone = shippingZoneSelect?.value || window.PicklemaniaCheckout.getShippingZone();
+      await window.PicklemaniaCheckout.createCheckout(cart.map((item) => ({ productId: item.id, quantity: item.quantity })), { shippingZone });
     } catch (error) {
       checkoutStatus.textContent = error.message || 'Error iniciando checkout.';
     }
