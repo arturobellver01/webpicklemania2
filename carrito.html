@@ -46,22 +46,53 @@
       <div id="cart-content" class="space-y-6">
         <div id="cart-items" class="space-y-4"></div>
 
+        <div class="card-soft p-6 md:p-8 space-y-5">
+          <h2 class="font-display font-bold text-2xl">Dirección de envío</h2>
+          <div class="grid md:grid-cols-2 gap-4">
+            <label class="text-sm text-brand-gray">País
+              <select id="customer-country" class="mt-1 rounded-xl border border-black/15 px-4 py-2 w-full" required>
+                <option value="ES">España</option>
+                <option value="FR">Francia</option><option value="IT">Italia</option><option value="DE">Alemania</option>
+                <option value="PT">Portugal</option><option value="BE">Bélgica</option><option value="NL">Países Bajos</option>
+                <option value="AT">Austria</option><option value="PL">Polonia</option><option value="CZ">Chequia</option>
+                <option value="BG">Bulgaria</option><option value="GR">Grecia</option><option value="RO">Rumanía</option>
+                <option value="SE">Suecia</option><option value="DK">Dinamarca</option><option value="FI">Finlandia</option>
+              </select>
+            </label>
+            <label class="text-sm text-brand-gray">Nombre completo
+              <input id="customer-name" class="mt-1 rounded-xl border border-black/15 px-4 py-2 w-full" required>
+            </label>
+            <label class="text-sm text-brand-gray md:col-span-2">Dirección
+              <input id="customer-address" class="mt-1 rounded-xl border border-black/15 px-4 py-2 w-full" required>
+            </label>
+            <label class="text-sm text-brand-gray">Código postal
+              <input id="customer-postal" class="mt-1 rounded-xl border border-black/15 px-4 py-2 w-full" required>
+            </label>
+            <label class="text-sm text-brand-gray">Ciudad
+              <input id="customer-city" class="mt-1 rounded-xl border border-black/15 px-4 py-2 w-full" required>
+            </label>
+            <label class="text-sm text-brand-gray">Provincia / región
+              <input id="customer-state" class="mt-1 rounded-xl border border-black/15 px-4 py-2 w-full" required>
+            </label>
+            <label class="text-sm text-brand-gray">Teléfono
+              <input id="customer-phone" class="mt-1 rounded-xl border border-black/15 px-4 py-2 w-full" required>
+            </label>
+            <label class="text-sm text-brand-gray md:col-span-2">Email
+              <input id="customer-email" type="email" class="mt-1 rounded-xl border border-black/15 px-4 py-2 w-full" required>
+            </label>
+          </div>
+        </div>
+
         <div class="card-soft p-6 md:p-8">
-          <div class="flex items-center justify-between mb-6">
-            <p class="text-brand-gray">Total del pedido</p>
-            <p id="cart-total" class="text-2xl font-display font-black">0€</p>
+          <div class="space-y-2 mb-4">
+            <div class="flex items-center justify-between"><p class="text-brand-gray">Subtotal productos</p><p id="cart-subtotal" class="font-semibold">0€</p></div>
+            <div class="flex items-center justify-between"><p class="text-brand-gray">Envío calculado</p><p id="cart-shipping" class="font-semibold">0€</p></div>
+            <div class="flex items-center justify-between text-xl"><p class="font-display font-bold">Total final</p><p id="cart-total" class="text-2xl font-display font-black">0€</p></div>
           </div>
-          
-          <div class="mb-4">
-            <label for="shipping-zone" class="block text-sm text-brand-gray mb-2">Zona de envío</label>
-            <select id="shipping-zone" class="rounded-xl border border-black/15 px-4 py-2 w-full md:w-80">
-              <option value="ES">España peninsular y Baleares</option>
-              <option value="CANARIAS">Canarias</option>
-              <option value="EU_1">Europa Zona 1</option>
-              <option value="EU_2">Europa Zona 2</option>
-            </select>
-          </div>
-          <button id="checkout-btn" class="btn-primary w-full md:w-auto">Finalizar compra</button>
+          <p id="shipping-message" class="text-sm text-brand-gray"></p>
+          <p id="shipping-gap" class="text-sm text-brand-gray mb-3"></p>
+
+          <button id="checkout-btn" class="btn-primary w-full md:w-auto" disabled>Finalizar compra</button>
           <p id="checkout-status" class="text-sm text-brand-gray mt-3"></p>
         </div>
       </div>
@@ -71,7 +102,7 @@
   <footer></footer>
   <script src="js/cart.js"></script>
   <script src="js/main.js"></script>
-<script src="js/checkout.js"></script>
+  <script src="js/checkout.js"></script>
   <script src="js/carrito-page.js"></script>
 </body>
 </html>

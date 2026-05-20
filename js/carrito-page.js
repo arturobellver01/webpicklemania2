@@ -2,12 +2,48 @@ document.addEventListener('DOMContentLoaded', () => {
   const itemsContainer = document.getElementById('cart-items');
   const emptyCart = document.getElementById('empty-cart');
   const cartContent = document.getElementById('cart-content');
+  const subtotalNode = document.getElementById('cart-subtotal');
+  const shippingNode = document.getElementById('cart-shipping');
   const totalNode = document.getElementById('cart-total');
+  const shippingMessageNode = document.getElementById('shipping-message');
+  const shippingGapNode = document.getElementById('shipping-gap');
   const checkoutBtn = document.getElementById('checkout-btn');
   const checkoutStatus = document.getElementById('checkout-status');
-  const shippingZoneSelect = document.getElementById('shipping-zone');
 
-  const formatPrice = (value) => `${value.toFixed(2).replace('.', ',')}€`;
+  const countryNode = document.getElementById('customer-country');
+  const nameNode = document.getElementById('customer-name');
+  const addressNode = document.getElementById('customer-address');
+  const postalNode = document.getElementById('customer-postal');
+  const cityNode = document.getElementById('customer-city');
+  const stateNode = document.getElementById('customer-state');
+  const phoneNode = document.getElementById('customer-phone');
+  const emailNode = document.getElementById('customer-email');
+
+  const formatPrice = (value) => `${(Number(value) || 0).toFixed(2).replace('.', ',')}€`;
+
+  function getSubtotal(cart) {
+    return cart.reduce((sum, item) => sum + (Number(item.price) || 0) * (Number(item.quantity) || 0), 0);
+  }
+
+  function requiredFieldsValid() {
+    const requiredFields = [countryNode, nameNode, addressNode, postalNode, cityNode, stateNode, phoneNode, emailNode];
+    return requiredFields.every((field) => field && String(field.value || '').trim().length > 0);
+  }
+
+  function buildCustomerPayload() {
+    return {
+      name: String(nameNode?.value || '').trim(),
+      email: String(emailNode?.value || '').trim(),
+      phone: String(phoneNode?.value || '').trim(),
+      address: {
+        line1: String(addressNode?.value || '').trim(),
+        postal_code: String(postalNode?.value || '').trim(),
+        city: String(cityNode?.value || '').trim(),
+        state: String(stateNode?.value || '').trim(),
+        country: String(countryNode?.value || '').trim().toUpperCase()
+      }
+    };
+  }
 
   const render = () => {
     const cart = window.PicklemaniaCart?.getCart() || [];
@@ -44,10 +80,45 @@ document.addEventListener('DOMContentLoaded', () => {
         </article>`;
     }).join('');
 
-    const total = cart.reduce((sum, item) => sum + (Number(item.price) || 0) * (Number(item.quantity) || 0), 0);
-    totalNode.textContent = formatPrice(total);
+    updateCartTotals();
     window.PicklemaniaCart?.updateCartBadge();
   };
+
+  function updateCartTotals() {
+    const cart = window.PicklemaniaCart?.getCart() || [];
+    const subtotal = getSubtotal(cart);
+    const country = countryNode?.value;
+    const postal = postalNode?.value;
+
+    const shippingEstimate = window.PicklemaniaCheckout?.detectShippingZone(country, postal, subtotal);
+
+    const shipping = shippingEstimate?.supported ? Number(shippingEstimate.shipping || 0) : 0;
+    const total = subtotal + shipping;
+
+    subtotalNode.textContent = formatPrice(subtotal);
+    shippingNode.textContent = shippingEstimate?.supported ? formatPrice(shipping) : '-';
+    totalNode.textContent = formatPrice(total);
+
+    shippingMessageNode.textContent = shippingEstimate?.message || '';
+
+    if (shippingEstimate?.supported && !shippingEstimate.freeShipping && typeof shippingEstimate.remainingForFree === 'number' && shippingEstimate.remainingForFree > 0) {
+      shippingGapNode.textContent = `Te faltan ${formatPrice(shippingEstimate.remainingForFree)} para envío gratis`;
+    } else {
+      shippingGapNode.textContent = '';
+    }
+
+    const validForm = requiredFieldsValid();
+    const canCheckout = cart.length > 0 && shippingEstimate?.supported && validForm;
+    checkoutBtn.disabled = !canCheckout;
+
+    if (!shippingEstimate?.supported && country) {
+      checkoutStatus.textContent = 'Actualmente no enviamos a este país.';
+    } else if (!validForm) {
+      checkoutStatus.textContent = 'Completa todos los campos de envío para continuar.';
+    } else {
+      checkoutStatus.textContent = '';
+    }
+  }
 
   itemsContainer.addEventListener('click', (event) => {
     const target = event.target.closest('button[data-action]');
@@ -59,40 +130,36 @@ document.addEventListener('DOMContentLoaded', () => {
     const current = cart.find((item) => item.id === productId);
     if (!current) return;
 
-    if (action === 'increase') {
-      window.PicklemaniaCart.updateQuantity(productId, current.quantity + 1);
-    }
-
-    if (action === 'decrease') {
-      window.PicklemaniaCart.updateQuantity(productId, current.quantity - 1);
-    }
-
-    if (action === 'remove') {
-      window.PicklemaniaCart.removeFromCart(productId);
-    }
+    if (action === 'increase') window.PicklemaniaCart.updateQuantity(productId, current.quantity + 1);
+    if (action === 'decrease') window.PicklemaniaCart.updateQuantity(productId, current.quantity - 1);
+    if (action === 'remove') window.PicklemaniaCart.removeFromCart(productId);
 
     render();
   });
 
-  if (shippingZoneSelect && window.PicklemaniaCheckout) {
-    shippingZoneSelect.value = window.PicklemaniaCheckout.getShippingZone();
-    shippingZoneSelect.addEventListener('change', () => window.PicklemaniaCheckout.setShippingZone(shippingZoneSelect.value));
-  }
+  [countryNode, nameNode, addressNode, postalNode, cityNode, stateNode, phoneNode, emailNode].forEach((node) => {
+    node?.addEventListener('input', updateCartTotals);
+    node?.addEventListener('change', updateCartTotals);
+  });
 
   checkoutBtn?.addEventListener('click', async () => {
     const cart = window.PicklemaniaCart?.getCart() || [];
-
     if (!cart.length) {
       checkoutStatus.textContent = 'Tu carrito está vacío.';
       return;
     }
 
+    updateCartTotals();
+    if (checkoutBtn.disabled) return;
+
     checkoutStatus.textContent = 'Redirigiendo a Stripe Checkout...';
 
     try {
       if (!window.PicklemaniaCheckout) throw new Error('Checkout no disponible.');
-      const shippingZone = shippingZoneSelect?.value || window.PicklemaniaCheckout.getShippingZone();
-      await window.PicklemaniaCheckout.createCheckout(cart.map((item) => ({ productId: item.id, quantity: item.quantity })), { shippingZone });
+      await window.PicklemaniaCheckout.createCheckout(
+        cart.map((item) => ({ productId: item.id, quantity: item.quantity })),
+        buildCustomerPayload()
+      );
     } catch (error) {
       checkoutStatus.textContent = error.message || 'Error iniciando checkout.';
     }
