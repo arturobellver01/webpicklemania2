@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <div id="newsletter"><h4 class="font-semibold mb-4">Newsletter</h4><p class="text-sm text-brand-gray mb-3">Sigue la evolución del juego.</p><form class="flex gap-2"><input type="email" aria-label="Email" placeholder="Tu email" class="flex-1 bg-brand-light rounded-xl px-3 py-2 text-sm"><button class="bg-brand-black text-white rounded-xl px-3 py-2 text-sm font-semibold">Unirme</button></form></div>
       </div>
       <div class="border-t border-black/5 pt-6 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-brand-gray">
-        <p>© <span data-current-year></span> Picklemania. Todos los derechos reservados.</p>
+        <p>© Picklemania. El juego sigue.</p>
         <div class="flex gap-4"><a href="#">Privacidad</a><a href="#">Aviso legal</a><a href="${basePath}colabora.html#contacto">Contacto profesional</a></div>
       </div>
     </div>`;
