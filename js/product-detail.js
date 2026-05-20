@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
       price: configuredProduct.price / 100,
       unitAmount: configuredProduct.price,
       displayPrice: configuredProduct.displayPrice,
-      image: configuredProduct.id === 'picklemania-white-paddle' ? 'img/pala-1.png' : configuredProduct.image,
+      image: configuredProduct.image,
       stripePriceId: configuredProduct.stripePriceId,
       category: configuredProduct.category,
       type: configuredProduct.type,
@@ -61,12 +61,18 @@ document.addEventListener('DOMContentLoaded', () => {
     buyNowBtn.textContent = 'Procesando...';
     const feedback = document.querySelector(`[data-feedback="${productId}"]`);
     if (feedback) {
-      feedback.textContent = 'Redirigiendo al carrito...';
+      feedback.textContent = 'Abriendo pago seguro...';
       feedback.classList.remove('opacity-0');
     }
 
-    window.setTimeout(() => {
-      window.location.href = 'carrito.html';
-    }, 350);
+    const cart = window.PicklemaniaCart?.getCart() || [];
+    const item = cart.find((entry) => entry.id === productId);
+    if (!item || !window.PicklemaniaCheckout) return;
+
+    window.PicklemaniaCheckout.createCheckout([{ productId, quantity: item.quantity }]).catch((error) => {
+      if (feedback) feedback.textContent = error.message || 'No se pudo iniciar el pago.';
+      buyNowBtn.disabled = false;
+      buyNowBtn.textContent = 'Comprar ahora';
+    });
   });
 });
