@@ -27,21 +27,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const showFeedback = (productId, message) => {
     const feedback = document.querySelector(`[data-feedback="${productId}"]`);
     if (!feedback) return;
-
-    if (message) {
-      feedback.textContent = message;
-    }
-
+    if (message) feedback.textContent = message;
     feedback.classList.remove('opacity-0');
-    setTimeout(() => {
-      feedback.classList.add('opacity-0');
-    }, 1400);
+    setTimeout(() => feedback.classList.add('opacity-0'), 1400);
   };
 
   const getQuantityFromButton = (button) => {
     const quantityInputSelector = button.dataset.quantityInput;
     if (!quantityInputSelector) return 1;
-
     const input = document.querySelector(quantityInputSelector);
     const quantity = Number(input?.value || 1);
     return Number.isFinite(quantity) && quantity >= 1 ? Math.floor(quantity) : 1;
@@ -50,7 +43,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const addProduct = (button, quantity = 1) => {
     const product = normalizeProduct(button, quantity);
     if (!window.PicklemaniaCart) return product;
-
     window.PicklemaniaCart.addToCart(product);
     window.PicklemaniaCart.updateCartBadge();
     return product;
@@ -71,12 +63,15 @@ document.addEventListener('DOMContentLoaded', () => {
       button.dataset.originalText = button.dataset.originalText || button.textContent;
       button.textContent = 'Procesando...';
 
-      const product = addProduct(button, quantity);
-      showFeedback(product.id, 'Redirigiendo al carrito...');
+      const product = normalizeProduct(button, quantity);
+      showFeedback(product.id, 'Abriendo pago seguro...');
 
-      window.setTimeout(() => {
-        window.location.href = 'carrito.html';
-      }, 350);
+      if (!window.PicklemaniaCheckout) return;
+      window.PicklemaniaCheckout.createCheckout([{ productId: product.id, quantity }]).catch((error) => {
+        showFeedback(product.id, error.message || 'No se pudo iniciar el pago.');
+        button.disabled = false;
+        button.textContent = button.dataset.originalText || 'Comprar ahora';
+      });
     });
   });
 });
