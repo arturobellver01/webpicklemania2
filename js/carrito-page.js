@@ -84,27 +84,8 @@ document.addEventListener('DOMContentLoaded', () => {
     checkoutStatus.textContent = 'Redirigiendo a Stripe Checkout...';
 
     try {
-      const response = await fetch('http://localhost:3000/crear-checkout', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ cart })
-      });
-
-      const text = await response.text();
-      console.log('Respuesta backend:', text);
-
-      let data;
-      try {
-        data = JSON.parse(text);
-      } catch {
-        throw new Error('El backend no devolvió JSON. Revisa si node server.js está encendido.');
-      }
-      
-      if (!response.ok || !data.url) {
-        throw new Error(data.error || 'No se pudo iniciar el checkout');
-      }
-
-      window.location.href = data.url;
+      if (!window.PicklemaniaCheckout) throw new Error('Checkout no disponible.');
+      await window.PicklemaniaCheckout.createCheckout(cart.map((item) => ({ productId: item.id, quantity: item.quantity })));
     } catch (error) {
       checkoutStatus.textContent = error.message || 'Error iniciando checkout.';
     }
