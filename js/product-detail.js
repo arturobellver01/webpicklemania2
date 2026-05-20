@@ -23,8 +23,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const addProductWithQuantity = (button) => {
     if (!button || !window.PicklemaniaCart) return null;
     const productId = button.dataset.product;
-    const configuredProduct = window.PicklemaniaProducts?.getById(productId);
-    if (!configuredProduct) return null;
+    const configuredProduct = window.PicklemaniaProducts?.getById?.(productId) || window.PicklemaniaProducts?.[productId];
+    if (!configuredProduct) {
+      alert('Producto no encontrado.');
+      return null;
+    }
 
     window.PicklemaniaCart.addToCart({
       id: configuredProduct.id,
