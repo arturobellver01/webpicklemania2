@@ -57,22 +57,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const productId = addProductWithQuantity(buyNowBtn);
     if (!productId) return;
 
-    buyNowBtn.disabled = true;
-    buyNowBtn.textContent = 'Procesando...';
-    const feedback = document.querySelector(`[data-feedback="${productId}"]`);
-    if (feedback) {
-      feedback.textContent = 'Abriendo pago seguro...';
-      feedback.classList.remove('opacity-0');
-    }
-
-    const cart = window.PicklemaniaCart?.getCart() || [];
-    const item = cart.find((entry) => entry.id === productId);
-    if (!item || !window.PicklemaniaCheckout) return;
-
-    window.PicklemaniaCheckout.createCheckout([{ productId, quantity: item.quantity }]).catch((error) => {
-      if (feedback) feedback.textContent = error.message || 'No se pudo iniciar el pago.';
-      buyNowBtn.disabled = false;
-      buyNowBtn.textContent = 'Comprar ahora';
-    });
+    window.location.href = 'carrito.html';
   });
 });
