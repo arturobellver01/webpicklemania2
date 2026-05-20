@@ -114,7 +114,6 @@ app.post('/create-checkout-session', async (req, res) => {
       shipping_options: [{ shipping_rate: shippingRateId }],
       customer_email: customer.email,
       shipping_address_collection: { allowed_countries: ALLOWED_COUNTRIES },
-      customer_update: { shipping: 'auto', name: 'auto', address: 'auto' },
       automatic_tax: { enabled: true },
       phone_number_collection: { enabled: true },
       metadata: {
