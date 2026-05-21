@@ -44,25 +44,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const header = document.querySelector('header');
     if (header) {
-        const topBar = document.createElement('div');
-        topBar.className = 'fixed inset-x-0 top-0 z-[60] h-8 md:h-9 bg-brand-black text-white border-b border-white/10 backdrop-blur-sm transition-all duration-500 ease-out';
-        topBar.innerHTML = `
+        let topBar = document.getElementById('site-top-bar');
+        if (!topBar) {
+            topBar = document.createElement('div');
+            topBar.id = 'site-top-bar';
+            topBar.className = 'fixed inset-x-0 top-0 z-[60] h-8 md:h-9 bg-brand-black text-white border-b border-white/10 backdrop-blur-sm transition-all duration-500 ease-out';
+            topBar.innerHTML = `
           <div class="container mx-auto px-4 h-full flex items-center justify-center">
-            <p class="text-[10px] md:text-[9px] font-medium uppercase tracking-[0.3em] text-white/95 text-center whitespace-nowrap overflow-hidden text-ellipsis">Designed in Spain · Envíos gratis en España y Baleares +60€</p>
+            <p id="top-bar-message" class="w-full text-[10px] md:text-[9px] font-medium uppercase tracking-[0.3em] text-white/95 text-center whitespace-nowrap truncate overflow-hidden transition-all duration-300 ease-out will-change-transform">Designed in Spain · Envíos gratis en España y Baleares +60€</p>
           </div>
         `;
-        header.parentNode?.insertBefore(topBar, header);
+            header.parentNode?.insertBefore(topBar, header);
+        }
 
         const topBarMessage = topBar.querySelector('#top-bar-message');
         if (topBarMessage && !window.__picklemaniaTopBarRotationInit) {
             window.__picklemaniaTopBarRotationInit = true;
+            if (window.__picklemaniaTopBarRotationInterval) {
+                window.clearInterval(window.__picklemaniaTopBarRotationInterval);
+            }
             let currentMessageIndex = 0;
             const rotateTopBarMessage = () => {
-                topBarMessage.classList.add('opacity-0', '-translate-y-1');
+                topBarMessage.classList.add('opacity-0', 'translate-y-0.5');
                 setTimeout(() => {
                     currentMessageIndex = (currentMessageIndex + 1) % topBarMessages.length;
                     topBarMessage.textContent = topBarMessages[currentMessageIndex];
-                    topBarMessage.classList.remove('opacity-0', '-translate-y-1');
+                    topBarMessage.classList.remove('opacity-0', 'translate-y-0.5');
                 }, 250);
             };
             window.__picklemaniaTopBarRotationInterval = window.setInterval(rotateTopBarMessage, 3500);
