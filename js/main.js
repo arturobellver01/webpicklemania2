@@ -34,6 +34,13 @@ const TEAM_FALLBACK = [
 document.addEventListener('DOMContentLoaded', () => {
     const isArticlePage = window.location.pathname.includes('/aprende/') && window.location.pathname.endsWith('.html');
     const basePath = isArticlePage ? '../' : '';
+    const topBarMessages = [
+        'Designed in Spain · Envíos gratis en España y Baleares +60€',
+        'Descubre la colección Black & White',
+        'Built for the modern game',
+        'Play Balanced',
+        'El juego europeo empieza aquí'
+    ];
 
     const header = document.querySelector('header');
     if (header) {
@@ -45,6 +52,21 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
         `;
         header.parentNode?.insertBefore(topBar, header);
+
+        const topBarMessage = topBar.querySelector('#top-bar-message');
+        if (topBarMessage && !window.__picklemaniaTopBarRotationInit) {
+            window.__picklemaniaTopBarRotationInit = true;
+            let currentMessageIndex = 0;
+            const rotateTopBarMessage = () => {
+                topBarMessage.classList.add('opacity-0', '-translate-y-1');
+                setTimeout(() => {
+                    currentMessageIndex = (currentMessageIndex + 1) % topBarMessages.length;
+                    topBarMessage.textContent = topBarMessages[currentMessageIndex];
+                    topBarMessage.classList.remove('opacity-0', '-translate-y-1');
+                }, 250);
+            };
+            window.__picklemaniaTopBarRotationInterval = window.setInterval(rotateTopBarMessage, 3500);
+        }
 
         header.className = 'sticky top-8 md:top-9 z-50 bg-white/90 backdrop-blur-md border-b border-black/5 transition-all duration-500 ease-out';
         header.innerHTML = `
