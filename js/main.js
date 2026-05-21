@@ -253,5 +253,64 @@ document.addEventListener('DOMContentLoaded', () => {
             renderArticles(btn.dataset.filter);
         }));
     }
+
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm && !contactForm.dataset.listenerAttached) {
+        contactForm.dataset.listenerAttached = 'true';
+        const contactStatus = document.getElementById('contact-form-status');
+        const submitButton = contactForm.querySelector('button[type="submit"], button:not([type]), button');
+        const defaultButtonText = submitButton ? submitButton.textContent.trim() : 'Enviar mensaje';
+        const endpoint = 'https://script.google.com/macros/s/AKfycbzsEb5LaUDRSP6UoMwC4vxWz4k2fH2hI9ZcQIg37IGTMRFMye3VzcNGN3CYa5WEJ_Fs/exec';
+
+        contactForm.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const formData = new FormData(contactForm);
+            const payload = {
+                profileType: formData.get('profileType') || '',
+                name: formData.get('name') || '',
+                email: formData.get('email') || '',
+                message: formData.get('message') || '',
+                page: window.location.href,
+                userAgent: navigator.userAgent
+            };
+
+            if (submitButton) {
+                submitButton.disabled = true;
+                submitButton.textContent = 'Enviando...';
+            }
+            if (contactStatus) {
+                contactStatus.textContent = 'Enviando mensaje...';
+            }
+
+            try {
+                const response = await fetch(endpoint, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!response.ok) {
+                    throw new Error('Request failed');
+                }
+
+                if (contactStatus) {
+                    contactStatus.textContent = 'Mensaje enviado correctamente. Te responderemos pronto.';
+                }
+                contactForm.reset();
+            } catch {
+                if (contactStatus) {
+                    contactStatus.textContent = 'No se ha podido enviar el mensaje. Inténtalo de nuevo.';
+                }
+            } finally {
+                if (submitButton) {
+                    submitButton.disabled = false;
+                    submitButton.textContent = defaultButtonText || 'Enviar mensaje';
+                }
+            }
+        });
+    }
+
     renderArticles();
 });

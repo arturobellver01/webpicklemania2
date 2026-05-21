@@ -276,34 +276,43 @@
 
         </div>
 
-        <form class="grid gap-5 max-w-3xl">
+        <form id="contact-form" class="grid gap-5 max-w-3xl">
 
-          <select class="bg-brand-light rounded-2xl px-6 py-5 border border-black/5 focus:outline-none focus:border-brand-black transition" aria-label="Tipo de perfil">
+          <select name="profileType" class="bg-brand-light rounded-2xl px-6 py-5 border border-black/5 focus:outline-none focus:border-brand-black transition" aria-label="Tipo de perfil">
             <option>Soy: Jugador</option><option>Soy: Club</option><option>Soy: Partner</option><option>Soy: Otro</option>
           </select>
 
           <input
             class="bg-brand-light rounded-2xl px-6 py-5 border border-black/5 focus:outline-none focus:border-brand-black transition"
+            name="name"
             placeholder="Nombre"
             aria-label="Nombre"
+            required
           >
 
           <input
             class="bg-brand-light rounded-2xl px-6 py-5 border border-black/5 focus:outline-none focus:border-brand-black transition"
+            type="email"
+            name="email"
             placeholder="Email"
             aria-label="Email"
+            required
           >
 
           <textarea
             class="bg-brand-light rounded-2xl px-6 py-5 border border-black/5 focus:outline-none focus:border-brand-black transition"
+            name="message"
             rows="6"
             placeholder="Mensaje"
             aria-label="Mensaje"
+            required
           ></textarea>
 
           <button class="bg-brand-black text-white rounded-2xl px-8 py-5 font-semibold hover:opacity-90 transition w-fit">
             Enviar mensaje
           </button>
+
+          <p id="contact-form-status" class="text-sm text-brand-gray"></p>
 
         </form>
 
