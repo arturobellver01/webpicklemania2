@@ -34,6 +34,13 @@ const TEAM_FALLBACK = [
 document.addEventListener('DOMContentLoaded', () => {
     const isArticlePage = window.location.pathname.includes('/aprende/') && window.location.pathname.endsWith('.html');
     const basePath = isArticlePage ? '../' : '';
+    const topBarMessages = [
+        'Designed in Spain · Envíos gratis en España y Baleares +60€',
+        'Descubre la colección Black & White',
+        'Built for the modern game',
+        'Play Balanced',
+        'El juego europeo empieza aquí'
+    ];
 
     const header = document.querySelector('header');
     if (header) {
@@ -41,10 +48,25 @@ document.addEventListener('DOMContentLoaded', () => {
         topBar.className = 'fixed inset-x-0 top-0 z-[60] h-8 md:h-9 bg-brand-black text-white border-b border-white/10 backdrop-blur-sm transition-all duration-500 ease-out';
         topBar.innerHTML = `
           <div class="container mx-auto px-4 h-full flex items-center justify-center">
-            <p class="text-[10px] md:text-[11px] font-medium uppercase tracking-[0.18em] text-white/95 text-center whitespace-nowrap overflow-hidden text-ellipsis">Designed in Spain · Envíos gratis en España y Baleares +60€</p>
+            <p id="top-bar-message" class="max-w-full text-[10px] md:text-[11px] font-medium uppercase tracking-[0.18em] text-white/95 text-center whitespace-nowrap overflow-hidden text-ellipsis truncate transition-all duration-300 ease-out opacity-100 translate-y-0">Designed in Spain · Envíos gratis en España y Baleares +60€</p>
           </div>
         `;
         header.parentNode?.insertBefore(topBar, header);
+
+        const topBarMessage = topBar.querySelector('#top-bar-message');
+        if (topBarMessage && !window.__picklemaniaTopBarRotationInit) {
+            window.__picklemaniaTopBarRotationInit = true;
+            let currentMessageIndex = 0;
+            const rotateTopBarMessage = () => {
+                topBarMessage.classList.add('opacity-0', '-translate-y-1');
+                setTimeout(() => {
+                    currentMessageIndex = (currentMessageIndex + 1) % topBarMessages.length;
+                    topBarMessage.textContent = topBarMessages[currentMessageIndex];
+                    topBarMessage.classList.remove('opacity-0', '-translate-y-1');
+                }, 250);
+            };
+            window.__picklemaniaTopBarRotationInterval = window.setInterval(rotateTopBarMessage, 3500);
+        }
 
         header.className = 'sticky top-8 md:top-9 z-50 bg-white/90 backdrop-blur-md border-b border-black/5 transition-all duration-500 ease-out';
         header.innerHTML = `
