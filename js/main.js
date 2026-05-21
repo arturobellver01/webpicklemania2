@@ -255,62 +255,58 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const contactForm = document.getElementById('contact-form');
-    if (contactForm && !contactForm.dataset.listenerAttached) {
-        contactForm.dataset.listenerAttached = 'true';
-        const contactStatus = document.getElementById('contact-form-status');
-        const submitButton = contactForm.querySelector('button[type="submit"], button:not([type]), button');
-        const defaultButtonText = submitButton ? submitButton.textContent.trim() : 'Enviar mensaje';
-        const endpoint = 'https://script.google.com/macros/s/AKfycbzsEb5LaUDRSP6UoMwC4vxWz4k2fH2hI9ZcQIg37IGTMRFMye3VzcNGN3CYa5WEJ_Fs/exec';
+if (contactForm && !contactForm.dataset.listenerAttached) {
+  contactForm.dataset.listenerAttached = 'true';
 
-        contactForm.addEventListener('submit', async (event) => {
-            event.preventDefault();
-            const formData = new FormData(contactForm);
-            const payload = {
-                profileType: formData.get('profileType') || '',
-                name: formData.get('name') || '',
-                email: formData.get('email') || '',
-                message: formData.get('message') || '',
-                page: window.location.href,
-                userAgent: navigator.userAgent
-            };
+  const contactStatus = document.getElementById('contact-form-status');
+  const submitButton = contactForm.querySelector('button[type="submit"]');
+  const defaultButtonText = submitButton ? submitButton.textContent.trim() : 'Enviar mensaje';
 
-            if (submitButton) {
-                submitButton.disabled = true;
-                submitButton.textContent = 'Enviando...';
-            }
-            if (contactStatus) {
-                contactStatus.textContent = 'Enviando mensaje...';
-            }
+  const endpoint = 'https://script.google.com/macros/s/AKfycbzsEb5LaUDRSP6UoMwC4vxWz4k2fH2hI9ZcQIg37IGTMRFMye3VzcNGN3CYa5WEJ_Fs/exec';
 
-            try {
-                const response = await fetch(endpoint, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(payload)
-                });
+  contactForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
 
-                if (!response.ok) {
-                    throw new Error('Request failed');
-                }
+    const formData = new FormData(contactForm);
+    formData.append('page', window.location.href);
+    formData.append('userAgent', navigator.userAgent);
 
-                if (contactStatus) {
-                    contactStatus.textContent = 'Mensaje enviado correctamente. Te responderemos pronto.';
-                }
-                contactForm.reset();
-            } catch {
-                if (contactStatus) {
-                    contactStatus.textContent = 'No se ha podido enviar el mensaje. Inténtalo de nuevo.';
-                }
-            } finally {
-                if (submitButton) {
-                    submitButton.disabled = false;
-                    submitButton.textContent = defaultButtonText || 'Enviar mensaje';
-                }
-            }
-        });
+    if (submitButton) {
+      submitButton.disabled = true;
+      submitButton.textContent = 'Enviando...';
     }
+
+    if (contactStatus) {
+      contactStatus.textContent = 'Enviando mensaje...';
+    }
+
+    try {
+      await fetch(endpoint, {
+        method: 'POST',
+        body: formData
+      });
+
+      if (contactStatus) {
+        contactStatus.textContent = 'Mensaje enviado correctamente. Te responderemos pronto.';
+      }
+
+      contactForm.reset();
+
+    } catch (error) {
+      console.error('Error enviando formulario:', error);
+
+      if (contactStatus) {
+        contactStatus.textContent = 'No se ha podido enviar el mensaje. Inténtalo de nuevo.';
+      }
+
+    } finally {
+      if (submitButton) {
+        submitButton.disabled = false;
+        submitButton.textContent = defaultButtonText || 'Enviar mensaje';
+      }
+    }
+  });
+}
 
     renderArticles();
 });
