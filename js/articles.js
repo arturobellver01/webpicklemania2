@@ -4,7 +4,7 @@ window.PICKLEMANIA_ARTICLES = [
     category: 'Fundamentos',
     description: 'Descubre qué es el pickleball, cómo se juega, cuánto mide la pista y por qué está creciendo tanto en Europa.',
     readingTime: '6 min',
-    url: 'aprende/que-es-el-pickleball'
+    url: 'guias/que-es-el-pickleball'
   }
 ];
 
