@@ -5,11 +5,24 @@ DirectoryIndex index.html
 RewriteEngine On
 RewriteBase /
 
+# No reescribir assets, API ni ficheros/directorios reales
+RewriteCond %{REQUEST_URI} ^/api/ [NC]
+RewriteRule ^ - [L]
+RewriteCond %{REQUEST_URI} \.(php)$ [NC]
+RewriteRule ^ - [L]
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
 # Redirigir /pagina.html a /pagina
 RewriteCond %{THE_REQUEST} \s/+(.+?)\.html[\s?] [NC]
 RewriteRule ^(.+?)\.html$ /$1 [R=301,L]
 
-# Servir /pagina como /pagina.html
-RewriteCond %{REQUEST_FILENAME} !-d
+# Páginas estáticas limpias (/marca, /team, /aprende, etc.)
 RewriteCond %{REQUEST_FILENAME}.html -f
-RewriteRule ^(.+?)/?$ $1.html [L]
+RewriteRule ^([a-zA-Z0-9\-]+)/?$ $1.html [L]
+
+# Artículos /guias/slug -> /guias/slug.html
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{DOCUMENT_ROOT}/guias/$1.html -f
+RewriteRule ^guias/([a-zA-Z0-9\-]+)/?$ /guias/$1.html [L]

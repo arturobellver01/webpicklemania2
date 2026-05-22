@@ -1,7 +1,5 @@
 (function () {
-  const API_BASE = window.PICKLEMANIA_API_BASE || (window.location.origin.includes('localhost') || window.location.origin.includes('127.0.0.1')
-    ? 'http://localhost:3000'
-    : 'https://api.picklemaniaweb.es');
+  const CHECKOUT_ENDPOINT = '/api/create-checkout-session.php';
 
   const SUPPORTED_COUNTRIES = ['ES', 'FR', 'IT', 'DE', 'PT', 'BE', 'NL', 'AT', 'PL', 'CZ', 'BG', 'GR', 'RO', 'SE', 'DK', 'FI'];
   const EU_GROUP_1 = ['FR', 'IT', 'DE', 'PT', 'BE', 'NL', 'AT'];
@@ -105,7 +103,7 @@
 
     if (!normalizedItems.length) throw new Error('No hay productos válidos para pagar.');
 
-    const endpoint = `${API_BASE}/create-checkout-session`;
+    const endpoint = CHECKOUT_ENDPOINT;
     const response = await fetch(endpoint, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -121,7 +119,7 @@
         response: data,
         payload: { items: normalizedItems, customer }
       });
-      throw new Error(data.error || 'No se pudo iniciar Stripe Checkout.');
+      throw new Error(data.error || 'No se pudo iniciar Stripe Checkout. Revisa los datos de envío e inténtalo de nuevo.');
     }
 
     window.location.href = data.url;
