@@ -1,7 +1,7 @@
 (function () {
   const API_BASE = window.PICKLEMANIA_API_BASE || (window.location.origin.includes('localhost') || window.location.origin.includes('127.0.0.1')
     ? 'http://localhost:3000'
-    : '');
+    : 'https://api.picklemaniaweb.es');
 
   const SUPPORTED_COUNTRIES = ['ES', 'FR', 'IT', 'DE', 'PT', 'BE', 'NL', 'AT', 'PL', 'CZ', 'BG', 'GR', 'RO', 'SE', 'DK', 'FI'];
   const EU_GROUP_1 = ['FR', 'IT', 'DE', 'PT', 'BE', 'NL', 'AT'];

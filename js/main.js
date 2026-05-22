@@ -45,9 +45,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (normalizedPath === 'index') {
             resolvedPath = isLocal ? `${basePath}index.html` : `${basePath}`;
         } else if (/\.html$/i.test(normalizedPath)) {
-            resolvedPath = isLocal ? `${basePath}${normalizedPath}` : `${basePath}${normalizedPath.replace(/\.html$/i, '')}`;
+            resolvedPath = `${basePath}${normalizedPath}`;
         } else {
-            resolvedPath = isLocal ? `${basePath}${normalizedPath}.html` : `${basePath}${normalizedPath}`;
+            resolvedPath = `${basePath}${normalizedPath}.html`;
         }
 
         return `${resolvedPath}${hash ? `#${hash}` : ''}`;
