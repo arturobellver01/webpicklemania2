@@ -1,0 +1,7 @@
+{
+  "name": "picklemania/web",
+  "description": "Stripe checkout backend for Picklemania",
+  "require": {
+    "stripe/stripe-php": "^16.0"
+  }
+}
