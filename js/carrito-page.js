@@ -161,6 +161,12 @@ document.addEventListener('DOMContentLoaded', () => {
         buildCustomerPayload()
       );
     } catch (error) {
+      console.error('Error iniciando checkout', {
+        message: error?.message,
+        stack: error?.stack,
+        cart,
+        customer: buildCustomerPayload()
+      });
       checkoutStatus.textContent = error.message || 'Error iniciando checkout.';
     }
   });
