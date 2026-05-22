@@ -32,23 +32,23 @@ const TEAM_FALLBACK = [
 ];
 
 document.addEventListener('DOMContentLoaded', () => {
-    const isArticlePage = window.location.pathname.includes('/guias/') && window.location.pathname.match(/\/guias\/[^/]+(?:\.html)?$/);
-    const basePath = isArticlePage ? '../' : '';
     const isLocal = ['localhost', '127.0.0.1'].includes(window.location.hostname) || window.location.protocol === 'file:';
 
     const cleanUrl = (path) => {
         const [rawPath, hash = ''] = String(path || '').split('#');
         if (!rawPath) return '#';
 
-        const normalizedPath = rawPath === '/' ? 'index' : rawPath.replace(/^\/+/, '');
-        let resolvedPath = normalizedPath;
-        if (normalizedPath === 'index') {
-            resolvedPath = isLocal ? `${basePath}index.html` : `${basePath}`;
-        } else if (/\.html$/i.test(normalizedPath)) {
-            resolvedPath = `${basePath}${normalizedPath}`;
-        } else {
-            resolvedPath = `${basePath}${normalizedPath}.html`;
-        }
+        const normalized = rawPath === '/' ? '' : rawPath.replace(/^\/+/, '').replace(/\.html$/i, '');
+        if (!normalized) return `/${hash ? `#${hash}` : ''}`;
+
+        const localPath = normalized === 'index'
+            ? '/index.html'
+            : normalized.startsWith('guias/')
+                ? `/${normalized}.html`
+                : `/${normalized}.html`;
+
+        const productionPath = normalized === 'index' ? '/' : `/${normalized}`;
+        const resolvedPath = isLocal ? localPath : productionPath;
 
         return `${resolvedPath}${hash ? `#${hash}` : ''}`;
     };
@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
         header.innerHTML = `
     <div class="container mx-auto px-4 h-20 flex items-center justify-between">
       <a href="${cleanUrl('index')}" class="flex items-center">
-        <img src="${basePath}img/LogoPicklemania3.svg" alt="Picklemania" class="logo">
+        <img src="/img/LogoPicklemania3.svg" alt="Picklemania" class="logo">
       </a>
       <nav class="hidden md:flex items-center gap-8">
         <a href="${cleanUrl('index')}" class="text-sm font-medium text-brand-gray hover:text-brand-black transition-colors">Inicio</a>
@@ -143,7 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
     <div class="container mx-auto px-4">
       <div class="grid md:grid-cols-4 gap-10 mb-12">
         <div class="space-y-4">
-          <a href="${cleanUrl('index')}" class="flex items-center"><img src="${basePath}img/LogoPicklemania.svg" alt="Picklemania" class="h-8 w-auto"></a>
+          <a href="${cleanUrl('index')}" class="flex items-center"><img src="/img/LogoPicklemania.svg" alt="Picklemania" class="h-8 w-auto"></a>
           <p class="text-sm text-brand-gray">Diseñado en España · Fabricado en Europa. Una marca que construye el juego con identidad y proximidad.</p>
         </div>
         <div><h4 class="font-semibold mb-4">Explorar</h4><ul class="space-y-2 text-sm text-brand-gray"><li><a href="${cleanUrl('index')}">Inicio</a></li><li><a href="${cleanUrl('marca')}">La Marca</a></li><li><a href="${cleanUrl('coleccion')}">Colecciones</a></li><li><a href="${cleanUrl('team')}">Team</a></li><li><a href="${cleanUrl('aprende')}">Aprende</a></li><li><a href="${cleanUrl('colabora')}">Colabora</a></li><li><a href="${cleanUrl('carrito')}">Carrito</a></li></ul></div>
