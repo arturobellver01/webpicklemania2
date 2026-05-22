@@ -34,17 +34,29 @@ const TEAM_FALLBACK = [
 document.addEventListener('DOMContentLoaded', () => {
     const isArticlePage = window.location.pathname.includes('/aprende/') && window.location.pathname.match(/\/aprende\/[^/]+(?:\.html)?$/);
     const basePath = isArticlePage ? '../' : '';
+    const isLocal = ['localhost', '127.0.0.1'].includes(window.location.hostname) || window.location.protocol === 'file:';
 
-    const isLocalEnv = ['localhost', '127.0.0.1'].includes(window.location.hostname) || window.location.protocol === 'file:';
-    if (isLocalEnv) {
-        document.querySelectorAll('a[href]').forEach((link) => {
-            const href = link.getAttribute('href');
-            if (!href || href.startsWith('#') || href.includes('://') || href.startsWith('mailto:') || href.startsWith('tel:')) return;
-            const [path, hash = ''] = href.split('#');
-            if (!path || path.endsWith('.html') || path.endsWith('/') || path.includes('?')) return;
-            link.setAttribute('href', `${path}.html${hash ? `#${hash}` : ''}`);
-        });
-    }
+    const cleanUrl = (path) => {
+        const [rawPath, hash = ''] = String(path || '').split('#');
+        if (!rawPath) return '#';
+
+        const normalizedPath = rawPath === '/' ? 'index' : rawPath.replace(/^\/+/, '');
+        let resolvedPath = normalizedPath;
+        if (normalizedPath === 'index') {
+            resolvedPath = isLocal ? `${basePath}index.html` : `${basePath}`;
+        } else if (/\.html$/i.test(normalizedPath)) {
+            resolvedPath = isLocal ? `${basePath}${normalizedPath}` : `${basePath}${normalizedPath.replace(/\.html$/i, '')}`;
+        } else {
+            resolvedPath = isLocal ? `${basePath}${normalizedPath}.html` : `${basePath}${normalizedPath}`;
+        }
+
+        return `${resolvedPath}${hash ? `#${hash}` : ''}`;
+    };
+
+    window.PicklemaniaUrl = {
+        isLocal,
+        cleanUrl
+    };
 
     const topBarMessages = [
         'Designed in Spain · Envíos gratis en España y Baleares +60€',
@@ -90,32 +102,32 @@ document.addEventListener('DOMContentLoaded', () => {
         header.className = 'sticky top-8 md:top-9 z-50 bg-white/90 backdrop-blur-md border-b border-black/5 transition-all duration-500 ease-out';
         header.innerHTML = `
     <div class="container mx-auto px-4 h-20 flex items-center justify-between">
-      <a href="${basePath}" class="flex items-center">
+      <a href="${cleanUrl('index')}" class="flex items-center">
         <img src="${basePath}img/LogoPicklemania3.svg" alt="Picklemania" class="logo">
       </a>
       <nav class="hidden md:flex items-center gap-8">
-        <a href="${basePath}marca" class="text-sm font-medium text-brand-gray hover:text-brand-black transition-colors">La Marca</a>
-        <a href="${basePath}coleccion" class="text-sm font-medium text-brand-gray hover:text-brand-black transition-colors">Colecciones</a>
-        <a href="${basePath}team" class="text-sm font-medium text-brand-gray hover:text-brand-black transition-colors">Team</a>
-        <a href="${basePath}aprende" class="text-sm font-medium text-brand-gray hover:text-brand-black transition-colors">Aprende</a>
-        <a href="${basePath}colabora" class="text-sm font-medium text-brand-gray hover:text-brand-black transition-colors">Colabora</a>
-        <a href="${basePath}carrito" class="text-sm font-medium text-brand-gray hover:text-brand-black transition-colors inline-flex items-center gap-2">
+        <a href="${cleanUrl('marca')}" class="text-sm font-medium text-brand-gray hover:text-brand-black transition-colors">La Marca</a>
+        <a href="${cleanUrl('coleccion')}" class="text-sm font-medium text-brand-gray hover:text-brand-black transition-colors">Colecciones</a>
+        <a href="${cleanUrl('team')}" class="text-sm font-medium text-brand-gray hover:text-brand-black transition-colors">Team</a>
+        <a href="${cleanUrl('aprende')}" class="text-sm font-medium text-brand-gray hover:text-brand-black transition-colors">Aprende</a>
+        <a href="${cleanUrl('colabora')}" class="text-sm font-medium text-brand-gray hover:text-brand-black transition-colors">Colabora</a>
+        <a href="${cleanUrl('carrito')}" class="text-sm font-medium text-brand-gray hover:text-brand-black transition-colors inline-flex items-center gap-2">
           Carrito
           <span id="cart-count" class="hidden min-w-[1.35rem] h-[1.35rem] rounded-full bg-brand-black text-white text-[11px] font-bold leading-none inline-flex items-center justify-center px-1">0</span>
         </a>
-        <a href="${basePath}colabora#contacto" class="bg-brand-black text-white px-5 py-2.5 rounded-full text-sm font-bold">Contacto</a>
+        <a href="${cleanUrl('colabora#contacto')}" class="bg-brand-black text-white px-5 py-2.5 rounded-full text-sm font-bold">Contacto</a>
       </nav>
       <button id="mobile-menu-toggle" class="md:hidden p-2" aria-label="Abrir menú">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
       </button>
     </div>
     <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-black/5 p-4 space-y-3">
-      <a href="${basePath}marca" class="block text-lg font-semibold">La Marca</a>
-      <a href="${basePath}coleccion" class="block text-lg font-semibold">Colecciones</a>
-      <a href="${basePath}team" class="block text-lg font-semibold">Team</a>
-      <a href="${basePath}aprende" class="block text-lg font-semibold">Aprende</a>
-      <a href="${basePath}colabora" class="block text-lg font-semibold">Colabora</a>
-      <a href="${basePath}carrito" class="block text-lg font-semibold inline-flex items-center gap-2">
+      <a href="${cleanUrl('marca')}" class="block text-lg font-semibold">La Marca</a>
+      <a href="${cleanUrl('coleccion')}" class="block text-lg font-semibold">Colecciones</a>
+      <a href="${cleanUrl('team')}" class="block text-lg font-semibold">Team</a>
+      <a href="${cleanUrl('aprende')}" class="block text-lg font-semibold">Aprende</a>
+      <a href="${cleanUrl('colabora')}" class="block text-lg font-semibold">Colabora</a>
+      <a href="${cleanUrl('carrito')}" class="block text-lg font-semibold inline-flex items-center gap-2">
         Carrito
         <span id="cart-count-mobile" class="hidden min-w-[1.35rem] h-[1.35rem] rounded-full bg-brand-black text-white text-[11px] font-bold leading-none inline-flex items-center justify-center px-1">0</span>
       </a>
@@ -129,16 +141,16 @@ document.addEventListener('DOMContentLoaded', () => {
     <div class="container mx-auto px-4">
       <div class="grid md:grid-cols-4 gap-10 mb-12">
         <div class="space-y-4">
-          <a href="${basePath}" class="flex items-center"><img src="${basePath}img/LogoPicklemania.svg" alt="Picklemania" class="h-8 w-auto"></a>
+          <a href="${cleanUrl('index')}" class="flex items-center"><img src="${basePath}img/LogoPicklemania.svg" alt="Picklemania" class="h-8 w-auto"></a>
           <p class="text-sm text-brand-gray">Diseñado en España · Fabricado en Europa. Una marca que construye el juego con identidad y proximidad.</p>
         </div>
-        <div><h4 class="font-semibold mb-4">Explorar</h4><ul class="space-y-2 text-sm text-brand-gray"><li><a href="${basePath}marca">La Marca</a></li><li><a href="${basePath}coleccion">Colecciones Black & White</a></li><li><a href="${basePath}team">Team Picklemania</a></li><li><a href="${basePath}aprende">Aprende Pickleball</a></li></ul></div>
+        <div><h4 class="font-semibold mb-4">Explorar</h4><ul class="space-y-2 text-sm text-brand-gray"><li><a href="${cleanUrl('marca')}">La Marca</a></li><li><a href="${cleanUrl('coleccion')}">Colecciones Black & White</a></li><li><a href="${cleanUrl('team')}">Team Picklemania</a></li><li><a href="${cleanUrl('aprende')}">Aprende Pickleball</a></li></ul></div>
         <div><h4 class="font-semibold mb-4">Origen europeo</h4><ul class="space-y-2 text-sm text-brand-gray"><li>Diseñado en España</li><li>Fabricado en Europa / Portugal</li><li>Control de calidad cercano</li><li>Comunidad temprana</li></ul></div>
         <div id="newsletter"><h4 class="font-semibold mb-4">Newsletter</h4><p class="text-sm text-brand-gray mb-3">Sigue la evolución del juego.</p><form class="flex gap-2"><input type="email" aria-label="Email" placeholder="Tu email" class="flex-1 bg-brand-light rounded-xl px-3 py-2 text-sm"><button class="bg-brand-black text-white rounded-xl px-3 py-2 text-sm font-semibold">Unirme</button></form></div>
       </div>
       <div class="border-t border-black/5 pt-6 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-brand-gray">
         <p>© Picklemania. El juego sigue.</p>
-        <div class="flex gap-4"><a href="#">Privacidad</a><a href="#">Aviso legal</a><a href="${basePath}colabora#contacto">Contacto profesional</a></div>
+        <div class="flex gap-4"><a href="#">Privacidad</a><a href="#">Aviso legal</a><a href="${cleanUrl('colabora#contacto')}">Contacto profesional</a></div>
       </div>
     </div>`;
     }
@@ -251,7 +263,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <p class="eyebrow mb-3">${article.category}</p>
                 <h3 class="text-2xl font-display font-bold leading-tight mb-3">${article.title}</h3>
                 <p class="text-sm text-brand-gray mb-5">${article.description}</p>
-                                <a href="${article.url}" class="brand-btn brand-btn-primary mt-auto">Leer artículo</a>
+                                <a href="${cleanUrl(article.url)}" class="brand-btn brand-btn-primary mt-auto">Leer artículo</a>
             </article>
         `).join('');
         revealNow();

@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
       window.PicklemaniaCart.updateCartBadge();
 
-      window.location.href = 'carrito';
+      window.location.href = window.PicklemaniaUrl?.cleanUrl ? window.PicklemaniaUrl.cleanUrl('carrito') : 'carrito';
     });
   });
 });

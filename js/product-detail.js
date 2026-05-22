@@ -60,6 +60,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const productId = addProductWithQuantity(buyNowBtn);
     if (!productId) return;
 
-    window.location.href = 'carrito';
+    window.location.href = window.PicklemaniaUrl?.cleanUrl ? window.PicklemaniaUrl.cleanUrl('carrito') : 'carrito';
   });
 });
