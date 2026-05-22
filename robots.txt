@@ -1,5 +1,4 @@
 User-agent: *
-
 Allow: /
 
 Sitemap: https://picklemaniaweb.es/sitemap.xml

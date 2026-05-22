@@ -60,6 +60,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const productId = addProductWithQuantity(buyNowBtn);
     if (!productId) return;
 
-    window.location.href = 'carrito.html';
+    window.location.href = 'carrito';
   });
 });
