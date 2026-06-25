@@ -1,5 +1,12 @@
 window.PICKLEMANIA_ARTICLES = [
   {
+    title: '¿Por qué el pickleball está conquistando a personas de todas las edades?',
+    category: 'Fundamentos',
+    description: 'Un recorrido por la accesibilidad, la comunidad y la conexión entre generaciones que explican el crecimiento del pickleball.',
+    readingTime: '7 min',
+    url: '/guias/por-que-el-pickleball-conquista-todas-las-edades'
+  },
+  {
     title: 'Qué es el pickleball: cómo se juega y por qué cada vez más gente lo practica',
     category: 'Fundamentos',
     description: 'Descubre qué es el pickleball, cómo se juega, cuánto mide la pista y por qué está creciendo tanto en Europa.',
