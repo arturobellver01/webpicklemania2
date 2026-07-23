@@ -1,5 +1,12 @@
 window.PICKLEMANIA_ARTICLES = [
   {
+    title: '¿Por qué tantos jugadores de pádel están descubriendo el pickleball?',
+    category: 'Fundamentos',
+    description: 'Una mirada a la transición natural entre pádel y pickleball: estrategia, comunidad y nuevas formas de disfrutar la pista.',
+    readingTime: '8 min',
+    url: '/guias/por-que-jugadores-padel-descubren-pickleball'
+  },
+  {
     title: '¿Por qué el pickleball está conquistando a personas de todas las edades?',
     category: 'Fundamentos',
     description: 'Un recorrido por la accesibilidad, la comunidad y la conexión entre generaciones que explican el crecimiento del pickleball.',
