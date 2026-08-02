@@ -169,9 +169,10 @@ try {
         }
     }
 
-    $session = \Stripe\Checkout\Session::create([
+    $checkoutSessionParams = [
         'mode' => 'payment',
         'line_items' => $lineItems,
+        'allow_promotion_codes' => true,
         'success_url' => (string)$config['success_url'],
         'cancel_url' => (string)$config['cancel_url'],
         'customer_email' => $customerParams['email'] ?? null,
@@ -184,7 +185,13 @@ try {
             'shipping_line1' => $customerParams['address']['line1'] ?? '',
             'shipping_state' => $customerParams['address']['state'] ?? '',
         ],
-    ]);
+    ];
+
+    error_log('[Stripe Checkout] Creating session with allow_promotion_codes=' . ($checkoutSessionParams['allow_promotion_codes'] ? 'true' : 'false'));
+
+    $session = \Stripe\Checkout\Session::create($checkoutSessionParams);
+
+    error_log('[Stripe Checkout] Created session ' . $session->id . ' allow_promotion_codes=' . (($session->allow_promotion_codes ?? false) ? 'true' : 'false'));
 
     echo json_encode(['url' => $session->url]);
 } catch (\Throwable $e) {

@@ -108,9 +108,10 @@ app.post('/create-checkout-session', async (req, res) => {
 
     const shippingRateId = getShippingRateId(zoneName, subtotal);
 
-    const session = await stripe.checkout.sessions.create({
+    const checkoutSessionParams = {
       mode: 'payment',
       line_items: line_items.map(({ price, quantity }) => ({ price, quantity })),
+      allow_promotion_codes: true,
       shipping_options: [{ shipping_rate: shippingRateId }],
       customer_email: customer.email,
       shipping_address_collection: { allowed_countries: ALLOWED_COUNTRIES },
@@ -135,7 +136,13 @@ app.post('/create-checkout-session', async (req, res) => {
       },
       success_url: `${DOMAIN}/success.html?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${DOMAIN}/cancel.html`
-    });
+    };
+
+    console.log('[Stripe Checkout] Creating session with allow_promotion_codes=%s', checkoutSessionParams.allow_promotion_codes);
+
+    const session = await stripe.checkout.sessions.create(checkoutSessionParams);
+
+    console.log('[Stripe Checkout] Created session %s allow_promotion_codes=%s', session.id, session.allow_promotion_codes);
 
     res.json({ url: session.url });
   } catch (error) {
