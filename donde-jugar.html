@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config={theme:{extend:{fontFamily:{sans:['Inter','sans-serif'],display:['Montserrat','sans-serif']},colors:{brand:{black:'#0f1112',gray:'#6a716d',light:'#f3f4f2',accent:'#8fae8b'}}}}}</script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIINfQcpOfDzrjXbIhPM4jNfBvTQbBLwU=" crossorigin="">
+  <link rel="stylesheet" href="css/styles.css">
+  <title>Dónde jugar al pickleball | Picklemania</title>
+  <meta name="description" content="Encuentra pistas de pickleball en España y Europa con el mapa interactivo de Picklemania: clubes, pistas indoor, outdoor, gratuitas y de pago cerca de ti.">
+  <link rel="canonical" href="https://picklemaniaweb.es/donde-jugar">
+  <meta property="og:title" content="Dónde jugar al pickleball | Picklemania">
+  <meta property="og:description" content="Mapa interactivo para encontrar pistas de pickleball en España y Europa.">
+  <meta property="og:image" content="https://picklemaniaweb.es/img/og-cover.jpg">
+  <meta property="og:url" content="https://picklemaniaweb.es/donde-jugar">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="/favicon.ico">
+</head>
+<body class="text-brand-black antialiased">
+  <div id="scroll-progress" class="fixed top-0 left-0 h-1 bg-brand-black z-[100]" style="width:0%"></div>
+  <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-black/5"></header>
+
+  <main class="playfinder-page">
+    <section class="playfinder-hero">
+      <div class="container mx-auto px-4">
+        <p class="eyebrow mb-4">Dónde jugar</p>
+        <div class="max-w-4xl">
+          <h1 class="text-4xl md:text-6xl font-display font-black leading-tight mb-4">Encuentra pistas de pickleball cerca de ti.</h1>
+          <p class="text-lg md:text-xl text-brand-gray">Explora instalaciones verificadas por Picklemania y resultados de OpenStreetMap. Añade nuevas pistas para revisión sin modificar OSM.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="container mx-auto px-4 pb-12">
+      <div class="playfinder-shell">
+        <aside class="playfinder-panel" aria-label="Buscador y listado de pistas">
+          <div class="playfinder-search-card">
+            <label for="court-search" class="sr-only">Busca una ciudad, dirección o código postal</label>
+            <div class="playfinder-search-wrap">
+              <span aria-hidden="true">🔎</span>
+              <input id="court-search" type="search" autocomplete="off" placeholder="Busca una ciudad, dirección o código postal...">
+            </div>
+            <div id="search-results" class="playfinder-results hidden"></div>
+          </div>
+
+          <div class="playfinder-filters" aria-label="Filtros de pistas">
+            <button class="active" data-filter="all">Todas</button>
+            <button data-filter="indoor">Indoor</button>
+            <button data-filter="outdoor">Outdoor</button>
+            <button data-filter="free">Gratis</button>
+            <button data-filter="club">Clubs</button>
+          </div>
+
+          <div class="playfinder-actions">
+            <button id="near-me" class="brand-btn brand-btn-secondary" type="button">📍 Cerca de mí</button>
+            <button id="add-court" class="brand-btn brand-btn-primary" type="button">+ Añadir pista</button>
+          </div>
+
+          <div class="playfinder-hint" id="add-hint">Pulsa “+ Añadir pista” y después elige una ubicación en el mapa.</div>
+
+          <div class="playfinder-list-header">
+            <h2 class="font-display font-bold text-2xl">Pistas visibles</h2>
+            <span id="visible-count">0</span>
+          </div>
+          <div id="courts-list" class="playfinder-list"></div>
+        </aside>
+
+        <div class="playfinder-map-card">
+          <div id="pickleball-map" class="playfinder-map" role="application" aria-label="Mapa interactivo de pistas de pickleball"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="court-modal" class="playfinder-modal hidden" role="dialog" aria-modal="true" aria-labelledby="court-modal-title">
+    <form id="court-form" class="playfinder-form">
+      <button type="button" id="close-modal" class="playfinder-modal-close" aria-label="Cerrar">×</button>
+      <p class="eyebrow">Nueva pista</p>
+      <h2 id="court-modal-title" class="text-3xl font-display font-black mb-2">Enviar pista para revisión</h2>
+      <p class="text-brand-gray mb-5">Se guardará con estado <strong>pending</strong> en la base de datos de Picklemania y no será pública hasta aprobarse.</p>
+      <div class="grid md:grid-cols-2 gap-4">
+        <label>Nombre<input name="name" required></label>
+        <label>Dirección<input name="address" required></label>
+        <label>Número de pistas<input name="court_count" type="number" min="1" value="1" required></label>
+        <label>Indoor / Outdoor<select name="surface_type"><option value="outdoor">Outdoor</option><option value="indoor">Indoor</option></select></label>
+        <label>Pública / Privada<select name="access_type"><option value="public">Pública</option><option value="private">Privada</option></select></label>
+        <label>Gratis / De pago<select name="price_type"><option value="free">Gratuita</option><option value="paid">De pago</option></select></label>
+        <label>Horario<input name="opening_hours"></label>
+        <label>Web<input name="website" type="url" placeholder="https://"></label>
+      </div>
+      <label>Descripción<textarea name="description" rows="4"></textarea></label>
+      <input type="hidden" name="lat"><input type="hidden" name="lng">
+      <div id="form-status" class="text-sm text-brand-gray"></div>
+      <div class="flex flex-wrap justify-end gap-3 mt-4"><button type="button" id="cancel-form" class="brand-btn brand-btn-secondary">Cancelar</button><button class="brand-btn brand-btn-primary">Guardar pista</button></div>
+    </form>
+  </div>
+
+  <footer></footer>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="js/main.js"></script>
+  <script src="js/donde-jugar.js"></script>
+</body>
+</html>

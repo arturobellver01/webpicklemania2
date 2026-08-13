@@ -76,6 +76,86 @@ function getShippingRateId(zoneName, subtotal) {
   return zone.paid;
 }
 
+
+const SUPABASE_URL = process.env.SUPABASE_URL || '';
+const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY || '';
+const SUPABASE_COURTS_TABLE = process.env.SUPABASE_COURTS_TABLE || 'pickleball_courts';
+
+async function supabaseRequest(path, options = {}) {
+  if (!SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY) {
+    const error = new Error('Supabase no configurado. Define SUPABASE_URL y SUPABASE_SERVICE_ROLE_KEY.');
+    error.statusCode = 503;
+    throw error;
+  }
+
+  const response = await fetch(`${SUPABASE_URL.replace(/\/$/, '')}/rest/v1/${path}`, {
+    ...options,
+    headers: {
+      apikey: SUPABASE_SERVICE_ROLE_KEY,
+      Authorization: `Bearer ${SUPABASE_SERVICE_ROLE_KEY}`,
+      'Content-Type': 'application/json',
+      Prefer: 'return=representation',
+      ...(options.headers || {})
+    }
+  });
+
+  const text = await response.text();
+  const data = text ? JSON.parse(text) : null;
+  if (!response.ok) {
+    const error = new Error(data?.message || 'Error consultando Supabase');
+    error.statusCode = response.status;
+    throw error;
+  }
+  return data;
+}
+
+app.get('/courts', async (req, res) => {
+  try {
+    const status = req.query.status || 'approved';
+    const south = Number(req.query.south);
+    const west = Number(req.query.west);
+    const north = Number(req.query.north);
+    const east = Number(req.query.east);
+    const params = new URLSearchParams({ select: '*', status: `eq.${status}`, order: 'created_at.desc' });
+    if ([south, west, north, east].every(Number.isFinite)) {
+      params.append('lat', `gte.${south}`); params.append('lat', `lte.${north}`);
+      params.append('lng', `gte.${west}`); params.append('lng', `lte.${east}`);
+    }
+    const courts = await supabaseRequest(`${SUPABASE_COURTS_TABLE}?${params}`);
+    res.json(courts);
+  } catch (error) {
+    res.status(error.statusCode || 500).json({ error: error.message });
+  }
+});
+
+app.post('/courts', async (req, res) => {
+  try {
+    const body = req.body || {};
+    const court = {
+      name: String(body.name || '').trim(),
+      address: String(body.address || '').trim(),
+      court_count: Math.max(1, Number(body.court_count || 1)),
+      surface_type: ['indoor', 'outdoor'].includes(body.surface_type) ? body.surface_type : 'outdoor',
+      access_type: ['public', 'private'].includes(body.access_type) ? body.access_type : 'public',
+      price_type: ['free', 'paid'].includes(body.price_type) ? body.price_type : 'paid',
+      opening_hours: String(body.opening_hours || '').trim(),
+      website: String(body.website || '').trim(),
+      description: String(body.description || '').trim(),
+      lat: Number(body.lat),
+      lng: Number(body.lng),
+      source: 'picklemania',
+      status: 'pending'
+    };
+    if (!court.name || !court.address || !Number.isFinite(court.lat) || !Number.isFinite(court.lng)) {
+      return res.status(400).json({ error: 'Nombre, dirección y coordenadas son obligatorios.' });
+    }
+    const inserted = await supabaseRequest(SUPABASE_COURTS_TABLE, { method: 'POST', body: JSON.stringify(court) });
+    res.status(201).json(inserted?.[0] || court);
+  } catch (error) {
+    res.status(error.statusCode || 500).json({ error: error.message });
+  }
+});
+
 app.post('/create-checkout-session', async (req, res) => {
   try {
     const { items, customer } = req.body || {};
