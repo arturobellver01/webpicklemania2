@@ -175,3 +175,44 @@ body {
 .btn-primary:hover {
     transform: translateY(-2px);
 }
+
+.playfinder-page { background: linear-gradient(180deg, #fcfcfb 0%, #f3f4f2 100%); }
+.playfinder-hero { padding: 7rem 0 3rem; }
+.playfinder-shell { display: grid; grid-template-columns: minmax(320px, 420px) 1fr; gap: 1rem; align-items: stretch; }
+.playfinder-panel, .playfinder-map-card { border: 1px solid rgba(15,17,18,.08); background: rgba(255,255,255,.88); box-shadow: 0 24px 60px rgba(15,17,18,.08); border-radius: 2rem; }
+.playfinder-panel { padding: 1rem; max-height: 78vh; overflow: auto; }
+.playfinder-map-card { padding: .75rem; min-height: 78vh; }
+.playfinder-map { width: 100%; height: 100%; min-height: 620px; border-radius: 1.45rem; overflow: hidden; background: var(--brand-gray-100); }
+.playfinder-map.is-adding { cursor: crosshair; }
+.playfinder-search-card { position: relative; z-index: 20; }
+.playfinder-search-wrap { display: flex; align-items: center; gap: .7rem; border: 1px solid rgba(15,17,18,.1); border-radius: 999px; background: #fff; padding: .85rem 1rem; }
+.playfinder-search-wrap input { width: 100%; outline: none; background: transparent; font-weight: 600; }
+.playfinder-results { position: absolute; inset: calc(100% + .5rem) 0 auto; background: #fff; border: 1px solid rgba(15,17,18,.08); border-radius: 1.1rem; box-shadow: 0 20px 45px rgba(15,17,18,.12); overflow: hidden; }
+.playfinder-results button { display: block; width: 100%; text-align: left; padding: .85rem 1rem; font-size: .9rem; color: var(--brand-gray-700); }
+.playfinder-results button:hover { background: var(--brand-gray-100); }
+.playfinder-filters { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1rem 0; }
+.playfinder-filters button { border: 1px solid rgba(15,17,18,.1); border-radius: 999px; padding: .55rem .9rem; font-size: .85rem; font-weight: 700; color: var(--brand-gray-500); background: #fff; }
+.playfinder-filters button.active { background: var(--brand-black); color: #fff; }
+.playfinder-actions { display: grid; grid-template-columns: 1fr 1fr; gap: .6rem; margin-bottom: .85rem; }
+.playfinder-actions .brand-btn { padding: .8rem 1rem; font-size: .86rem; }
+.playfinder-hint { display: none; border-radius: 1rem; background: rgba(143,174,139,.18); color: var(--brand-gray-700); padding: .85rem; font-size: .88rem; margin-bottom: 1rem; }
+.playfinder-hint.active { display: block; }
+.playfinder-list-header { display: flex; justify-content: space-between; align-items: center; margin: 1.2rem 0 .8rem; }
+.playfinder-list-header span { min-width: 2rem; height: 2rem; border-radius: 999px; background: var(--brand-black); color: #fff; display: inline-flex; align-items: center; justify-content: center; font-weight: 800; }
+.playfinder-list { display: grid; gap: .75rem; }
+.playfinder-card { cursor: pointer; border: 1px solid rgba(15,17,18,.08); border-radius: 1.2rem; background: #fff; padding: 1rem; transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease; }
+.playfinder-card:hover, .playfinder-card.active { transform: translateY(-2px); border-color: rgba(15,17,18,.28); box-shadow: 0 12px 28px rgba(15,17,18,.08); }
+.playfinder-card h3 { font-family: Montserrat, sans-serif; font-weight: 800; margin-bottom: .25rem; }
+.playfinder-card p { color: var(--brand-gray-500); font-size: .9rem; margin-bottom: .65rem; }
+.playfinder-card div { display: flex; flex-wrap: wrap; gap: .4rem; }
+.playfinder-card span { background: var(--brand-gray-100); border-radius: 999px; padding: .28rem .55rem; font-size: .75rem; font-weight: 700; }
+.pickle-marker { background: var(--brand-black); color: #fff; border: 3px solid #fff; border-radius: 999px 999px 999px 8px; transform: rotate(-45deg); box-shadow: 0 10px 22px rgba(15,17,18,.25); display: grid; place-items: center; }
+.pickle-marker span { transform: rotate(45deg); display: block; font-size: 1.2rem; }
+.playfinder-modal { position: fixed; inset: 0; z-index: 1000; display: grid; place-items: center; padding: 1rem; background: rgba(15,17,18,.55); backdrop-filter: blur(8px); }
+.playfinder-modal.hidden { display: none; }
+.playfinder-form { position: relative; width: min(820px, 100%); max-height: 90vh; overflow: auto; background: #fff; border-radius: 2rem; padding: 1.4rem; box-shadow: 0 30px 80px rgba(0,0,0,.25); }
+.playfinder-modal-close { position: absolute; top: 1rem; right: 1rem; width: 2.2rem; height: 2.2rem; border-radius: 999px; background: var(--brand-gray-100); font-size: 1.5rem; }
+.playfinder-form label { display: grid; gap: .35rem; font-weight: 700; font-size: .86rem; color: var(--brand-gray-700); }
+.playfinder-form input, .playfinder-form select, .playfinder-form textarea { border: 1px solid rgba(15,17,18,.12); border-radius: 1rem; padding: .8rem .9rem; font-weight: 500; outline: none; }
+.playfinder-form textarea, .playfinder-form > label { margin-top: 1rem; }
+@media (max-width: 900px) { .playfinder-hero { padding-top: 5rem; } .playfinder-shell { grid-template-columns: 1fr; } .playfinder-panel { order: 2; max-height: none; border-radius: 1.5rem; } .playfinder-map-card { order: 1; min-height: 62vh; border-radius: 1.5rem; } .playfinder-map { min-height: 62vh; } .playfinder-actions { grid-template-columns: 1fr; } }

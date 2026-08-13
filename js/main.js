@@ -111,6 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <a href="${cleanUrl('coleccion')}" class="text-sm font-medium text-brand-gray hover:text-brand-black transition-colors">Colecciones</a>
         <a href="${cleanUrl('team')}" class="text-sm font-medium text-brand-gray hover:text-brand-black transition-colors">Team</a>
         <a href="${cleanUrl('aprende')}" class="text-sm font-medium text-brand-gray hover:text-brand-black transition-colors">Aprende</a>
+        <a href="${cleanUrl('donde-jugar')}" class="text-sm font-medium text-brand-gray hover:text-brand-black transition-colors">Dónde Jugar</a>
         <a href="${cleanUrl('colabora')}" class="text-sm font-medium text-brand-gray hover:text-brand-black transition-colors">Colabora</a>
         <a href="${cleanUrl('carrito')}" class="text-sm font-medium text-brand-gray hover:text-brand-black transition-colors inline-flex items-center gap-2">
           Carrito
@@ -128,6 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
       <a href="${cleanUrl('coleccion')}" class="block text-lg font-semibold">Colecciones</a>
       <a href="${cleanUrl('team')}" class="block text-lg font-semibold">Team</a>
       <a href="${cleanUrl('aprende')}" class="block text-lg font-semibold">Aprende</a>
+      <a href="${cleanUrl('donde-jugar')}" class="block text-lg font-semibold">Dónde Jugar</a>
       <a href="${cleanUrl('colabora')}" class="block text-lg font-semibold">Colabora</a>
       <a href="${cleanUrl('carrito')}" class="block text-lg font-semibold inline-flex items-center gap-2">
         Carrito
@@ -146,7 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <a href="${cleanUrl('index')}" class="flex items-center"><img src="/img/LogoPicklemania.svg" alt="Picklemania" class="h-8 w-auto"></a>
           <p class="text-sm text-brand-gray">Diseñado en España · Fabricado en Europa. Una marca que construye el juego con identidad y proximidad.</p>
         </div>
-        <div><h4 class="font-semibold mb-4">Explorar</h4><ul class="space-y-2 text-sm text-brand-gray"><li><a href="${cleanUrl('index')}">Inicio</a></li><li><a href="${cleanUrl('marca')}">La Marca</a></li><li><a href="${cleanUrl('coleccion')}">Colecciones</a></li><li><a href="${cleanUrl('team')}">Team</a></li><li><a href="${cleanUrl('aprende')}">Aprende</a></li><li><a href="${cleanUrl('colabora')}">Colabora</a></li><li><a href="${cleanUrl('carrito')}">Carrito</a></li></ul></div>
+        <div><h4 class="font-semibold mb-4">Explorar</h4><ul class="space-y-2 text-sm text-brand-gray"><li><a href="${cleanUrl('index')}">Inicio</a></li><li><a href="${cleanUrl('marca')}">La Marca</a></li><li><a href="${cleanUrl('coleccion')}">Colecciones</a></li><li><a href="${cleanUrl('team')}">Team</a></li><li><a href="${cleanUrl('aprende')}">Aprende</a></li><li><a href="${cleanUrl('donde-jugar')}">Dónde Jugar</a></li><li><a href="${cleanUrl('colabora')}">Colabora</a></li><li><a href="${cleanUrl('carrito')}">Carrito</a></li></ul></div>
         <div><h4 class="font-semibold mb-4">Origen europeo</h4><ul class="space-y-2 text-sm text-brand-gray"><li>Diseñado en España</li><li>Fabricado en Europa / Portugal</li><li>Control de calidad cercano</li><li>Comunidad temprana</li></ul></div>
         <div id="newsletter"><h4 class="font-semibold mb-4">Newsletter</h4><p class="text-sm text-brand-gray mb-3">Sigue la evolución del juego.</p><form class="flex gap-2"><input type="email" aria-label="Email" placeholder="Tu email" class="flex-1 bg-brand-light rounded-xl px-3 py-2 text-sm"><button class="bg-brand-black text-white rounded-xl px-3 py-2 text-sm font-semibold">Unirme</button></form></div>
       </div>
