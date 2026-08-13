@@ -5,6 +5,11 @@ DirectoryIndex index.html
 RewriteEngine On
 RewriteBase /
 
+# Forzar dominio canónico sin www y HTTPS en una sola redirección
+RewriteCond %{HTTPS} !=on [OR]
+RewriteCond %{HTTP_HOST} ^www\.picklemaniaweb\.es$ [NC]
+RewriteRule ^ https://picklemaniaweb.es%{REQUEST_URI} [R=301,L,NE]
+
 # No reescribir assets, API ni ficheros/directorios reales
 RewriteCond %{REQUEST_URI} ^/api/ [NC]
 RewriteRule ^ - [L]
