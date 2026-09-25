@@ -42,6 +42,10 @@ if (!is_array($payload)) {
 $catalog = [
     'picklemania-black-paddle' => ['price_id' => 'price_1TZAwNQl1Fppe3qeUCGWWHPc', 'unit_amount' => 9000],
     'picklemania-white-paddle' => ['price_id' => 'price_1TZAwsQl1Fppe3qeyJnl6vyx', 'unit_amount' => 9000],
+    // TODO Superpibes: configurar los Price IDs y los importes en variables de entorno (ver .env.example).
+    'picklemania-superpibes-shirt' => ['price_id' => getenv('STRIPE_PRICE_SUPERPIBES_SHIRT') ?: '', 'unit_amount' => (int)(getenv('SUPERPIBES_SHIRT_AMOUNT_CENTS') ?: 0), 'allows_personalization' => true],
+    'picklemania-superpibes-pants' => ['price_id' => getenv('STRIPE_PRICE_SUPERPIBES_PANTS') ?: '', 'unit_amount' => (int)(getenv('SUPERPIBES_PANTS_AMOUNT_CENTS') ?: 0), 'allows_personalization' => false],
+    'picklemania-superpibes-kit' => ['price_id' => getenv('STRIPE_PRICE_SUPERPIBES_KIT') ?: '', 'unit_amount' => (int)(getenv('SUPERPIBES_KIT_AMOUNT_CENTS') ?: 0), 'allows_personalization' => true],
 ];
 
 $items = $payload['items'] ?? [];
@@ -53,6 +57,7 @@ if (!is_array($items) || count($items) === 0) {
 
 $lineItems = [];
 $subtotalCents = 0;
+$configurationSummaries = [];
 
 foreach ($items as $item) {
     if (!is_array($item)) {
@@ -69,12 +74,38 @@ foreach ($items as $item) {
     }
 
     $product = $catalog[$productId];
+    if ($product['price_id'] === '' || (int)$product['unit_amount'] <= 0) {
+        http_response_code(400);
+        echo json_encode(['error' => 'Este producto está pendiente de configuración de precio en Stripe.']);
+        exit;
+    }
     $subtotalCents += ((int)$product['unit_amount']) * $quantity;
 
     $lineItems[] = [
         'price' => $product['price_id'],
         'quantity' => $quantity,
     ];
+
+    $configuration = is_array($item['configuration'] ?? null) ? $item['configuration'] : [];
+    $personalizationName = trim((string)($configuration['personalizationName'] ?? ''));
+    if ($personalizationName !== '') {
+        if (empty($product['allows_personalization'])) {
+            http_response_code(400);
+            echo json_encode(['error' => 'Este producto no admite personalización.']);
+            exit;
+        }
+        $personalizationPrice = getenv('STRIPE_PRICE_SUPERPIBES_PERSONALIZATION') ?: '';
+        if ($personalizationPrice === '') {
+            http_response_code(400);
+            echo json_encode(['error' => 'La personalización está pendiente de configuración en Stripe.']);
+            exit;
+        }
+        $subtotalCents += 500 * $quantity;
+        $lineItems[] = ['price' => $personalizationPrice, 'quantity' => $quantity];
+    }
+    if ($configuration) {
+        $configurationSummaries[] = $productId . ': ' . json_encode($configuration, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+    }
 }
 
 $customer = $payload['customer'] ?? null;
@@ -184,6 +215,8 @@ try {
             'shipping_city' => $customerParams['address']['city'] ?? '',
             'shipping_line1' => $customerParams['address']['line1'] ?? '',
             'shipping_state' => $customerParams['address']['state'] ?? '',
+            // Las opciones de talla, edición y nombre llegan a Stripe sin perderse en los metadatos de la sesión.
+            'product_configurations' => substr(implode(' | ', $configurationSummaries), 0, 500),
         ],
     ];
 

@@ -176,6 +176,16 @@ body {
     transform: translateY(-2px);
 }
 
+.product-option, .size-option { cursor: pointer; }
+.product-option input, .size-option input { position: absolute; opacity: 0; pointer-events: none; }
+.product-option span { display: grid; gap: .25rem; min-height: 5.2rem; padding: 1rem; border: 1px solid rgba(15,17,18,.13); border-radius: 1rem; background: #fff; transition: border-color .2s ease, background-color .2s ease, box-shadow .2s ease; }
+.product-option small { color: var(--brand-gray-500); font-size: .78rem; }
+.product-option input:checked + span { border-color: var(--brand-black); background: var(--brand-gray-100); box-shadow: inset 0 0 0 1px var(--brand-black); }
+.product-option input[value="pro"] + span b::first-letter { color: #d84c63; }
+.product-option input[value="competition"] + span b::first-letter { color: #1598aa; }
+.size-option span { display: inline-flex; align-items: center; justify-content: center; min-width: 2.8rem; min-height: 2.8rem; padding: .4rem .7rem; border: 1px solid rgba(15,17,18,.13); border-radius: .85rem; font-weight: 700; }
+.size-option input:checked + span { background: var(--brand-black); border-color: var(--brand-black); color: #fff; }
+
 .playfinder-page { background: linear-gradient(180deg, #fcfcfb 0%, #f3f4f2 100%); }
 .playfinder-hero { padding: 7rem 0 3rem; }
 .playfinder-shell { display: grid; grid-template-columns: minmax(320px, 420px) 1fr; gap: 1rem; align-items: stretch; }

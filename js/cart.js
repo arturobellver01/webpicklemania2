@@ -37,7 +37,8 @@
     if (!product || !product.id) return;
 
     const cart = getCart();
-    const existing = cart.find((item) => item.id === product.id);
+    const cartKey = product.cartKey || product.id;
+    const existing = cart.find((item) => (item.cartKey || item.id) === cartKey);
     const quantityToAdd = Number(product.quantity) > 0 ? Math.floor(Number(product.quantity)) : 1;
 
     if (existing) {
@@ -46,6 +47,7 @@
     } else {
       cart.push({
         ...product,
+        cartKey,
         quantity: quantityToAdd
       });
     }
@@ -53,20 +55,20 @@
     saveCart(cart);
   }
 
-  function removeFromCart(productId) {
-    const cart = getCart().filter((item) => item.id !== productId);
+  function removeFromCart(cartKey) {
+    const cart = getCart().filter((item) => (item.cartKey || item.id) !== cartKey);
     saveCart(cart);
   }
 
-  function updateQuantity(productId, quantity) {
+  function updateQuantity(cartKey, quantity) {
     const cart = getCart();
-    const item = cart.find((entry) => entry.id === productId);
+    const item = cart.find((entry) => (entry.cartKey || entry.id) === cartKey);
     if (!item) return;
 
     const nextQuantity = Number(quantity);
 
     if (!Number.isFinite(nextQuantity) || nextQuantity <= 0) {
-      removeFromCart(productId);
+      removeFromCart(cartKey);
       return;
     }
 

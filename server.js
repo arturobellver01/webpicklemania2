@@ -11,12 +11,18 @@ const stripe = Stripe(process.env.STRIPE_SECRET_KEY || '');
 
 const PRODUCT_PRICE_MAP = {
   'picklemania-black-paddle': process.env.STRIPE_PRICE_BLACK_PADDLE,
-  'picklemania-white-paddle': process.env.STRIPE_PRICE_WHITE_PADDLE
+  'picklemania-white-paddle': process.env.STRIPE_PRICE_WHITE_PADDLE,
+  'picklemania-superpibes-shirt': process.env.STRIPE_PRICE_SUPERPIBES_SHIRT,
+  'picklemania-superpibes-pants': process.env.STRIPE_PRICE_SUPERPIBES_PANTS,
+  'picklemania-superpibes-kit': process.env.STRIPE_PRICE_SUPERPIBES_KIT
 };
 
 const PRODUCT_PRICE_EUR = {
   'picklemania-black-paddle': 90,
-  'picklemania-white-paddle': 90
+  'picklemania-white-paddle': 90,
+  'picklemania-superpibes-shirt': Number(process.env.SUPERPIBES_SHIRT_AMOUNT_CENTS || 0) / 100,
+  'picklemania-superpibes-pants': Number(process.env.SUPERPIBES_PANTS_AMOUNT_CENTS || 0) / 100,
+  'picklemania-superpibes-kit': Number(process.env.SUPERPIBES_KIT_AMOUNT_CENTS || 0) / 100
 };
 
 const SHIPPING_ZONES = {
@@ -172,15 +178,25 @@ app.post('/create-checkout-session', async (req, res) => {
       return res.status(400).json({ error: 'Actualmente no enviamos a este país.' });
     }
 
-    const line_items = items.map((item) => {
+    const configurations = [];
+    const line_items = items.flatMap((item) => {
       const productId = item?.productId;
       const quantity = Math.max(1, Math.floor(Number(item?.quantity || 1)));
       const price = PRODUCT_PRICE_MAP[productId];
       if (!price) throw new Error(`Producto no configurado en Stripe: ${productId}`);
-      return { price, quantity, productId };
+      if (!PRODUCT_PRICE_EUR[productId]) throw new Error(`Importe no configurado para ${productId}`);
+      const lines = [{ price, quantity, productId }];
+      const personalizationName = String(item?.configuration?.personalizationName || '').trim();
+      if (personalizationName) {
+        if (productId === 'picklemania-superpibes-pants') throw new Error('El pantalón no admite personalización.');
+        if (!process.env.STRIPE_PRICE_SUPERPIBES_PERSONALIZATION) throw new Error('Personalización pendiente de configuración en Stripe.');
+        lines.push({ price: process.env.STRIPE_PRICE_SUPERPIBES_PERSONALIZATION, quantity, productId: 'superpibes-personalization' });
+      }
+      if (item?.configuration) configurations.push(`${productId}: ${JSON.stringify(item.configuration)}`);
+      return lines;
     });
 
-    const subtotal = line_items.reduce((sum, line) => sum + (PRODUCT_PRICE_EUR[line.productId] || 0) * line.quantity, 0);
+    const subtotal = line_items.reduce((sum, line) => sum + (line.productId === 'superpibes-personalization' ? 5 : (PRODUCT_PRICE_EUR[line.productId] || 0)) * line.quantity, 0);
     const zoneName = detectShippingZone(country, customer.address.postal_code);
     if (!zoneName) {
       return res.status(400).json({ error: 'Actualmente no enviamos a este país.' });
@@ -213,6 +229,7 @@ app.post('/create-checkout-session', async (req, res) => {
         shipping_zone: zoneName,
         shipping_rate_id: shippingRateId,
         subtotal_eur: String(subtotal.toFixed(2))
+        ,product_configurations: configurations.join(' | ').slice(0, 500)
       },
       success_url: `${DOMAIN}/success.html?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${DOMAIN}/cancel.html`
