@@ -61,17 +61,28 @@
     {
       id: 'picklemania-superpibes-shirt', name: 'Picklemania x Superpibes — Camiseta', slug: 'superpibes-camiseta', category: 'apparel', type: 'shirt',
       price: SUPERPIBES_PRICES.shirt, displayPrice: '29,90€', description: 'Camiseta oficial Superpibes para competición, entrenos y comunidad.', image: 'img/superpibes-camiseta1-modelo1.jpg',
-      gallery: ['img/superpibes-camiseta1-modelo1.jpg', 'img/superpibes-camiseta1-modelo2.jpg', 'img/superpibes-camiseta1-modelo3.jpg', 'img/superpibes-camiseta1-modelo4.jpg', 'img/superpibes-camiseta2-modelo1.jpg', 'img/superpibes-camiseta2-modelo2.jpg', 'img/superpibes-camiseta2-modelo3.jpg', 'img/superpibes-camiseta2-modelo4.jpg'],
+      galleryByEdition: {
+        pro: ['img/superpibes-camiseta1-modelo1.jpg', 'img/superpibes-camiseta1-modelo2.jpg', 'img/superpibes-camiseta1-modelo3.jpg', 'img/superpibes-camiseta1-modelo4.jpg'],
+        competition: ['img/superpibes-camiseta2-modelo1.jpg', 'img/superpibes-camiseta2-modelo2.jpg', 'img/superpibes-camiseta2-modelo3.jpg', 'img/superpibes-camiseta2-modelo4.jpg']
+      },
       stripePriceEnv: ['STRIPE_PRICE_SUPERPIBES_SHIRT_PRO', 'STRIPE_PRICE_SUPERPIBES_SHIRT_COMPETITION'], allowsPersonalization: true
     },
     {
       id: 'picklemania-superpibes-pants', name: 'Picklemania x Superpibes — Pantalón', slug: 'superpibes-pantalon', category: 'apparel', type: 'pants',
       price: SUPERPIBES_PRICES.pants, displayPrice: '34,90€', description: 'Pantalón oficial Superpibes con dos ediciones para la pista.', image: 'img/superpibes-pantalones-delante.jpg',
+      galleryByEdition: {
+        pro: ['img/superpibes-pantalon1-modelo1.jpg', 'img/superpibes-pantalon1-modelo2.jpg', 'img/superpibes-pantalon1-modelo3.jpg', 'img/superpibes-pantalon1-modelo4.jpg'],
+        competition: ['img/superpibes-pantalon2-modelo1.jpg', 'img/superpibes-pantalon2-modelo2.jpg', 'img/superpibes-pantalon2-modelo3.jpg', 'img/superpibes-pantalon2-modelo4.jpg']
+      },
       stripePriceEnv: ['STRIPE_PRICE_SUPERPIBES_PANTS_PRO', 'STRIPE_PRICE_SUPERPIBES_PANTS_COMPETITION'], allowsPersonalization: false
     },
     {
       id: 'picklemania-superpibes-kit', name: 'Picklemania x Superpibes — Equipación Completa', slug: 'superpibes-equipacion', category: 'apparel', type: 'kit',
       price: SUPERPIBES_PRICES.kit, displayPrice: '59,90€', description: 'Camiseta y pantalón oficiales Superpibes configurados de forma independiente.', image: 'img/superpibes-camisetas-delante.jpg',
+      galleryByEdition: {
+        pro: ['img/superpibes-equipacion1-modelo1.jpg', 'img/superpibes-equipacion1-modelo2.jpg', 'img/superpibes-equipacion1-modelo3.jpg', 'img/superpibes-equipacion1-modelo4.jpg'],
+        competition: ['img/superpibes-equipacion2-modelo1.jpg', 'img/superpibes-equipacion2-modelo2.jpg', 'img/superpibes-equipacion2-modelo3.jpg', 'img/superpibes-equipacion2-modelo4.jpg']
+      },
       stripePriceEnv: 'STRIPE_PRICE_SUPERPIBES_KIT', allowsPersonalization: true
     }
   ];
