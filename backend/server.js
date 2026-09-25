@@ -179,10 +179,18 @@ app.post('/create-checkout-session', async (req, res) => {
     }
 
     const configurations = [];
+    const editions = ['pro', 'competition'];
+    const sizes = ['XS', 'S', 'M', 'L', 'XL'];
     const line_items = items.flatMap((item) => {
       const productId = item?.productId;
       const quantity = Math.max(1, Math.floor(Number(item?.quantity || 1)));
       const price = PRODUCT_PRICE_MAP[productId];
+      const config = item?.configuration || {};
+      const isKit = productId === 'picklemania-superpibes-kit';
+      const validConfig = !String(productId || '').startsWith('picklemania-superpibes-') || (isKit
+        ? editions.includes(config.shirtEdition) && editions.includes(config.pantsEdition) && sizes.includes(config.shirtSize) && sizes.includes(config.pantsSize)
+        : editions.includes(config.edition) && sizes.includes(config.size));
+      if (!validConfig) throw new Error('Configuración de producto no válida.');
       if (!price) throw new Error(`Producto no configurado en Stripe: ${productId}`);
       if (!PRODUCT_PRICE_EUR[productId]) throw new Error(`Importe no configurado para ${productId}`);
       const lines = [{ price, quantity, productId }];

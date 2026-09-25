@@ -87,6 +87,11 @@ foreach ($items as $item) {
     ];
 
     $configuration = is_array($item['configuration'] ?? null) ? $item['configuration'] : [];
+    $editions = ['pro', 'competition'];
+    $sizes = ['XS', 'S', 'M', 'L', 'XL'];
+    if ($productId === 'picklemania-superpibes-kit') {
+        if (!in_array($configuration['shirtEdition'] ?? '', $editions, true) || !in_array($configuration['pantsEdition'] ?? '', $editions, true) || !in_array($configuration['shirtSize'] ?? '', $sizes, true) || !in_array($configuration['pantsSize'] ?? '', $sizes, true)) { http_response_code(400); echo json_encode(['error' => 'Configuración de equipación no válida.']); exit; }
+    } elseif (str_starts_with($productId, 'picklemania-superpibes-') && (!in_array($configuration['edition'] ?? '', $editions, true) || !in_array($configuration['size'] ?? '', $sizes, true))) { http_response_code(400); echo json_encode(['error' => 'Configuración de producto no válida.']); exit; }
     $personalizationName = trim((string)($configuration['personalizationName'] ?? ''));
     if ($personalizationName !== '') {
         if (empty($product['allows_personalization'])) {
@@ -109,6 +114,8 @@ foreach ($items as $item) {
 }
 
 $customer = $payload['customer'] ?? null;
+$hasSuperpibes = false;
+foreach ($items as $checkoutItem) { if (is_array($checkoutItem) && str_starts_with((string)($checkoutItem['productId'] ?? ''), 'picklemania-superpibes-')) { $hasSuperpibes = true; break; } }
 $shippingRateByZone = [
     'ES' => 495,
     'CANARIAS' => 1995,
@@ -186,8 +193,9 @@ try {
         exit;
     }
 
-    if ($shippingZone !== 'FREE') {
-        $shippingAmount = $shippingRateByZone[$shippingZone] ?? 0;
+    if ($shippingZone !== 'FREE' || $hasSuperpibes) {
+        // Superpibes se envía siempre con porte fijo de 12 €, sin gratuidad.
+        $shippingAmount = $hasSuperpibes ? 1200 : ($shippingRateByZone[$shippingZone] ?? 0);
         if ($shippingAmount > 0) {
             $lineItems[] = [
                 'price_data' => [

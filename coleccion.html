@@ -47,102 +47,10 @@
   <header></header>
 
   <main>
-    <section class="py-16 md:py-24 bg-brand-light">
-      <div class="container mx-auto px-4 max-w-6xl grid md:grid-cols-2 gap-10 items-center">
-        <div class="reveal">
-          <p class="eyebrow mb-3">Tienda Picklemania</p>
-          <h1 class="text-5xl md:text-7xl font-display font-black leading-tight mb-5">Black & White Collection</h1>
-          <p class="text-brand-gray text-lg md:text-xl mb-8 max-w-xl">Palas premium Black & White para jugadores que buscan rendimiento, identidad y consistencia en pista.</p>
-          <div class="flex flex-wrap gap-4">
-            <a href="#productos" class="btn-primary">Ver productos</a>
-            <a href="carrito" class="brand-btn brand-btn-secondary">Ir al carrito</a>
-          </div>
-        </div>
-
-        <div class="reveal delay-1">
-          <img src="img/coleccion.png" alt="Colección Picklemania Black & White" class="w-full h-[420px] object-cover rounded-[2rem] shadow-sm">
-        </div>
-      </div>
-    </section>
-
-    <section id="productos" class="py-16 md:py-24">
-      <div class="container mx-auto px-4 max-w-6xl">
-        <div class="reveal mb-10 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
-          <div>
-            <p class="eyebrow mb-2">Comprar</p>
-            <h2 class="text-4xl md:text-5xl font-display font-black">Nuestras Palas</h2>
-          </div>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7" id="product-grid">
-          <article class="card-soft overflow-hidden reveal">
-            <a href="producto-black-paddle" class="bg-brand-light p-6 block">
-              <img src="img/pala-black.png" alt="Picklemania Black Paddle" class="w-full h-72 object-contain">
-            </a>
-            <div class="p-6 space-y-4">
-              <div class="flex items-start justify-between gap-4">
-                <div>
-                  <p class="eyebrow mb-1">Colección Black&White</p>
-                  <a href="producto-black-paddle"><h3 class="text-xl font-display font-bold">Picklemania Black Paddle</h3></a>
-                </div>
-                <span class="text-lg font-bold">90€</span>
-              </div>
-              <p class="text-brand-gray">Pala equilibrada diseñada para control, estabilidad y precisión, con estética dark premium y rendimiento consistente en cada punto.</p>
-              <ul class="text-sm text-brand-gray list-disc list-inside space-y-1">
-                <li>Fibra de vidrio</li><li>Núcleo honeycomb</li><li>Grosor 16 mm</li><li>Peso 310–330 g</li><li>Balance medio</li><li>Acabado mate rugoso</li>
-              </ul>
-              <div class="flex flex-col sm:flex-row gap-3">
-                <a href="producto-black-paddle" class="brand-btn brand-btn-secondary w-full text-center">Ver producto</a>
-                <button class="btn-primary w-full add-to-cart-btn" data-product="picklemania-black-paddle" data-image="img/pala-1.png">Añadir al carrito</button>
-                <button class="btn-primary w-full buy-now-btn" data-product="picklemania-black-paddle" data-image="img/pala-1.png">Comprar ahora</button>
-              </div>
-              <p class="text-sm text-green-700 min-h-5 opacity-0 transition-opacity" data-feedback="picklemania-black-paddle">Añadido al carrito</p>
-            </div>
-          </article>
-
-          <article class="card-soft overflow-hidden reveal">
-            <a href="producto-superpibes-camiseta" class="image-placeholder h-72 p-6 flex items-center justify-center"><span class="font-display font-black text-center">PICKLEMANIA<br><span class="text-brand-gray">x SUPERPIBES</span><br><small class="font-sans">CAMISETA · Imagen pendiente</small></span></a>
-            <div class="p-6 space-y-4"><div class="flex items-start justify-between gap-4"><div><p class="eyebrow mb-1">Team Collection</p><a href="producto-superpibes-camiseta"><h3 class="text-xl font-display font-bold">Camiseta Superpibes</h3></a></div><span class="text-sm font-bold">Precio pendiente</span></div><p class="text-brand-gray">Camiseta oficial con Pro Tour Edition y Competition Edition, tallas y opción de nombre personalizado.</p><a href="producto-superpibes-camiseta" class="brand-btn brand-btn-secondary w-full">Configurar camiseta</a></div>
-          </article>
-          <article class="card-soft overflow-hidden reveal">
-            <a href="producto-superpibes-pantalon" class="image-placeholder h-72 p-6 flex items-center justify-center"><span class="font-display font-black text-center">PICKLEMANIA<br><span class="text-brand-gray">x SUPERPIBES</span><br><small class="font-sans">PANTALÓN · Imagen pendiente</small></span></a>
-            <div class="p-6 space-y-4"><div class="flex items-start justify-between gap-4"><div><p class="eyebrow mb-1">Team Collection</p><a href="producto-superpibes-pantalon"><h3 class="text-xl font-display font-bold">Pantalón Superpibes</h3></a></div><span class="text-sm font-bold">Precio pendiente</span></div><p class="text-brand-gray">Pantalón oficial en dos ediciones y tallas para completar el uniforme de pista.</p><a href="producto-superpibes-pantalon" class="brand-btn brand-btn-secondary w-full">Configurar pantalón</a></div>
-          </article>
-          <article class="card-soft overflow-hidden reveal">
-            <a href="producto-superpibes-equipacion" class="image-placeholder h-72 p-6 flex items-center justify-center"><span class="font-display font-black text-center">PICKLEMANIA<br><span class="text-brand-gray">x SUPERPIBES</span><br><small class="font-sans">EQUIPACIÓN · Imagen pendiente</small></span></a>
-            <div class="p-6 space-y-4"><div class="flex items-start justify-between gap-4"><div><p class="eyebrow mb-1">Team Collection</p><a href="producto-superpibes-equipacion"><h3 class="text-xl font-display font-bold">Equipación Completa</h3></a></div><span class="text-sm font-bold">Precio pendiente</span></div><p class="text-brand-gray">Combina por separado camiseta y pantalón Pro Tour o Competition, con tallas independientes.</p><a href="producto-superpibes-equipacion" class="brand-btn brand-btn-secondary w-full">Configurar equipación</a></div>
-          </article>
-
-          <article class="card-soft overflow-hidden reveal">
-            <a href="producto-white-paddle" class="bg-brand-light p-6 block">
-              <!-- Placeholder temporal: sustituir por img/pala-white.png cuando esté disponible en el repositorio. -->
-              <img src="img/pala-white.png" alt="Picklemania White Paddle" class="w-full h-72 object-contain">
-            </a>
-            <div class="p-6 space-y-4">
-              <div class="flex items-start justify-between gap-4">
-                <div>
-                  <p class="eyebrow mb-1">Colección Black&White</p>
-                  <a href="producto-white-paddle"><h3 class="text-xl font-display font-bold">Picklemania White Paddle</h3></a>
-                </div>
-                <span class="text-lg font-bold">90€</span>
-              </div>
-              <p class="text-brand-gray">Potencia controlada y claridad en cada impacto, con estética clean y versatilidad para defensa y ataque.</p>
-              <ul class="text-sm text-brand-gray list-disc list-inside space-y-1">
-                <li>Fibra de vidrio</li><li>Núcleo honeycomb</li><li>Grosor 16 mm</li><li>Peso 310–330 g</li><li>Balance medio</li><li>Acabado mate rugoso</li>
-              </ul>
-              <div class="flex flex-col sm:flex-row gap-3">
-                <a href="producto-white-paddle" class="brand-btn brand-btn-secondary w-full text-center">Ver producto</a>
-                <button class="btn-primary w-full add-to-cart-btn" data-product="picklemania-white-paddle" data-image="img/pala-1.png">Añadir al carrito</button>
-                <button class="btn-primary w-full buy-now-btn" data-product="picklemania-white-paddle" data-image="img/pala-1.png">Comprar ahora</button>
-              </div>
-              <!-- TODO: sustituir price_WHITE_PADDLE por el price_id real de Stripe -->
-              <p class="text-sm text-green-700 min-h-5 opacity-0 transition-opacity" data-feedback="picklemania-white-paddle">Añadido al carrito</p>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-  </main>
+<section class="py-16 md:py-24 bg-brand-light"><div class="container mx-auto px-4 max-w-6xl reveal"><p class="eyebrow mb-3">Tienda Picklemania</p><h1 class="text-5xl md:text-7xl font-display font-black leading-tight">Colecciones</h1><p class="text-brand-gray text-lg md:text-xl mt-5 max-w-2xl">Dos propuestas con la misma mirada Picklemania: Black & White y la equipación oficial Superpibes × Picklemania.</p></div></section>
+<section id="black-white" class="py-16 md:py-24"><div class="container mx-auto px-4 max-w-6xl"><div class="mb-10"><p class="eyebrow mb-2">Colección 01</p><h2 class="text-4xl md:text-5xl font-display font-black">Black & White</h2></div><div class="grid md:grid-cols-2 gap-7"><article class="card-soft overflow-hidden"><a href="producto-black-paddle" class="bg-brand-light p-8 block"><img src="img/pala-black.png" alt="Picklemania Black Paddle" class="w-full h-80 object-contain"></a><div class="p-6"><p class="eyebrow mb-2">Black & White</p><h3 class="text-2xl font-display font-bold">Picklemania Black Paddle</h3><p class="text-brand-gray my-3">Control, estabilidad y respuesta consistente en pista.</p><div class="flex gap-3"><a class="brand-btn brand-btn-secondary" href="producto-black-paddle">Ver producto</a><button class="btn-primary add-to-cart-btn" data-product="picklemania-black-paddle">Añadir</button></div></div></article><article class="card-soft overflow-hidden"><a href="producto-white-paddle" class="bg-brand-light p-8 block"><img src="img/pala-white.png" alt="Picklemania White Paddle" class="w-full h-80 object-contain"></a><div class="p-6"><p class="eyebrow mb-2">Black & White</p><h3 class="text-2xl font-display font-bold">Picklemania White Paddle</h3><p class="text-brand-gray my-3">Equilibrio, precisión y estética premium para la pista.</p><div class="flex gap-3"><a class="brand-btn brand-btn-secondary" href="producto-white-paddle">Ver producto</a><button class="btn-primary add-to-cart-btn" data-product="picklemania-white-paddle">Añadir</button></div></div></article></div></div></section>
+<section id="superpibes" class="py-16 md:py-24 bg-brand-black text-white"><div class="container mx-auto px-4 max-w-6xl"><div class="max-w-3xl mb-12"><p class="eyebrow text-white/60 mb-3">Colección 02 · Lanzamiento Superpibes 2.0</p><h2 class="text-4xl md:text-5xl font-display font-black">Superpibes × Picklemania</h2><p class="text-white/70 text-lg mt-4">Pro Tour Edition roja/rosa con identificación Pickle Pro Tour. Competition Edition azul/turquesa, pensada para competiciones, torneos y entrenamientos.</p></div><div class="grid md:grid-cols-2 gap-5 mb-8"><img src="img/superpibes-camisetas-delante.jpg" alt="Camisetas Superpibes Pro Tour y Competition Edition" class="collection-image"><img src="img/superpibes-pantalones-delante.jpg" alt="Pantalones Superpibes Pro Tour y Competition Edition" class="collection-image"></div><div class="grid md:grid-cols-3 gap-5"><article class="superpibes-card"><img src="img/superpibes-camisetas-detras.jpg" alt="Camiseta Superpibes"><p class="eyebrow">Camiseta</p><h3>Camiseta Superpibes</h3><p>Dos modelos, talla y nombre opcional +5 €.</p><a href="producto-superpibes-camiseta">Configurar camiseta</a></article><article class="superpibes-card"><img src="img/superpibes-pantalones-detras.jpg" alt="Pantalón Superpibes"><p class="eyebrow">Pantalón</p><h3>Pantalón Superpibes</h3><p>Dos modelos y talla. Sin personalización.</p><a href="producto-superpibes-pantalon">Configurar pantalón</a></article><article class="superpibes-card"><img src="img/superpibes-camisetas-delante.jpg" alt="Pack completo Superpibes"><p class="eyebrow">Pack completo</p><h3>Equipación completa</h3><p>Configura cada prenda de forma independiente.</p><a href="producto-superpibes-equipacion">Configurar pack</a></article></div><p class="text-white/60 text-sm mt-8">Envío de la colección Superpibes: 12 €.</p></div></section>
+</main>
 
   <footer></footer>
   <script src="js/cart.js"></script>

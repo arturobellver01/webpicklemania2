@@ -9,7 +9,7 @@
     return String(postalCode || '').trim().replace(/\s+/g, '');
   }
 
-  function detectShippingZone(country, postalCode, subtotal) {
+  function detectShippingZone(country, postalCode, subtotal, options = {}) {
     const normalizedCountry = String(country || '').toUpperCase();
     const normalizedPostal = normalizePostalCode(postalCode);
     const subtotalValue = Number(subtotal) || 0;
@@ -23,6 +23,11 @@
         message: 'Actualmente no enviamos a este país.',
         remainingForFree: null
       };
+    }
+
+    // La colección Superpibes tiene un porte fijo propio, sin umbral gratuito.
+    if (options.includesSuperpibes) {
+      return { supported: true, zone: 'SUPERPIBES', shipping: 12, freeShipping: false, message: 'Envío Superpibes: 12,00 €', remainingForFree: null };
     }
 
     if (normalizedCountry === 'ES') {
