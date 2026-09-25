@@ -47,6 +47,7 @@
     } else {
       cart.push({
         ...product,
+        productId: product.productId || product.id,
         cartKey,
         quantity: quantityToAdd
       });
