@@ -97,7 +97,8 @@
     const normalizedItems = (Array.isArray(items) ? items : [])
       .map((item) => ({
         productId: item?.id || item?.productId,
-        quantity: Math.max(1, Math.floor(Number(item?.quantity || 1)))
+        quantity: Math.max(1, Math.floor(Number(item?.quantity || 1))),
+        configuration: item?.configuration || null
       }))
       .filter((item) => item.productId && item.quantity > 0);
 

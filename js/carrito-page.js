@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const emailNode = document.getElementById('customer-email');
 
   const formatPrice = (value) => `${(Number(value) || 0).toFixed(2).replace('.', ',')}€`;
+  const escapeHtml = (value) => String(value || '').replace(/[&<>'"]/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[char]));
 
   function getSubtotal(cart) {
     return cart.reduce((sum, item) => sum + (Number(item.price) || 0) * (Number(item.quantity) || 0), 0);
@@ -63,19 +64,20 @@ document.addEventListener('DOMContentLoaded', () => {
       return `
         <article class="card-soft p-4 md:p-6">
           <div class="flex flex-col sm:flex-row gap-4 sm:items-center">
-            <img src="${item.image}" alt="${item.name}" class="w-full sm:w-28 h-28 object-cover rounded-2xl bg-brand-light p-2">
+            <img src="${escapeHtml(item.image)}" alt="${escapeHtml(item.name)}" class="w-full sm:w-28 h-28 object-cover rounded-2xl bg-brand-light p-2">
             <div class="flex-1">
-              <h2 class="font-display font-bold text-xl">${item.name}</h2>
-              <p class="text-brand-gray text-sm mb-2">${item.description || ''}</p>
+              <h2 class="font-display font-bold text-xl">${escapeHtml(item.name)}</h2>
+              <p class="text-brand-gray text-sm mb-2">${escapeHtml(item.description)}</p>
+              ${item.configurationSummary ? `<p class="text-sm text-brand-gray whitespace-pre-line">${escapeHtml(item.configurationSummary)}</p>` : ''}
               <p class="text-sm text-brand-gray">Precio: ${formatPrice(Number(item.price) || 0)}</p>
               <p class="text-sm font-semibold">Subtotal: ${formatPrice(subtotal)}</p>
             </div>
             <div class="flex items-center gap-2">
-              <button class="btn-secondary !px-3 !py-2" data-action="decrease" data-id="${item.id}" aria-label="Reducir cantidad">-</button>
+              <button class="btn-secondary !px-3 !py-2" data-action="decrease" data-id="${item.cartKey || item.id}" aria-label="Reducir cantidad">-</button>
               <span class="min-w-8 text-center font-semibold">${item.quantity}</span>
-              <button class="btn-secondary !px-3 !py-2" data-action="increase" data-id="${item.id}" aria-label="Aumentar cantidad">+</button>
+              <button class="btn-secondary !px-3 !py-2" data-action="increase" data-id="${item.cartKey || item.id}" aria-label="Aumentar cantidad">+</button>
             </div>
-            <button class="text-sm font-semibold underline" data-action="remove" data-id="${item.id}">Eliminar</button>
+            <button class="text-sm font-semibold underline" data-action="remove" data-id="${item.cartKey || item.id}">Eliminar</button>
           </div>
         </article>`;
     }).join('');
@@ -127,7 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const action = target.dataset.action;
     const productId = target.dataset.id;
     const cart = window.PicklemaniaCart?.getCart() || [];
-    const current = cart.find((item) => item.id === productId);
+    const current = cart.find((item) => (item.cartKey || item.id) === productId);
     if (!current) return;
 
     if (action === 'increase') window.PicklemaniaCart.updateQuantity(productId, current.quantity + 1);
@@ -157,7 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
       if (!window.PicklemaniaCheckout) throw new Error('Checkout no disponible.');
       await window.PicklemaniaCheckout.createCheckout(
-        cart.map((item) => ({ productId: item.id, quantity: item.quantity })),
+        cart.map((item) => ({ productId: item.id, quantity: item.quantity, configuration: item.configuration || null })),
         buildCustomerPayload()
       );
     } catch (error) {
