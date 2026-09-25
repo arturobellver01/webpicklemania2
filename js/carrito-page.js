@@ -162,7 +162,7 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
       if (!window.PicklemaniaCheckout) throw new Error('Checkout no disponible.');
       await window.PicklemaniaCheckout.createCheckout(
-        cart.map((item) => ({ productId: item.id, quantity: item.quantity, configuration: item.configuration || null })),
+        cart.map((item) => ({ productId: item.productId || item.id, quantity: item.quantity, configuration: item.configuration || null })),
         buildCustomerPayload()
       );
     } catch (error) {

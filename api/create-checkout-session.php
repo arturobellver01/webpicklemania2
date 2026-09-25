@@ -42,10 +42,9 @@ if (!is_array($payload)) {
 $catalog = [
     'picklemania-black-paddle' => ['price_id' => 'price_1TZAwNQl1Fppe3qeUCGWWHPc', 'unit_amount' => 9000],
     'picklemania-white-paddle' => ['price_id' => 'price_1TZAwsQl1Fppe3qeyJnl6vyx', 'unit_amount' => 9000],
-    // TODO Superpibes: configurar los Price IDs y los importes en variables de entorno (ver .env.example).
-    'picklemania-superpibes-shirt' => ['price_id' => getenv('STRIPE_PRICE_SUPERPIBES_SHIRT') ?: '', 'unit_amount' => (int)(getenv('SUPERPIBES_SHIRT_AMOUNT_CENTS') ?: 0), 'allows_personalization' => true],
-    'picklemania-superpibes-pants' => ['price_id' => getenv('STRIPE_PRICE_SUPERPIBES_PANTS') ?: '', 'unit_amount' => (int)(getenv('SUPERPIBES_PANTS_AMOUNT_CENTS') ?: 0), 'allows_personalization' => false],
-    'picklemania-superpibes-kit' => ['price_id' => getenv('STRIPE_PRICE_SUPERPIBES_KIT') ?: '', 'unit_amount' => (int)(getenv('SUPERPIBES_KIT_AMOUNT_CENTS') ?: 0), 'allows_personalization' => true],
+    'picklemania-superpibes-shirt' => ['unit_amount' => 2990, 'allows_personalization' => true],
+    'picklemania-superpibes-pants' => ['unit_amount' => 3490, 'allows_personalization' => false],
+    'picklemania-superpibes-kit' => ['price_id' => getenv('STRIPE_PRICE_SUPERPIBES_KIT') ?: '', 'unit_amount' => 5990, 'allows_personalization' => true],
 ];
 
 $items = $payload['items'] ?? [];
@@ -61,11 +60,13 @@ $configurationSummaries = [];
 
 foreach ($items as $item) {
     if (!is_array($item)) {
-        continue;
+        http_response_code(400);
+        echo json_encode(['error' => 'Producto no válido en carrito.']);
+        exit;
     }
 
     $productId = (string)($item['productId'] ?? '');
-    $quantity = max(1, (int)($item['quantity'] ?? 1));
+    $quantity = filter_var($item['quantity'] ?? null, FILTER_VALIDATE_INT, ['options' => ['min_range' => 1, 'max_range' => 100]]);
 
     if (!isset($catalog[$productId])) {
         http_response_code(400);
@@ -73,27 +74,27 @@ foreach ($items as $item) {
         exit;
     }
 
-    $product = $catalog[$productId];
-    if ($product['price_id'] === '' || (int)$product['unit_amount'] <= 0) {
-        http_response_code(400);
-        echo json_encode(['error' => 'Este producto está pendiente de configuración de precio en Stripe.']);
-        exit;
-    }
-    $subtotalCents += ((int)$product['unit_amount']) * $quantity;
-
-    $lineItems[] = [
-        'price' => $product['price_id'],
-        'quantity' => $quantity,
-    ];
-
     $configuration = is_array($item['configuration'] ?? null) ? $item['configuration'] : [];
     $editions = ['pro', 'competition'];
     $sizes = ['XS', 'S', 'M', 'L', 'XL'];
+    if ($quantity === false) { http_response_code(400); echo json_encode(['error' => 'Cantidad no válida.']); exit; }
     if ($productId === 'picklemania-superpibes-kit') {
         if (!in_array($configuration['shirtEdition'] ?? '', $editions, true) || !in_array($configuration['pantsEdition'] ?? '', $editions, true) || !in_array($configuration['shirtSize'] ?? '', $sizes, true) || !in_array($configuration['pantsSize'] ?? '', $sizes, true)) { http_response_code(400); echo json_encode(['error' => 'Configuración de equipación no válida.']); exit; }
     } elseif (str_starts_with($productId, 'picklemania-superpibes-') && (!in_array($configuration['edition'] ?? '', $editions, true) || !in_array($configuration['size'] ?? '', $sizes, true))) { http_response_code(400); echo json_encode(['error' => 'Configuración de producto no válida.']); exit; }
+
+    $product = $catalog[$productId];
+    if ($productId === 'picklemania-superpibes-shirt') {
+        $product['price_id'] = getenv($configuration['edition'] === 'pro' ? 'STRIPE_PRICE_SUPERPIBES_SHIRT_PRO' : 'STRIPE_PRICE_SUPERPIBES_SHIRT_COMPETITION') ?: '';
+    } elseif ($productId === 'picklemania-superpibes-pants') {
+        $product['price_id'] = getenv($configuration['edition'] === 'pro' ? 'STRIPE_PRICE_SUPERPIBES_PANTS_PRO' : 'STRIPE_PRICE_SUPERPIBES_PANTS_COMPETITION') ?: '';
+    }
+    if (($product['price_id'] ?? '') === '') { http_response_code(400); echo json_encode(['error' => 'Este producto está pendiente de configuración de precio en Stripe.']); exit; }
+    $subtotalCents += ((int)$product['unit_amount']) * $quantity;
+    $lineItems[] = ['price' => $product['price_id'], 'quantity' => $quantity];
+
     $personalizationName = trim((string)($configuration['personalizationName'] ?? ''));
     if ($personalizationName !== '') {
+        if (mb_strlen($personalizationName) > 24) { http_response_code(400); echo json_encode(['error' => 'El nombre de personalización es demasiado largo.']); exit; }
         if (empty($product['allows_personalization'])) {
             http_response_code(400);
             echo json_encode(['error' => 'Este producto no admite personalización.']);
@@ -108,8 +109,11 @@ foreach ($items as $item) {
         $subtotalCents += 500 * $quantity;
         $lineItems[] = ['price' => $personalizationPrice, 'quantity' => $quantity];
     }
-    if ($configuration) {
-        $configurationSummaries[] = $productId . ': ' . json_encode($configuration, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+    if (str_starts_with($productId, 'picklemania-superpibes-')) {
+        $safeConfiguration = $productId === 'picklemania-superpibes-kit'
+            ? ['shirtEdition' => $configuration['shirtEdition'], 'shirtSize' => $configuration['shirtSize'], 'pantsEdition' => $configuration['pantsEdition'], 'pantsSize' => $configuration['pantsSize'], 'personalizationName' => $personalizationName]
+            : ['edition' => $configuration['edition'], 'size' => $configuration['size'], 'personalizationName' => $personalizationName];
+        $configurationSummaries[] = $productId . ': ' . json_encode($safeConfiguration, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
     }
 }
 
