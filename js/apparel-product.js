@@ -39,7 +39,8 @@ document.addEventListener('DOMContentLoaded', () => {
   function priceCents(config) { return Number(product.price) + (config.personalizationName ? 500 : 0); }
   function validate(config) {
     if (!Number.isFinite(Number(product.price)) || product.price === null) return 'El precio de este producto está pendiente de configuración.';
-    if (Object.entries(config).some(([key, value]) => key !== 'personalizationName' && value === '')) return 'Selecciona todas las opciones antes de continuar.';
+    if (Object.entries(config).some(([key, value]) => key !== 'personalizationName' && !['pro', 'competition', 'XS', 'S', 'M', 'L', 'XL'].includes(value))) return 'Selecciona todas las opciones antes de continuar.';
+    if (hasPersonalization() && !config.personalizationName) return 'Escribe el nombre para la personalización.';
     return '';
   }
   function add() {
@@ -55,6 +56,14 @@ document.addEventListener('DOMContentLoaded', () => {
     return true;
   }
   form.querySelectorAll('[name="personalization"]').forEach((node) => node.addEventListener('change', syncPersonalization));
+  form.querySelectorAll('[data-gallery-image]').forEach((button) => button.addEventListener('click', () => {
+    const image = button.dataset.galleryImage;
+    const mainImage = document.getElementById('product-main-image');
+    if (!image || !mainImage) return;
+    mainImage.src = image;
+    mainImage.alt = button.dataset.galleryAlt || mainImage.alt;
+    form.querySelectorAll('[data-gallery-image]').forEach((node) => node.setAttribute('aria-pressed', String(node === button)));
+  }));
   form.querySelector('.add-to-cart-btn')?.addEventListener('click', add);
   form.querySelector('.buy-now-btn')?.addEventListener('click', () => { if (add()) window.location.href = window.PicklemaniaUrl?.cleanUrl('carrito') || 'carrito'; });
   if (Number.isFinite(Number(product?.price)) && product?.price !== null) priceNode.textContent = product.displayPrice;

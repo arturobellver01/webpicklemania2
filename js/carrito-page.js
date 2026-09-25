@@ -92,7 +92,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const country = countryNode?.value;
     const postal = postalNode?.value;
 
-    const shippingEstimate = window.PicklemaniaCheckout?.detectShippingZone(country, postal, subtotal);
+    const includesSuperpibes = cart.some((item) => String(item.id || '').startsWith('picklemania-superpibes-'));
+    const shippingEstimate = window.PicklemaniaCheckout?.detectShippingZone(country, postal, subtotal, { includesSuperpibes });
 
     const shipping = shippingEstimate?.supported ? Number(shippingEstimate.shipping || 0) : 0;
     const total = subtotal + shipping;
@@ -103,7 +104,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     shippingMessageNode.textContent = shippingEstimate?.message || '';
 
-    if (shippingEstimate?.supported && !shippingEstimate.freeShipping && typeof shippingEstimate.remainingForFree === 'number' && shippingEstimate.remainingForFree > 0) {
+    if (includesSuperpibes && shippingEstimate?.supported) {
+      shippingGapNode.textContent = 'Envío Superpibes: 12,00 €';
+    } else if (shippingEstimate?.supported && !shippingEstimate.freeShipping && typeof shippingEstimate.remainingForFree === 'number' && shippingEstimate.remainingForFree > 0) {
       shippingGapNode.textContent = `Te faltan ${formatPrice(shippingEstimate.remainingForFree)} para envío gratis`;
     } else {
       shippingGapNode.textContent = '';
