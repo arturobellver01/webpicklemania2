@@ -260,3 +260,22 @@ body {
 .collection-card-actions { display: flex; flex-wrap: wrap; gap: .75rem; align-items: center; }
 .collection-card-actions .btn-primary, .collection-card-actions .brand-btn { flex: 1 1 10rem; white-space: nowrap; }
 @media (max-width: 767px) { .collection-card-actions { display: grid; grid-template-columns: 1fr; } .gallery-lightbox__previous { left: 0; } .gallery-lightbox__next { right: 0; } }
+
+/* La galería permanece apilada en móvil y comparte el ancho disponible con la ficha en escritorio. */
+@media (min-width: 1024px) {
+  .product-detail-layout {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .product-detail-layout > * {
+    min-width: 0;
+  }
+
+  .team-feature img,
+  .team-player-photo {
+    width: 100%;
+    max-width: 320px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
