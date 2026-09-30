@@ -45,6 +45,8 @@ $catalog = [
     'picklemania-superpibes-shirt' => ['unit_amount' => 2990, 'allows_personalization' => true],
     'picklemania-superpibes-pants' => ['unit_amount' => 3490, 'allows_personalization' => false],
     'picklemania-superpibes-kit' => ['price_id' => getenv('STRIPE_PRICE_SUPERPIBES_KIT') ?: '', 'unit_amount' => 5990, 'allows_personalization' => true],
+    // Price IDs a completar: estándar 34,90 € y personalizado 39,90 €.
+    'picklemania-womens-top' => ['unit_amount' => 3490, 'personalized_unit_amount' => 3990, 'allows_personalization' => true],
 ];
 
 $items = $payload['items'] ?? [];
@@ -80,11 +82,20 @@ foreach ($items as $item) {
     if ($quantity === false) { http_response_code(400); echo json_encode(['error' => 'Cantidad no válida.']); exit; }
     if ($productId === 'picklemania-superpibes-kit') {
         if (!in_array($configuration['shirtEdition'] ?? '', $editions, true) || !in_array($configuration['pantsEdition'] ?? '', $editions, true) || !in_array($configuration['shirtSize'] ?? '', $sizes, true) || !in_array($configuration['pantsSize'] ?? '', $sizes, true)) { http_response_code(400); echo json_encode(['error' => 'Configuración de equipación no válida.']); exit; }
+    } elseif ($productId === 'picklemania-womens-top') {
+        $flags = $configuration['flags'] ?? [];
+        $validTop = in_array($configuration['color'] ?? '', ['Blanco', 'Negro'], true) && in_array($configuration['size'] ?? '', $sizes, true) && is_bool($configuration['personalized'] ?? null);
+        if (($configuration['personalized'] ?? false) === true) $validTop = $validTop && trim((string)($configuration['personalizationName'] ?? '')) !== '' && mb_strlen(trim((string)($configuration['personalizationName'] ?? ''))) <= 24 && is_array($flags) && count($flags) > 0;
+        if (!$validTop) { http_response_code(400); echo json_encode(['error' => 'Configuración de TOP PICKLEMANIA no válida.']); exit; }
     } elseif (str_starts_with($productId, 'picklemania-superpibes-') && (!in_array($configuration['edition'] ?? '', $editions, true) || !in_array($configuration['size'] ?? '', $sizes, true))) { http_response_code(400); echo json_encode(['error' => 'Configuración de producto no válida.']); exit; }
 
     $product = $catalog[$productId];
     if ($productId === 'picklemania-superpibes-shirt') {
         $product['price_id'] = getenv($configuration['edition'] === 'pro' ? 'STRIPE_PRICE_SUPERPIBES_SHIRT_PRO' : 'STRIPE_PRICE_SUPERPIBES_SHIRT_COMPETITION') ?: '';
+    } elseif ($productId === 'picklemania-womens-top') {
+        $isPersonalized = $configuration['personalized'] === true;
+        $product['price_id'] = getenv($isPersonalized ? 'STRIPE_PRICE_TOP_PICKLEMANIA_PERSONALIZED' : 'STRIPE_PRICE_TOP_PICKLEMANIA') ?: '';
+        $product['unit_amount'] = $isPersonalized ? $product['personalized_unit_amount'] : $product['unit_amount'];
     } elseif ($productId === 'picklemania-superpibes-pants') {
         $product['price_id'] = getenv($configuration['edition'] === 'pro' ? 'STRIPE_PRICE_SUPERPIBES_PANTS_PRO' : 'STRIPE_PRICE_SUPERPIBES_PANTS_COMPETITION') ?: '';
     }
@@ -93,7 +104,7 @@ foreach ($items as $item) {
     $lineItems[] = ['price' => $product['price_id'], 'quantity' => $quantity];
 
     $personalizationName = trim((string)($configuration['personalizationName'] ?? ''));
-    if ($personalizationName !== '') {
+    if ($personalizationName !== '' && $productId !== 'picklemania-womens-top') {
         if (mb_strlen($personalizationName) > 24) { http_response_code(400); echo json_encode(['error' => 'El nombre de personalización es demasiado largo.']); exit; }
         if (empty($product['allows_personalization'])) {
             http_response_code(400);
@@ -109,6 +120,10 @@ foreach ($items as $item) {
         $subtotalCents += 500 * $quantity;
         $lineItems[] = ['price' => $personalizationPrice, 'quantity' => $quantity];
     }
+    if ($productId === 'picklemania-womens-top') {
+        $safeConfiguration = ['color' => $configuration['color'], 'size' => $configuration['size'], 'personalized' => $configuration['personalized'], 'personalizationName' => $configuration['personalized'] ? trim((string)$configuration['personalizationName']) : '', 'flags' => $configuration['personalized'] ? array_values($configuration['flags']) : []];
+        $configurationSummaries[] = $productId . ': ' . json_encode($safeConfiguration, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+    }
     if (str_starts_with($productId, 'picklemania-superpibes-')) {
         $safeConfiguration = $productId === 'picklemania-superpibes-kit'
             ? ['shirtEdition' => $configuration['shirtEdition'], 'shirtSize' => $configuration['shirtSize'], 'pantsEdition' => $configuration['pantsEdition'], 'pantsSize' => $configuration['pantsSize'], 'personalizationName' => $personalizationName]
@@ -118,8 +133,8 @@ foreach ($items as $item) {
 }
 
 $customer = $payload['customer'] ?? null;
-$hasSuperpibes = false;
-foreach ($items as $checkoutItem) { if (is_array($checkoutItem) && str_starts_with((string)($checkoutItem['productId'] ?? ''), 'picklemania-superpibes-')) { $hasSuperpibes = true; break; } }
+$hasFixedApparelShipping = false;
+foreach ($items as $checkoutItem) { if (is_array($checkoutItem) && (str_starts_with((string)($checkoutItem['productId'] ?? ''), 'picklemania-superpibes-') || (string)($checkoutItem['productId'] ?? '') === 'picklemania-womens-top')) { $hasFixedApparelShipping = true; break; } }
 $shippingRateByZone = [
     'ES' => 495,
     'CANARIAS' => 1995,
@@ -197,9 +212,9 @@ try {
         exit;
     }
 
-    if ($shippingZone !== 'FREE' || $hasSuperpibes) {
-        // Superpibes se envía siempre con porte fijo de 12 €, sin gratuidad.
-        $shippingAmount = $hasSuperpibes ? 1200 : ($shippingRateByZone[$shippingZone] ?? 0);
+    if ($shippingZone !== 'FREE' || $hasFixedApparelShipping) {
+        // Las prendas se envían siempre con porte fijo de 12 € por pedido, sin gratuidad.
+        $shippingAmount = $hasFixedApparelShipping ? 1200 : ($shippingRateByZone[$shippingZone] ?? 0);
         if ($shippingAmount > 0) {
             $lineItems[] = [
                 'price_data' => [

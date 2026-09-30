@@ -8,6 +8,8 @@
     personalization: 500
   };
 
+  const TOP_PICKLEMANIA_PRICES = { standard: 3490, personalized: 3990 };
+
   const PRODUCTS = [
     {
       id: 'picklemania-black-paddle',
@@ -57,6 +59,23 @@
       ],
       features: ['Nuevo', 'En stock', 'Envío 24/48h', 'Pago seguro con Stripe'],
       badges: ['Nuevo', 'En stock', 'Envío 24/48h']
+    },
+    {
+      id: 'picklemania-womens-top',
+      name: 'TOP PICKLEMANIA',
+      slug: 'top-picklemania',
+      category: 'apparel',
+      type: 'womens-top',
+      price: TOP_PICKLEMANIA_PRICES.standard,
+      personalizationPrice: TOP_PICKLEMANIA_PRICES.personalized - TOP_PICKLEMANIA_PRICES.standard,
+      displayPrice: '34,90€',
+      description: 'Top deportivo de mujer diseñado para jugar y formar parte de Picklemania.',
+      image: '',
+      // Sustituye estas dos rutas por las fotografías finales cuando estén disponibles.
+      gallery: ['img/top-picklemania-front.jpg', 'img/top-picklemania-back.jpg'],
+      colors: ['Blanco', 'Negro'],
+      sizes: ['XS', 'S', 'M', 'L', 'XL'],
+      stripePriceEnv: { standard: 'STRIPE_PRICE_TOP_PICKLEMANIA', personalized: 'STRIPE_PRICE_TOP_PICKLEMANIA_PERSONALIZED' }
     },
     {
       id: 'picklemania-superpibes-shirt', name: 'Picklemania x Superpibes — Camiseta', slug: 'superpibes-camiseta', category: 'apparel', type: 'shirt',

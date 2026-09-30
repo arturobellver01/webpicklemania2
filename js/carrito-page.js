@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return `
         <article class="card-soft p-4 md:p-6">
           <div class="flex flex-col sm:flex-row gap-4 sm:items-center">
-            <img src="${escapeHtml(item.image)}" alt="${escapeHtml(item.name)}" class="w-full sm:w-28 h-28 object-cover rounded-2xl bg-brand-light p-2">
+            ${item.image ? `<img src="${escapeHtml(item.image)}" alt="${escapeHtml(item.name)}" class="w-full sm:w-28 h-28 object-cover rounded-2xl bg-brand-light p-2">` : `<div class="cart-image-placeholder w-full sm:w-28 h-28" aria-label="${escapeHtml(item.name)}">TOP<br> PICKLEMANIA</div>`}
             <div class="flex-1">
               <h2 class="font-display font-bold text-xl">${escapeHtml(item.name)}</h2>
               <p class="text-brand-gray text-sm mb-2">${escapeHtml(item.description)}</p>
@@ -92,8 +92,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const country = countryNode?.value;
     const postal = postalNode?.value;
 
-    const includesSuperpibes = cart.some((item) => String(item.id || '').startsWith('picklemania-superpibes-'));
-    const shippingEstimate = window.PicklemaniaCheckout?.detectShippingZone(country, postal, subtotal, { includesSuperpibes });
+    const includesFixedShipping = cart.some((item) => String(item.id || '').startsWith('picklemania-superpibes-') || String(item.id || '') === 'picklemania-womens-top');
+    const shippingEstimate = window.PicklemaniaCheckout?.detectShippingZone(country, postal, subtotal, { includesFixedShipping });
 
     const shipping = shippingEstimate?.supported ? Number(shippingEstimate.shipping || 0) : 0;
     const total = subtotal + shipping;
@@ -104,8 +104,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     shippingMessageNode.textContent = shippingEstimate?.message || '';
 
-    if (includesSuperpibes && shippingEstimate?.supported) {
-      shippingGapNode.textContent = 'Envío Superpibes: 12,00 €';
+    if (includesFixedShipping && shippingEstimate?.supported) {
+      shippingGapNode.textContent = 'Envío de prendas: 12,00 € por pedido';
     } else if (shippingEstimate?.supported && !shippingEstimate.freeShipping && typeof shippingEstimate.remainingForFree === 'number' && shippingEstimate.remainingForFree > 0) {
       shippingGapNode.textContent = `Te faltan ${formatPrice(shippingEstimate.remainingForFree)} para envío gratis`;
     } else {
