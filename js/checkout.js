@@ -25,9 +25,9 @@
       };
     }
 
-    // La colección Superpibes tiene un porte fijo propio, sin umbral gratuito.
-    if (options.includesSuperpibes) {
-      return { supported: true, zone: 'SUPERPIBES', shipping: 12, freeShipping: false, message: 'Envío Superpibes: 12,00 €', remainingForFree: null };
+    // Estas prendas se envían con un único porte fijo por pedido, sin umbral gratuito.
+    if (options.includesFixedShipping) {
+      return { supported: true, zone: 'FIXED_APPAREL', shipping: 12, freeShipping: false, message: 'Envío de prendas: 12,00 € por pedido', remainingForFree: null };
     }
 
     if (normalizedCountry === 'ES') {

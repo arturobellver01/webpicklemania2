@@ -45,4 +45,9 @@
   <url>
     <loc>https://picklemaniaweb.es/guias/por-que-jugadores-padel-descubren-pickleball</loc>
   </url>
+  <url>
+    <loc>https://picklemaniaweb.es/producto-top-picklemania</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>
