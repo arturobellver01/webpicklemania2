@@ -1,5 +1,13 @@
 window.PICKLEMANIA_ARTICLES = [
   {
+    title: '¿Qué hace que un club de pickleball tenga éxito?',
+    category: 'Comunidad',
+    description: 'Descubre las claves para construir un club de pickleball con comunidad, actividad, identidad y crecimiento sostenible.',
+    readingTime: '7 min',
+    url: '/guias/que-hace-que-un-club-de-pickleball-tenga-exito'
+  },
+
+  {
     title: '¿Por qué tantos jugadores de pádel están descubriendo el pickleball?',
     category: 'Fundamentos',
     description: 'Una mirada a la transición natural entre pádel y pickleball: estrategia, comunidad y nuevas formas de disfrutar la pista.',
