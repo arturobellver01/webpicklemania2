@@ -1,5 +1,13 @@
 window.PICKLEMANIA_ARTICLES = [
   {
+    title: 'Cómo introducir el pickleball en los colegios: una oportunidad para las nuevas generaciones',
+    category: 'Comunidad',
+    description: 'Descubre cómo introducir el pickleball en los colegios y fomentar la coordinación, la convivencia y los hábitos deportivos.',
+    readingTime: '7 min',
+    url: '/guias/como-introducir-el-pickleball-en-los-colegios'
+  },
+
+  {
     title: '¿Qué hace que un club de pickleball tenga éxito?',
     category: 'Comunidad',
     description: 'Descubre las claves para construir un club de pickleball con comunidad, actividad, identidad y crecimiento sostenible.',
